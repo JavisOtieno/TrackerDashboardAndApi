@@ -98,7 +98,7 @@
 
   
     <script src="https://maps.googleapis.com/maps/api/js?key=
-    AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap2"></script> --}}
+    AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap2"></script> 
 
     <script>
         let map;
