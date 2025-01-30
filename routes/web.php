@@ -17,4 +17,4 @@ use App\Http\Controllers\LocationController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::post('/', [LocationController::class, 'index']);
+Route::get('/', [LocationController::class, 'index']);
