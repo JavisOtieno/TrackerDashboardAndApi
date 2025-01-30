@@ -354,7 +354,8 @@
                                         class="avatar  profile-user brround cover-image">
                                 </a> --}}
                                 <a href="javascript:void(0)" data-bs-toggle="dropdown" class="nav-link leading-none d-flex">
-                                    <img src="{{url('storage/'.auth()->user()->image)}}" alt="profile-user"
+                                    <img src="{{auth()->user() ? url('storage/'.auth()->user()->image) : 
+                                    'assets/images/users/profilepicdefault.jpg' }}" alt="profile-user"
                                                 class="avatar  profile-user brround cover-image"
                                                 onerror="this.onerror=null; this.src='{{ asset('assets/images/users/profilepicdefault.jpg') }}';">
                                                 {{-- onerror="this.onerror=null; this.src='{{asset('assets/images/new-images/no-image-available.jpg')}}';"> --}}
