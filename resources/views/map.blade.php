@@ -99,158 +99,101 @@
   
 
 
-    <script>
-        let map;
-        let markers = [];  // Store marker references
+<script>
+    function myMap() {
+        var locations= @json($locations);
+
+    if(locations[0]){
+        var mapProp= {
+        center:new google.maps.LatLng(Number(locations[0]['lat']),
+        Number(locations[0]['long'])),
+        zoom:10,
+        };
+    }else{
+        var mapProp= {
+        center:new google.maps.LatLng(-1.286389,36.817223),
+        zoom:10,
+        };
+    }
     
-        function myMap2() {
-            var locations = @json($locations);
-    
-            console.log("locations 0");
-            console.log(locations[0]);
-            console.log("locations 0");
-    
-            var mapProp = {
-                center: new google.maps.LatLng(-1.286389, 36.817223),
-                zoom: 10,
-            };
-    
-            document.addEventListener("DOMContentLoaded", function() {
-                var googleMapsDiv = document.getElementById("googleMapLocations");
-                map = new google.maps.Map(googleMapsDiv, mapProp);
-    
-                // $('#userFilter').select2();
-    
-                // Populate user filter dropdown
-                // populateUserFilter(visits);
-    
-                // Initial map update with all visits
-                updateMap(locations);
-    
-                // $('#userFilter, #locationFilter, #fromDate, #toDate').on('change', function() {
-                // applyFilters(locations);
-                // });
-                
-    
-    
+    var map = new google.maps.Map(document.getElementById("googleMapLocations"),mapProp);
+
+    if(locations.length>0){
+    var bounds = new google.maps.LatLngBounds();
+    locations.forEach(location => {
+        var lat1 = Number(location['lat']);
+        var long1 = Number(location['long']);
+
+        const myPosition = { lat: lat1, lng: long1 };
+        console.log(myPosition);
+
+        // var markerElement = new google.maps.marker.AdvancedMarkerElement({
+        //         position: myPosition,
+        //         map: map,
+        //         title: 'Visit Marker', // Add a title if needed
+        //     })
+
+            // Extend the bounds to include this marker's position
+            bounds.extend(myPosition);
+
+            // var infoContent = "<div><h3>"+location['name']+"</h3>"+
+            //     "<p>Latitude: "+lat1+"</p>"+
+            //     "<p>Longitude: "+long1+"</p>"+
+            //     "<p>Seller: "+visit['user']['name']+"</p>"+
+            // "</div>";
+
+            // Create an InfoWindow
+            // var infoWindow = new google.maps.InfoWindow({
+            //     content: infoContent
+            // });
+            //
+            var infowindow = new google.maps.InfoWindow({
+                content: "<div><h3>Last Location(Name)</h3>"+
+                    // "<p>Seller: "+( visit['user']===null ? 'Deleted User': visit['user']['name'])+"</p>"+
+                    "<p>Latitude: "+lat1+"</p>"+
+                    "<p>Longitude: "+long1+"</p>"+
+                    "</div>"
             });
-        }
-    
-        function applyFilters(locations) {
-    
-                    var selectedLocation = $('#locationFilter').val();
-                    var selectedUser = $('#userFilter').val();
-                    var fromDate = $('#fromDate').val();
-                    var toDate = $('#toDate').val();
-                    
-                   // var filteredVisits = selectedUser ? visits.filter(visit => visit.user.name === selectedUser ) : visits;
-                    var filteredLocations = locations.filter(location => {
-                                const userMatches = selectedUser ? location.user.name === selectedUser : true;
-                                const locationMatches = selectedLocation ? location.name === selectedLocation : true;
-                                        // Convert visit.created_at to date object
-                                var locationDate = new Date(location.created_at);
-    
-                                // Filter by date range
-                                const fromDateMatches = fromDate ? locationDate >= new Date(fromDate) : true;
-                                const toDateMatches = toDate ? locationDate <= new Date(toDate) : true;
-                                return userMatches && locationMatches && fromDateMatches && toDateMatches;
-                            });
-                            
-                    updateMap(filteredLocations);
-    
-        }
-    
-        function populateUserFilter(locations) {
-            const userFilter = document.getElementById("userFilter");
-            const users = [...new Set(locations.map(location => location.user.name))];
-    
-            // Add an option for 'All Users'
-            const allUsersOption = document.createElement('option');
-            allUsersOption.value = '';
-            allUsersOption.text = 'All Users';
-            userFilter.add(allUsersOption);
-    
-            users.forEach(user => {
-                const option = document.createElement('option');
-                option.value = user;
-                option.text = user;
-                userFilter.add(option);
+
+            // Add a click event listener to the marker to open the InfoWindow
+            // marker.addListener('click', function() {
+            //     infoWindow.open(map, marker);
+            // });
+            
+        
+       
+        var marker = new google.maps.Marker({position: myPosition,
+            title: location['name'],
+            label: String(location.id),
+            title: location.id,
+            zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map,marker);
             });
-        }
+        marker.setMap(map);
+        
+    });
+    map.fitBounds(bounds);
+    var lat1 = location[0]['lat'];
+    var long1 = location[0]['long'];
+    }
+   // console.log(recentVisits);
     
-        function updateMap(locations) {
-            clearMarkers();
+    // const myPosition = { lat: -25.344, lng: 131.031 };
+    // //console.log(myPosition);
+    // const myPosition2 = { lat: Number(lat1), lng: Number(long1) };
+    // //console.log(myPosition2);
+    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    // var marker = new google.maps.Marker({position: myPosition});
+    // marker.setMap(map);
+    // var marker2 = new google.maps.Marker({position: myPosition2});
+    // marker2.setMap(map);
+    }
     
-            if (locations.length > 0) {
-                const bounds = new google.maps.LatLngBounds();
-                locations.forEach(location => {
-                    var lat1 = Number(location['lat']);
-                    var long1 = Number(location['long']);
-                    const myPosition = { lat: lat1, lng: long1 };
-    
-    
-                    var date = new Date(location.created_at);
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1; // Months are zero-based, so add 1
-                    var year = date.getFullYear();
-    
-                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    
-                    // Get month name from array
-                    var monthName = monthNames[month];
-    
-                    var locationDate = day + '-' + monthName + '-' + year;
-    
-                    // Pad single digit minutes with a leading zero
-                    minutes = minutes < 10 ? '0' + minutes : minutes;
-    
-                    hours = hours < 10 ? '0' + hours : hours;
-    
-                    var locationTime = hours + ':' + minutes;
-    
-                    const infowindow = new google.maps.InfoWindow({
-                        content: "<div><h3>" + 
-                            // location['name'] + 
-                            "</h3>" +
-                            "<p>Seller: " 
-                                // +(location.user === null ? 'Deleted User' : location.user['name']) 
-                                + "</p>" +
-                            "<p>Latitude: " + lat1 + "</p>" +
-                            "<p>Longitude: " + long1 + "</p>" +
-                            "<p><strong>Created:</strong> "+locationDate+" "+locationTime+"</p>"+
-                            "View: <a target='_blank' href='/editlocation/" + location.id + "'>View Location Details</a>" +
-                        
-                            "</div>"
-                    });
-    
-                    var marker = new google.maps.Marker({
-                        position: myPosition,
-                        // title: location['name'],
-                        label: String(location.id),
-                        title: location.name,
-                        zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
-                    });
-                    google.maps.event.addListener(marker, 'click', function() {
-                        infowindow.open(map, marker);
-                    });
-                    marker.setMap(map);
-    
-                    markers.push(marker);  // Add marker to the array
-    
-                    bounds.extend(myPosition);
-                });
-    
-                map.fitBounds(bounds);
-            }
-        }
-    
-        function clearMarkers() {
-            markers.forEach(marker => marker.setMap(null));  // Remove each marker from the map
-            markers = [];  // Clear the markers array
-        }
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap2"></script>
-    
-    
+    <script src="https://maps.googleapis.com/maps/api/js?key=
+    AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap"></script>
+        {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=initMap"></script> --}}
+
