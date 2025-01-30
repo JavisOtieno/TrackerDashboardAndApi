@@ -27,4 +27,10 @@ class LocationController extends Controller
 
         return response()->json($locationStatus);
     }
+    public function index(Request $request){
+
+        $locations = Location::all();
+        return response()->json($locations);
+        
+    }
 }
