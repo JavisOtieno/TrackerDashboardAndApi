@@ -69,7 +69,7 @@
         
         var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-        if(recentVisits.length>0){
+        if(locations.length>0){
         var bounds = new google.maps.LatLngBounds();
         locations.forEach(location => {
             var lat1 = Number(location['lat']);
