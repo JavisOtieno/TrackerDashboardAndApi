@@ -140,7 +140,7 @@
         var lat1 = Number(location['lat']);
         var long1 = Number(location['long']);
 
-        const myPosition = { lat: lat1, lng: long1 };
+        // const myPosition = { lat: lat1, lng: long1 };
         var myPosition = new google.maps.LatLng(lat1, long1);
         console.log(myPosition);
 
@@ -188,7 +188,7 @@
         console.log("markerposition");
         console.log(marker);
         console.log(myPosition)
-        console.log("marketposition");
+        console.log("markerposition");
         google.maps.event.addListener(marker, 'click', function() {
                 infowindow.open(map,marker);
             });
