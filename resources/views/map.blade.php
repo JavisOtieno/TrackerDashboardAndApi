@@ -117,14 +117,14 @@
         var locations= @json($locations);
 
     if(locations[0]){
-        alert(locations[0]['long'])
+        // alert(locations[0]['long'])
         var mapProp= {
         center:new google.maps.LatLng(Number(locations[0]['lat']),
         Number(locations[0]['long'])),
         zoom:10,
         };
     }else{
-        alert('no location 0')
+        // alert('no location 0')
         var mapProp= {
         center:new google.maps.LatLng(-1.286389,36.817223),
         zoom:10,
@@ -134,7 +134,7 @@
     var map = new google.maps.Map(document.getElementById("googleMapLocations"),mapProp);
 
     if(locations.length>0){
-    alert('locations found')
+    // alert('locations found')
     var bounds = new google.maps.LatLngBounds();
     locations.forEach(location => {
         var lat1 = Number(location['lat']);
@@ -182,8 +182,12 @@
             // title: location['name'],
             label: String(location.id),
             title: String(location.id),
-            zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
+            // zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
         });
+        console.log("markerposition");
+        console.log(marker);
+        console.log(myPosition)
+        console.log("marketposition");
         google.maps.event.addListener(marker, 'click', function() {
                 infowindow.open(map,marker);
             });
