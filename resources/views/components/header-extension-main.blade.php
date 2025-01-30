@@ -462,7 +462,7 @@
                                         <li class="side-menu-label1"><a href="javascript:void(0)">Users</a></li>
                                         <li><a href="/admins" class="slide-item"> Admins</a></li>
                                         <li><a href="/teamleads" class="slide-item"> Team Leads</a></li>
-                                        @endif
+                                      
                                         <li><a href="/sellers" class="slide-item"> Sellers</a></li>
                                         <li><a href="/teams" class="slide-item"> Teams</a></li>
                                         <li><a href="/regions" class="slide-item"> Regions</a></li>
@@ -470,7 +470,7 @@
                                         <li><a href="/clusters" class="slide-item"> Clusters</a></li>
                                         <li><a href="/routes" class="slide-item"> Routes</a></li>
                                         <li><a href="/channeltypes" class="slide-item"> Channel Types</a></li>
-                                        @endif
+                                        
                                         <li><a href="/targetgroups" class="slide-item"> Sales Target Groups</a></li>
                                         <li><a href="/adduserstotargetgroups" class="slide-item"> Add Sellers to Target Groups</a></li>
                                         <li><a href="/adduserstoteam" class="slide-item"> Add Sellers to Team</a></li>
