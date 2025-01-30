@@ -431,13 +431,13 @@
                           class="side-menu__icon fe fe-user"></i><span
                           class="side-menu__label">Users</span></a>
               </li> --}}
-              @if(auth()->user()->usertype=="systemadmin")
+             
               <li class="slide">
                 <a class="side-menu__item has-link" data-bs-toggle="slide" href="/organizations"><i
                         class="side-menu__icon fe fe-map"></i><span
                         class="side-menu__label">Organizations</span></a>
             </li>
-            @endif
+           
               <li class="slide">
                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
                         class="side-menu__icon fe fe-user"></i><span
@@ -460,12 +460,10 @@
                                 <div class="tab-pane active" id="side1">
                                     <ul class="sidemenu-list">
                                         <li class="side-menu-label1"><a href="javascript:void(0)">Users</a></li>
-                                        @if (auth()->user()->usertype=='admin'  || auth()->user()->usertype == 'systemadmin')
                                         <li><a href="/admins" class="slide-item"> Admins</a></li>
                                         <li><a href="/teamleads" class="slide-item"> Team Leads</a></li>
                                         @endif
                                         <li><a href="/sellers" class="slide-item"> Sellers</a></li>
-                                        @if (auth()->user()->usertype=='admin'  || auth()->user()->usertype == 'systemadmin')
                                         <li><a href="/teams" class="slide-item"> Teams</a></li>
                                         <li><a href="/regions" class="slide-item"> Regions</a></li>
                                         <li><a href="/territories" class="slide-item"> Territories</a></li>
