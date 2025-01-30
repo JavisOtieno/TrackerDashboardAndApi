@@ -12,7 +12,7 @@
     <h1 class="page-title">Dashboard</h1>
     <div>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">RTMS</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Tracker</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
         </ol>
     </div>
@@ -32,7 +32,7 @@
             <div class="card overflow-hidden">
                 <div class="card-header">
                     <div>
-                        <h3 class="card-title">Recent Visits</h3>
+                        <h3 class="card-title">Locations</h3>
                     </div>
                 </div>
                 <div class="card-body p-0 mt-2">
