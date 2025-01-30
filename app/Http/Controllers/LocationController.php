@@ -13,6 +13,6 @@ class LocationController extends Controller
         $locations = Location::all();
 
 
-        return response()->json($locations);
+        return view('map', ['locations'=>$locations]);
     }
 }
