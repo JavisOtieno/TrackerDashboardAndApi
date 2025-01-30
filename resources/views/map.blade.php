@@ -24,46 +24,6 @@
             <a type="button" href="/add-location" class="btn btn-danger col-md-3" style="margin-left: auto;margin-right:20px;margin-top:10px;margin-bottom:10px;color:white;">Add Location</a>
         </div> --}}
 
-        <div class="row" style="margin: 0 10px;">
-            <input type="hidden" id="tableLoaded" value="locations"/>
-            <h3 class="card-title" style="margin-top:20px;margin-block-end: 0rem;">Search by :</h3>
-            <div class="col-md-3 mb-3">
-                <label for="nameInput" class="form-label">Seller Name</label>
-                <select id="userFilter"  class="form-control select2-show-search form-select">
-                    <!-- Options will be populated dynamically -->
-                    <option value="">All Users</option>
-                    @foreach($users as $user)
-                    <option value="{{$user['name']}}">{{$user['name']}}</option>
-                    @endforeach
-                </select>
-                
-            </div>
-
-            <div class="col-md-3 mb-3">
-                <label for="locationFilter" class="form-label">Location Name</label>
-                <select id="locationFilter"  class="form-control select2-show-search form-select">
-                    <!-- Options will be populated dynamically -->
-                    <option value="">All Locations</option>
-                    @foreach($locations as $location)
-                    <option value="{{$location['name']}}">{{$location['name']}}</option>
-                    @endforeach
-                </select>
-                
-            </div>
-
-            <div class="col-md-3 mb-3">
-            
-            <label for="date" class="form-label">From</label>
-            <input type="date" class="form-control" id="fromDate" placeholder="Min Date">
-            </div>
-            <div class="col-md-3 mb-3">
-            
-            <label for="date" class="form-label">To</label>
-            <input type="date" class="form-control" id="toDate" placeholder="Max Date">
-            </div>
-
-           
-        </div>
 
         <div class="card-body">
             <div>
