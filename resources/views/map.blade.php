@@ -141,6 +141,7 @@
         var long1 = Number(location['long']);
 
         const myPosition = { lat: lat1, lng: long1 };
+        var myPosition = new google.maps.LatLng(lat1, long1);
         console.log(myPosition);
 
         // var markerElement = new google.maps.marker.AdvancedMarkerElement({
