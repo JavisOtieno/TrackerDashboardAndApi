@@ -163,9 +163,9 @@
         
        
         var marker = new google.maps.Marker({position: myPosition,
-            title: location['name'],
+            // title: location['name'],
             label: String(location.id),
-            title: location.id,
+            title: String(location.id),
             zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
         });
         google.maps.event.addListener(marker, 'click', function() {
