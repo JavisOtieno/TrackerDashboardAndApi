@@ -175,8 +175,8 @@
         
     });
     map.fitBounds(bounds);
-    var lat1 = location[0]['lat'];
-    var long1 = location[0]['long'];
+    var lat1 = locations[0]['lat'];
+    var long1 = locations[0]['long'];
     }
    // console.log(recentVisits);
     
