@@ -128,9 +128,9 @@
                 // Initial map update with all visits
                 updateMap(locations);
     
-                $('#userFilter, #locationFilter, #fromDate, #toDate').on('change', function() {
-                applyFilters(locations);
-                });
+                // $('#userFilter, #locationFilter, #fromDate, #toDate').on('change', function() {
+                // applyFilters(locations);
+                // });
                 
     
     
