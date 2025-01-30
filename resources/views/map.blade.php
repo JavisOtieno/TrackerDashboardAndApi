@@ -212,8 +212,12 @@
                     var locationTime = hours + ':' + minutes;
     
                     const infowindow = new google.maps.InfoWindow({
-                        content: "<div><h3>" + location['name'] + "</h3>" +
-                            "<p>Seller: " + (location.user === null ? 'Deleted User' : location.user['name']) + "</p>" +
+                        content: "<div><h3>" + 
+                            // location['name'] + 
+                            "</h3>" +
+                            "<p>Seller: " 
+                                // +(location.user === null ? 'Deleted User' : location.user['name']) 
+                                + "</p>" +
                             "<p>Latitude: " + lat1 + "</p>" +
                             "<p>Longitude: " + long1 + "</p>" +
                             "<p><strong>Created:</strong> "+locationDate+" "+locationTime+"</p>"+
@@ -224,7 +228,7 @@
     
                     var marker = new google.maps.Marker({
                         position: myPosition,
-                        title: location['name'],
+                        // title: location['name'],
                         label: String(location.id),
                         title: location.name,
                         zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
