@@ -424,10 +424,10 @@
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i
                             class="side-menu__icon fe fe-home"></i><span
-                            class="side-menu__label">Trail Maps</span></a>
+                            class="side-menu__label">Trail Map</span></a>
                 </li>
                 <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/dashboard"><i
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/currentlocation"><i
                             class="side-menu__icon fe fe-home"></i><span
                             class="side-menu__label">Current Location</span></a>
                 </li>
