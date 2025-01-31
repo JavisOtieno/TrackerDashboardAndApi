@@ -304,6 +304,8 @@
                     //     map: map
                     // });
 
+                    map.fitBounds(bounds);
+
                     const origin = waypoints.shift().location;
                 const destination = waypoints.pop().location;
                 waypoints = [];
@@ -353,7 +355,7 @@
                     }
                 });
                     
-                        map.fitBounds(bounds);
+                        
                     }
                 
                 function clearMarkers() {
