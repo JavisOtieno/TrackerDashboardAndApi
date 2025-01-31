@@ -227,7 +227,7 @@
                 }
                 
                 function processLocation(location) {
-                    if (!location.length) return;
+                    if (!location) return;
                 
                     const bounds = new google.maps.LatLngBounds();
                     
