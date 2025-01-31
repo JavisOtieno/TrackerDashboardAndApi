@@ -237,6 +237,7 @@
                     locations.forEach(location => {
                         const lat1 = Number(location.lat);
                         const long1 = Number(location.long);
+                        alert("location here");
                         const position = {
                             lat: lat1,
                             lng: long1
