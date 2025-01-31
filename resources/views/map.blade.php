@@ -306,6 +306,7 @@
 
                     const origin = waypoints.shift().location;
                 const destination = waypoints.pop().location;
+                waypoints = [];
                 console.log("origin");
                 console.log(origin);
                 console.log("origin");
