@@ -328,7 +328,7 @@
                 var directionsService = new google.maps.DirectionsService();
                 // var directionsRenderer = new google.maps.DirectionsRenderer();
                 var directionsRenderer = new google.maps.DirectionsRenderer({
-                // preserveViewport: true // Prevents automatic bounds adjustment
+                preserveViewport: true // Prevents automatic bounds adjustment
                 });
                 directionsRenderer.setMap(map);
 
