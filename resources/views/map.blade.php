@@ -294,9 +294,54 @@
                         strokeWeight: 2,
                         map: map
                     });
-                
-                    map.fitBounds(bounds);
-                }
+
+                    const origin = path.shift().location;
+                const destination = path.pop().location;
+
+                const request = {
+                    origin: origin,
+                    destination: destination,
+                    waypoints: path,
+                    optimizeWaypoints: true,
+                    travelMode: 'DRIVING'
+                };
+
+                var directionsService = new google.maps.DirectionsService();
+                var directionsRenderer = new google.maps.DirectionsRenderer();
+                directionsRenderer.setMap(map);
+
+                directionsService.route(request, function(result, status) {
+                    if (status == 'OK') {
+
+                        const route = result.routes[0];
+                        let totalDistance = 0;
+
+                        // Loop through each leg to calculate the total distance
+                        route.legs.forEach(leg => {
+                            totalDistance += leg.distance.value; // distance.value is in meters
+                        });
+
+                        if (totalDistance < 50) {
+                            console.log('Route is less than 50 meters, not drawing directions.');
+                            var bounds = new google.maps.LatLngBounds();
+                            // addMarkers(map,routeplan.routeplanitems,bounds);
+                            map.fitBounds(bounds);
+                        } else {
+                            directionsRenderer.setDirections(result);
+                            console.log('Route drawn with result:', result);
+                            // addMarkers(map,routeplan.routeplanitems);
+                        }
+
+                    } else {
+                        console.error('Directions request failed due to ' + status);
+                        var bounds = new google.maps.LatLngBounds();
+                        // addMarkers(map,routeplan.routeplanitems,bounds);
+                        map.fitBounds(bounds);
+                    }
+                });
+                    
+                        map.fitBounds(bounds);
+                    }
                 
                 function clearMarkers() {
                     if (routePolyline) {
