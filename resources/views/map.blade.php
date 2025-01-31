@@ -346,9 +346,9 @@
 
                     } else {
                         console.error('Directions request failed due to ' + status);
-                        var bounds = new google.maps.LatLngBounds();
+                        // var bounds = new google.maps.LatLngBounds();
                         // addMarkers(map,routeplan.routeplanitems,bounds);
-                        map.fitBounds(bounds);
+                        // map.fitBounds(bounds);
                     }
                 });
                     
