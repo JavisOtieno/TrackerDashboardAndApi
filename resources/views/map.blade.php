@@ -119,7 +119,7 @@
 
                 var locationTime = hours + ':' + minutes;
                 var infowindow = new google.maps.InfoWindow({
-                    content: "<div><h3>"+
+                    content: "<div>"+
                     // visit['outlet']['name']+"</h3>"+
                         // "<p>Seller: "+( visit['user']===null ? 'Deleted User': visit['user']['name'])+"</p>"+
                         "<p>Date: "+locationDate+"</p>"+
