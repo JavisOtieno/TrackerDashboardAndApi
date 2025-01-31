@@ -277,6 +277,8 @@
                         path.push(position);
                         bounds.extend(position);
                     });
+                    console.log("path");
+                    console.log(path);
 
                         // Remove existing polyline if it exists
                     if (routePolyline) {
