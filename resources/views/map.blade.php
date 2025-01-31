@@ -295,8 +295,8 @@
                         map: map
                     });
 
-                    const origin = path.shift().location;
-                const destination = path.pop().location;
+                    const origin = path.shift();
+                const destination = path.pop();
 
                 const request = {
                     origin: origin,
