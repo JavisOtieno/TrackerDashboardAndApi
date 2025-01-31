@@ -102,7 +102,7 @@
                 var hours = date.getHours();
                 var minutes = date.getMinutes();
                 var day = date.getDate();
-                var month = date.getMonth() + 1; // Months are zero-based, so add 1
+                var month = date.getMonth(); // Months are zero-based, so add 1
                 var year = date.getFullYear();
 
                 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
