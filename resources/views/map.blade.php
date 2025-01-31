@@ -304,8 +304,8 @@
                         map: map
                     });
 
-                    const origin = waypoints.shift();
-                const destination = waypoints.pop();
+                    const origin = waypoints.shift().location;
+                const destination = waypoints.pop().location;
                 console.log("origin");
                 console.log(origin);
                 console.log("origin");
