@@ -336,9 +336,9 @@
 
                         if (totalDistance < 50) {
                             console.log('Route is less than 50 meters, not drawing directions.');
-                            var bounds = new google.maps.LatLngBounds();
+                            // var bounds = new google.maps.LatLngBounds();
                             // addMarkers(map,routeplan.routeplanitems,bounds);
-                            map.fitBounds(bounds);
+                            // map.fitBounds(bounds);
                         } else {
                             directionsRenderer.setDirections(result);
                             console.log('Route drawn with result:', result);
