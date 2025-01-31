@@ -122,7 +122,7 @@
                     content: "<div>"+
                     // visit['outlet']['name']+"</h3>"+
                         // "<p>Seller: "+( visit['user']===null ? 'Deleted User': visit['user']['name'])+"</p>"+
-                        "<p>Date: "+locationDate+"</p>"+
+                        "<h3>Date: "+locationDate+"</h3>"+
                         "<p>Time: "+locationTime+"</p>"+
                         "<p>Latitude: "+lat1+"</p>"+
                         "<p>Longitude: "+long1+"</p>"+
