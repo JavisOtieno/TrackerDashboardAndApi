@@ -233,11 +233,14 @@
                 
                     const bounds = new google.maps.LatLngBounds();
                     const path = []; // Array to store coordinates for polyline
+                    const waypoints = [];
                     
                     locations.forEach(location => {
                         const lat1 = Number(location.lat);
                         const long1 = Number(location.long);
                         const position = { lat: lat1, lng: long1 };
+                        waypoints.push({ location: position, stopover: true });
+
                 
                         // Create marker
                         const marker = new google.maps.Marker({
@@ -285,7 +288,7 @@
                         routePolyline.setMap(null);
                     }
 
-                    // Create new polyline
+                    // Create new polylitesne
                     routePolyline = new google.maps.Polyline({
                         path: path,
                         geodesic: true,
@@ -295,13 +298,13 @@
                         map: map
                     });
 
-                    const origin = path.shift();
-                const destination = path.pop();
+                    const origin = waypoints.shift();
+                const destination = waypoints.pop();
 
                 const request = {
                     origin: origin,
                     destination: destination,
-                    waypoints: path,
+                    waypoints: waypoints,
                     optimizeWaypoints: true,
                     travelMode: 'DRIVING'
                 };
