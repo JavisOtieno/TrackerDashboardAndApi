@@ -53,6 +53,8 @@
      <script>
         function myMap() {
             var locations= @json($locations);
+            var locations = @json($locations);
+            locations = locations.filter(location => location.id > 481);
 
         if(locations[0]){
             var mapProp= {
