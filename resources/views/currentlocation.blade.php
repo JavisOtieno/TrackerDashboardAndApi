@@ -184,7 +184,7 @@
                     let location = @json($location);
                 
                     // Map configuration
-                    const mapProp = locations ? {
+                    const mapProp = location ? {
                         center: new google.maps.LatLng(
                             Number(location.lat),
                             Number(location.long)
