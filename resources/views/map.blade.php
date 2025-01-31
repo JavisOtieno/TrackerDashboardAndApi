@@ -178,6 +178,7 @@
                 let markers = [];
                 let updateInterval = 30000; // 30 seconds
                 let updateTimer = null;
+                let routePolyline = null; // Add this line
                 
                 async function initializeMap() {
                     // Initial setup with server-rendered data
@@ -231,6 +232,7 @@
                     if (!locations.length) return;
                 
                     const bounds = new google.maps.LatLngBounds();
+                    const path = []; // Array to store coordinates for polyline
                     
                     locations.forEach(location => {
                         const lat1 = Number(location.lat);
@@ -272,13 +274,33 @@
                         });
                 
                         markers.push(marker);
+                        path.push(position);
                         bounds.extend(position);
+                    });
+
+                        // Remove existing polyline if it exists
+                    if (routePolyline) {
+                        routePolyline.setMap(null);
+                    }
+
+                    // Create new polyline
+                    routePolyline = new google.maps.Polyline({
+                        path: path,
+                        geodesic: true,
+                        strokeColor: "#FF0000", // Red color
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2,
+                        map: map
                     });
                 
                     map.fitBounds(bounds);
                 }
                 
                 function clearMarkers() {
+                    if (routePolyline) {
+                        routePolyline.setMap(null);
+                        routePolyline = null;
+                    }
                     markers.forEach(marker => marker.setMap(null));
                     markers = [];
                 }
