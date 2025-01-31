@@ -50,7 +50,7 @@
      
 
 
-     <script>
+     {{-- <script>
         function myMap() {
             var locations= @json($locations);
             locations = locations.filter(location => location.id > 460);
@@ -167,12 +167,101 @@
         }
         
 
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=
-        AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap"></script>
+        </script> --}}
+        
             {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=initMap"></script> --}}
 
 
+            <script>
+                // Global variables to track markers and update interval
+                let map;
+                let markers = [];
+                let updateInterval = 30000; // 30 seconds (adjust as needed)
+                
+                function myMap() {
+                    // Initial map setup
+                    initializeMap();
+                    
+                    // Start periodic updates
+                    setInterval(fetchAndUpdateLocations, updateInterval);
+                }
+                
+                async function fetchAndUpdateLocations() {
+                    try {
+                        const response = await fetch('/api'); // Create this endpoint
+                        const newLocations = await response.json();
+                        
+                        // Clear existing markers
+                        clearMarkers();
+                        
+                        // Process and display new locations
+                        processLocations(newLocations);
+                    } catch (error) {
+                        console.error('Error fetching locations:', error);
+                    }
+                }
+                
+                function initializeMap() {
+                    // Your existing initialization code
+                    let locations = @json($locations);
+                    locations = locations.filter(location => location.id > 460);
+                
+                    // ... rest of your existing map initialization code ...
+                    
+                    // Store map instance in global variable
+                    map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                    
+                    processLocations(locations);
+                }
+                
+                function processLocations(locations) {
+                    if (locations.length > 0) {
+                        const bounds = new google.maps.LatLngBounds();
+                        
+                        locations.forEach(location => {
+                            // Your existing marker creation code
+                            const lat1 = Number(location.lat);
+                            const long1 = Number(location.long);
+                            const myPosition = { lat: lat1, lng: long1 };
+                
+                            // Create marker
+                            const marker = new google.maps.Marker({
+                                position: myPosition,
+                                label: String(location.id),
+                                title: 'test',
+                                zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
+                            });
+                
+                            // Store marker reference
+                            markers.push(marker);
+                            
+                            // Your existing infowindow code
+                            // ... (keep the date formatting and infowindow creation) ...
+                
+                            // Add click listener
+                            marker.addListener('click', () => {
+                                infowindow.open(map, marker);
+                            });
+                
+                            marker.setMap(map);
+                            bounds.extend(myPosition);
+                        });
+                
+                        map.fitBounds(bounds);
+                    }
+                }
+                
+                function clearMarkers() {
+                    // Remove all existing markers
+                    markers.forEach(marker => marker.setMap(null));
+                    markers = [];
+                }
+                
+                // Rest of your existing code...
+                </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=
+AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap"></script>
 
     <?php
     // $string ='[';
