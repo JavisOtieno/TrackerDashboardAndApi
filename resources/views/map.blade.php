@@ -284,9 +284,9 @@
                 
                         markers.push(marker);
                         path.push(position);
-                        if(setbounds){
+                       
                         bounds.extend(position);
-                        }
+                        
                     });
                     console.log("path");
                     console.log(path);
@@ -306,7 +306,9 @@
                     //     map: map
                     // });
 
-                    map.fitBounds(bounds);
+                    if(setbounds){
+                        map.fitBounds(bounds);
+                    }
 
                 //     const origin = waypoints.shift().location;
                 // const destination = waypoints.pop().location;
