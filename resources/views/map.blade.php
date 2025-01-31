@@ -173,95 +173,128 @@
 
 
             <script>
-                // Global variables to track markers and update interval
+                // Global variables to track map state
                 let map;
                 let markers = [];
-                let updateInterval = 30000; // 30 seconds (adjust as needed)
+                let updateInterval = 30000; // 30 seconds
+                let updateTimer = null;
                 
-                function myMap() {
-                    // Initial map setup
-                    initializeMap();
+                async function initializeMap() {
+                    // Initial setup with server-rendered data
+                    let locations = @json($locations);
+                    locations = locations.filter(location => location.id > 460);
+                
+                    // Map configuration
+                    const mapProp = locations[0] ? {
+                        center: new google.maps.LatLng(
+                            Number(locations[0].lat),
+                            Number(locations[0].long)
+                        ),
+                        zoom: 10
+                    } : {
+                        center: new google.maps.LatLng(-1.286389, 36.817223),
+                        zoom: 10
+                    };
+                
+                    // Create map instance once
+                    if (!map) {
+                        map = new google.maps.Map(
+                            document.getElementById("googleMap"),
+                            mapProp
+                        );
+                    }
+                
+                    // Process initial locations
+                    processLocations(locations);
                     
-                    // Start periodic updates
-                    setInterval(fetchAndUpdateLocations, updateInterval);
+                    // Start update cycle
+                    if (!updateTimer) {
+                        updateTimer = setInterval(fetchAndUpdateLocations, updateInterval);
+                    }
                 }
                 
                 async function fetchAndUpdateLocations() {
                     try {
-                        const response = await fetch('/api'); // Create this endpoint
+                        const response = await fetch('/api/get-locations'); // Use correct endpoint
                         const newLocations = await response.json();
+                        const filtered = newLocations.filter(location => location.id > 460);
                         
-                        // Clear existing markers
                         clearMarkers();
-                        
-                        // Process and display new locations
-                        processLocations(newLocations);
+                        processLocations(filtered);
                     } catch (error) {
-                        console.error('Error fetching locations:', error);
+                        console.error('Update failed:', error);
+                        // Optional: Implement retry logic
                     }
-                }
-                
-                function initializeMap() {
-                    // Your existing initialization code
-                    let locations = @json($locations);
-                    locations = locations.filter(location => location.id > 460);
-                
-                    // ... rest of your existing map initialization code ...
-                    
-                    // Store map instance in global variable
-                    map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-                    
-                    processLocations(locations);
                 }
                 
                 function processLocations(locations) {
-                    if (locations.length > 0) {
-                        const bounds = new google.maps.LatLngBounds();
-                        
-                        locations.forEach(location => {
-                            // Your existing marker creation code
-                            const lat1 = Number(location.lat);
-                            const long1 = Number(location.long);
-                            const myPosition = { lat: lat1, lng: long1 };
+                    if (!locations.length) return;
                 
-                            // Create marker
-                            const marker = new google.maps.Marker({
-                                position: myPosition,
-                                label: String(location.id),
-                                title: 'test',
-                                zIndex: google.maps.Marker.MAX_ZINDEX + Number(location.id)
-                            });
+                    const bounds = new google.maps.LatLngBounds();
+                    
+                    locations.forEach(location => {
+                        const lat1 = Number(location.lat);
+                        const long1 = Number(location.long);
+                        const position = { lat: lat1, lng: long1 };
                 
-                            // Store marker reference
-                            markers.push(marker);
-                            
-                            // Your existing infowindow code
-                            // ... (keep the date formatting and infowindow creation) ...
-                
-                            // Add click listener
-                            marker.addListener('click', () => {
-                                infowindow.open(map, marker);
-                            });
-                
-                            marker.setMap(map);
-                            bounds.extend(myPosition);
+                        // Create marker
+                        const marker = new google.maps.Marker({
+                            position: position,
+                            label: String(location.id),
+                            title: 'Location',
+                            zIndex: google.maps.Marker.MAX_ZINDEX + location.id,
+                            map: map
                         });
                 
-                        map.fitBounds(bounds);
-                    }
+                        // Create info window
+                        const date = new Date(location.created_at);
+                        const infowindow = new google.maps.InfoWindow({
+                            content: `
+                                <div>
+                                    <h3>Date: ${date.toLocaleDateString('en-GB', {
+                                        day: 'numeric',
+                                        month: 'short',
+                                        year: 'numeric'
+                                    })}</h3>
+                                    <p>Time: ${date.toLocaleTimeString('en-GB', {
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    })}</p>
+                                    <p>Latitude: ${lat1}</p>
+                                    <p>Longitude: ${long1}</p>
+                                </div>
+                            `
+                        });
+                
+                        // Add click listener
+                        marker.addListener('click', () => {
+                            infowindow.open(map, marker);
+                        });
+                
+                        markers.push(marker);
+                        bounds.extend(position);
+                    });
+                
+                    map.fitBounds(bounds);
                 }
                 
                 function clearMarkers() {
-                    // Remove all existing markers
                     markers.forEach(marker => marker.setMap(null));
                     markers = [];
                 }
                 
-                // Rest of your existing code...
+                // Initialize when Google Maps API loads
+                function myMap() {
+                    initializeMap();
+                }
+                
+                // Cleanup when page unloads
+                window.addEventListener('beforeunload', () => {
+                    if (updateTimer) clearInterval(updateTimer);
+                });
                 </script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=
-AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap"></script>
+                
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=myMap"></script>
 
     <?php
     // $string ='[';
