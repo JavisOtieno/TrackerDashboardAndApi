@@ -308,58 +308,58 @@
 
                     map.fitBounds(bounds);
 
-                    const origin = waypoints.shift().location;
-                const destination = waypoints.pop().location;
-                waypoints = [];
-                console.log("origin");
-                console.log(origin);
-                console.log("origin");
+                //     const origin = waypoints.shift().location;
+                // const destination = waypoints.pop().location;
+                // waypoints = [];
+                // console.log("origin");
+                // console.log(origin);
+                // console.log("origin");
 
-                const request = {
-                    origin: origin,
-                    destination: destination,
-                    waypoints: waypoints,
-                    optimizeWaypoints: true,
-                    travelMode: 'DRIVING'
-                };
+                // const request = {
+                //     origin: origin,
+                //     destination: destination,
+                //     waypoints: waypoints,
+                //     optimizeWaypoints: true,
+                //     travelMode: 'DRIVING'
+                // };
 
-                var directionsService = new google.maps.DirectionsService();
-                // var directionsRenderer = new google.maps.DirectionsRenderer();
-                var directionsRenderer = new google.maps.DirectionsRenderer({
-                preserveViewport: true // Prevents automatic bounds adjustment
-                });
-                directionsRenderer.setMap(map);
+                // var directionsService = new google.maps.DirectionsService();
+                // // var directionsRenderer = new google.maps.DirectionsRenderer();
+                // var directionsRenderer = new google.maps.DirectionsRenderer({
+                // // preserveViewport: true // Prevents automatic bounds adjustment
+                // });
+                // directionsRenderer.setMap(map);
 
-                directionsService.route(request, function(result, status) {
-                    if (status == 'OK') {
+                // directionsService.route(request, function(result, status) {
+                //     if (status == 'OK') {
 
-                        const route = result.routes[0];
-                        let totalDistance = 0;
+                //         const route = result.routes[0];
+                //         let totalDistance = 0;
 
-                        // Loop through each leg to calculate the total distance
-                        route.legs.forEach(leg => {
-                            totalDistance += leg.distance.value; // distance.value is in meters
-                        });
+                //         // Loop through each leg to calculate the total distance
+                //         route.legs.forEach(leg => {
+                //             totalDistance += leg.distance.value; // distance.value is in meters
+                //         });
 
-                        if (totalDistance < 50) {
-                            console.log('Route is less than 50 meters, not drawing directions.');
-                            // var bounds = new google.maps.LatLngBounds();
-                            // addMarkers(map,routeplan.routeplanitems,bounds);
-                            // map.fitBounds(bounds);
-                        } else {
-                            directionsRenderer.setDirections(result);
-                            console.log('Route drawn with result:', result);
-                            // addMarkers(map,routeplan.routeplanitems);
-                        }
+                //         if (totalDistance < 50) {
+                //             console.log('Route is less than 50 meters, not drawing directions.');
+                //             // var bounds = new google.maps.LatLngBounds();
+                //             // addMarkers(map,routeplan.routeplanitems,bounds);
+                //             // map.fitBounds(bounds);
+                //         } else {
+                //             directionsRenderer.setDirections(result);
+                //             console.log('Route drawn with result:', result);
+                //             // addMarkers(map,routeplan.routeplanitems);
+                //         }
                         
 
-                    } else {
-                        console.error('Directions request failed due to ' + status);
-                        // var bounds = new google.maps.LatLngBounds();
-                        // addMarkers(map,routeplan.routeplanitems,bounds);
-                        // map.fitBounds(bounds);
-                    }
-                });
+                //     } else {
+                //         console.error('Directions request failed due to ' + status);
+                //         // var bounds = new google.maps.LatLngBounds();
+                //         // addMarkers(map,routeplan.routeplanitems,bounds);
+                //         // map.fitBounds(bounds);
+                //     }
+                // });
                     
                         
                     }
