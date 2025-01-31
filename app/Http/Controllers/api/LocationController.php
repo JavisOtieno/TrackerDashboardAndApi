@@ -33,4 +33,11 @@ class LocationController extends Controller
         return response()->json($locations);
         
     }
+
+    public function getCurrentLocation(Request $request){
+
+        $location = Location::orderBy('id', 'desc')->first();
+        return response()->json($location);
+        
+    }
 }
