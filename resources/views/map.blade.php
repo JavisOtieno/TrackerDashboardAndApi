@@ -98,10 +98,32 @@
                 //     content: infoContent
                 // });
                 //
+                var date = new Date(location.created_at);
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+                var day = date.getDate();
+                var month = date.getMonth() + 1; // Months are zero-based, so add 1
+                var year = date.getFullYear();
+
+                var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+                // Get month name from array
+                var monthName = monthNames[month];
+
+                var locationDate = day + '-' + monthName + '-' + year;
+
+                // Pad single digit minutes with a leading zero
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+
+                hours = hours < 10 ? '0' + hours : hours;
+
+                var locationTime = hours + ':' + minutes;
                 var infowindow = new google.maps.InfoWindow({
                     content: "<div><h3>"+
                     // visit['outlet']['name']+"</h3>"+
                         // "<p>Seller: "+( visit['user']===null ? 'Deleted User': visit['user']['name'])+"</p>"+
+                        "<p>Date: "+locationDate+"</p>"+
+                        "<p>Time: "+locationTime+"</p>"+
                         "<p>Latitude: "+lat1+"</p>"+
                         "<p>Longitude: "+long1+"</p>"+
                         "</div>"
