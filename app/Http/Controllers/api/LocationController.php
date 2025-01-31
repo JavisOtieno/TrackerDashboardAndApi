@@ -30,6 +30,7 @@ class LocationController extends Controller
     public function index(Request $request){
 
         $locations = Location::all();
+        $locations = Location::whereDate('created_at', today())->get();
         return response()->json($locations);
         
     }

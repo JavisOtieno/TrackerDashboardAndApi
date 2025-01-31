@@ -11,7 +11,7 @@ class LocationController extends Controller
     public function index(){
 
         $locations = Location::all();
-
+        $locations = Location::whereDate('created_at', today())->get();
 
         return view('map', ['locations'=>$locations]);
     }
