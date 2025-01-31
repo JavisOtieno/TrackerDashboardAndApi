@@ -220,7 +220,7 @@
                         // const filtered = newLocations.filter(location => location.id > 460);
                         
                         clearMarkers();
-                        processLocations(filtered);
+                        processLocations(newLocations);
                     } catch (error) {
                         console.error('Update failed:', error);
                         // Optional: Implement retry logic
