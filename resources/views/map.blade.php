@@ -215,7 +215,7 @@
                 
                 async function fetchAndUpdateLocations() {
                     try {
-                        const response = await fetch('/api/get-locations'); // Use correct endpoint
+                        const response = await fetch('/api'); // Use correct endpoint
                         const newLocations = await response.json();
                         const filtered = newLocations.filter(location => location.id > 460);
                         
