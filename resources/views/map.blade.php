@@ -217,7 +217,7 @@
                     try {
                         const response = await fetch('/api'); // Use correct endpoint
                         const newLocations = await response.json();
-                        const filtered = newLocations.filter(location => location.id > 460);
+                        // const filtered = newLocations.filter(location => location.id > 460);
                         
                         clearMarkers();
                         processLocations(filtered);
