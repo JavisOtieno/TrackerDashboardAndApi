@@ -422,9 +422,14 @@
                     <h3>Main</h3>
                 </li>
                 <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i
+                            class="side-menu__icon fe fe-home"></i><span
+                            class="side-menu__label">Trail Maps</span></a>
+                </li>
+                <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/dashboard"><i
                             class="side-menu__icon fe fe-home"></i><span
-                            class="side-menu__label">Dashboard</span></a>
+                            class="side-menu__label">Current Location</span></a>
                 </li>
                 {{-- <li class="slide">
                   <a class="side-menu__item has-link" data-bs-toggle="slide" href="/users"><i
