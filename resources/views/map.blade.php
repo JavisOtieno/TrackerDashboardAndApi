@@ -306,6 +306,9 @@
 
                     const origin = waypoints.shift();
                 const destination = waypoints.pop();
+                console.log("origin");
+                console.log(origin);
+                console.log("origin");
 
                 const request = {
                     origin: origin,
