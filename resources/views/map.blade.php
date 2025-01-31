@@ -239,7 +239,9 @@
                         const lat1 = Number(location.lat);
                         const long1 = Number(location.long);
                         const position = { lat: lat1, lng: long1 };
-                        waypoints.push({ location: position, stopover: true });
+                        // waypoints.push({ location: position, stopover: true });
+                        waypoints.push({ location: { lat: lat1, lng: long1 }, stopover: true });
+
 
                 
                         // Create marker
@@ -288,7 +290,7 @@
                         routePolyline.setMap(null);
                     }
 
-                    // Create new polylitesne
+                    // Create new polyline
                     routePolyline = new google.maps.Polyline({
                         path: path,
                         geodesic: true,
