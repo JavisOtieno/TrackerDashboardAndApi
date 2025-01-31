@@ -233,14 +233,18 @@
                 
                     const bounds = new google.maps.LatLngBounds();
                     const path = []; // Array to store coordinates for polyline
-                    const waypoints = [];
+                    var waypoints = [];
                     
                     locations.forEach(location => {
                         const lat1 = Number(location.lat);
                         const long1 = Number(location.long);
                         const position = { lat: lat1, lng: long1 };
                         // waypoints.push({ location: position, stopover: true });
-                        waypoints.push({ location: { lat: lat1, lng: long1 }, stopover: true });
+                        waypoints.push({ location: { lat: Number(location.lat), 
+                            lng: Number(location.long) }, stopover: true });
+                        // waypoints.push({ location: { lat: Number(routeplanitem.outlet.lat),
+                        //      lng: Number(routeplanitem.outlet.long) }, stopover: true });
+
 
 
                 
