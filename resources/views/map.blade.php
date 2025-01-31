@@ -289,20 +289,20 @@
                     console.log("path");
                     console.log(path);
 
-                        // Remove existing polyline if it exists
-                    if (routePolyline) {
-                        routePolyline.setMap(null);
-                    }
+                    //     // Remove existing polyline if it exists
+                    // if (routePolyline) {
+                    //     routePolyline.setMap(null);
+                    // }
 
-                    // Create new polyline
-                    routePolyline = new google.maps.Polyline({
-                        path: path,
-                        geodesic: true,
-                        strokeColor: "#FF0000", // Red color
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2,
-                        map: map
-                    });
+                    // // Create new polyline
+                    // routePolyline = new google.maps.Polyline({
+                    //     path: path,
+                    //     geodesic: true,
+                    //     strokeColor: "#FF0000", // Red color
+                    //     strokeOpacity: 1.0,
+                    //     strokeWeight: 2,
+                    //     map: map
+                    // });
 
                     const origin = waypoints.shift().location;
                 const destination = waypoints.pop().location;
