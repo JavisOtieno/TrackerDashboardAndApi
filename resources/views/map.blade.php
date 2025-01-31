@@ -183,7 +183,7 @@
                 async function initializeMap() {
                     // Initial setup with server-rendered data
                     let locations = @json($locations);
-                    locations = locations.filter(location => location.id > 460);
+                    // locations = locations.filter(location => location.id > 460);
                 
                     // Map configuration
                     const mapProp = locations[0] ? {
