@@ -206,7 +206,7 @@
                     }
                 
                     // Process initial locations
-                    processLocations(locations);
+                    processLocations(locations,true);
                     
                     // Start update cycle
                     if (!updateTimer) {
@@ -221,14 +221,14 @@
                         // const filtered = newLocations.filter(location => location.id > 460);
                         
                         clearMarkers();
-                        processLocations(newLocations);
+                        processLocations(newLocations,false);
                     } catch (error) {
                         console.error('Update failed:', error);
                         // Optional: Implement retry logic
                     }
                 }
                 
-                function processLocations(locations) {
+                function processLocations(locations,setbounds) {
                     if (!locations.length) return;
                 
                     const bounds = new google.maps.LatLngBounds();
@@ -284,7 +284,9 @@
                 
                         markers.push(marker);
                         path.push(position);
+                        if(setbounds){
                         bounds.extend(position);
+                        }
                     });
                     console.log("path");
                     console.log(path);
