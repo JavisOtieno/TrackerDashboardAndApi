@@ -60,7 +60,6 @@
                             <th id="view-column">View/Edit</th>
                             <th id="delete-column">Delete</th>
                             {{-- <th>Test Name</th> --}}
-                            <th>Trip Name</th>
                             <th>Start Location</th>
                             <th>End Location</th>
                             <th>Date</th>
@@ -83,7 +82,6 @@
 </td>
     {{-- <td>{{$posaudit['user']['name']}}</td> --}}
 {{-- <td>{{ $trip['user'] ? $trip['user']['name']  . ($trip['user']->trashed() ? ' (Deleted User)' : '') : 'Deleted User'}} --}}
-<td>{{$trip['name']}}</td>
 <td>{{$trip['start_location']}}</td>
 <td>{{$trip['end_location']}}</td>
 <td>{{date('d-M-Y', strtotime($trip['created_at']))}}</td>
