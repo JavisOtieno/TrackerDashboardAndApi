@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\TripController;
 use App\Http\Controllers\api\LocationController;
 
 /*
@@ -22,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/addlocation', [LocationController::class, 'addLocation']);
 Route::get('/', [LocationController::class, 'index']);
 Route::get('/currentlocation', [LocationController::class, 'getCurrentLocation']);
+
+Route::post('/addtrip', [TripController::class, 'addTrip']);
