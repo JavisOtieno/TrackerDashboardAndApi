@@ -423,7 +423,7 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i
-                            class="side-menu__icon fe fe-navigation"></i><span
+                            class="side-menu__icon fe fe-map"></i><span
                             class="side-menu__label">Trail Map</span></a>
                 </li>
                 <li class="slide">
@@ -433,7 +433,7 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/trips"><i
-                            class="side-menu__icon fe fe-map-pin"></i><span
+                            class="side-menu__icon fe fe-navigation"></i><span
                             class="side-menu__label">Trips</span></a>
                 </li>
                 {{-- <li class="slide">
