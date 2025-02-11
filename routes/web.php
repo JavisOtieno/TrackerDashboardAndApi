@@ -25,6 +25,6 @@ Route::get('/trips', [TripController::class, 'index']);
 Route::get('/createtrip', [TripController::class,'addTrip']);
 Route::get('/deletetrip/{id}', [TripController::class,'deleteTrip']);
 Route::post('/savetrip',[TripController::class,'saveTrip']);
-Route::get('/edittrip/{id}', [TripController::class,'showEditTrip']);
+Route::get('/trip/{id}', [TripController::class,'showEditTrip']);
 Route::put('/saveedittrip/{id}',[TripController::class,'saveEditTrip']);
 
