@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TripController;
 use App\Http\Controllers\LocationController;
 
 /*
@@ -19,3 +20,5 @@ use App\Http\Controllers\LocationController;
 // });
 Route::get('/', [LocationController::class, 'index']);
 Route::get('/currentlocation', [LocationController::class, 'showCurrentLocation']);
+Route::get('/trips', [TripController::class, 'index']);
+
