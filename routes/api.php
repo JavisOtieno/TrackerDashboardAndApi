@@ -24,4 +24,4 @@ Route::post('/addlocation', [LocationController::class, 'addLocation']);
 Route::get('/', [LocationController::class, 'index']);
 Route::get('/currentlocation', [LocationController::class, 'getCurrentLocation']);
 
-Route::post('/addtrip', [TripController::class, 'addTrip']);
+Route::post('/addtrip', [TripController::class, 'saveTrip']);
