@@ -20,5 +20,9 @@ use App\Http\Controllers\LocationController;
 // });
 Route::get('/', [LocationController::class, 'index']);
 Route::get('/currentlocation', [LocationController::class, 'showCurrentLocation']);
+
 Route::get('/trips', [TripController::class, 'index']);
+Route::get('/deletetrip/{id}', [TripController::class,'deleteTrip']);
+Route::get('/edittrip/{id}', [TripController::class,'showEditTrip']);
+Route::put('/saveedittrip/{id}',[TripController::class,'saveEditTrip']);
 
