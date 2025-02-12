@@ -62,7 +62,10 @@ class TripController extends Controller
         $trip = Trip::find($id);
         $trip->update($incomingFields);
 
-        return response()->json(['trip'=>$trip]);
+        $tripStatus=array(
+            "message" => "Trip Ended Successfully",
+            "tripId" => $trip->id,
+            "status" => "success");
         
     }
 
