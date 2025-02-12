@@ -32,10 +32,11 @@ class TripController extends Controller
 
         //return $incomingFields['usertype'];
 
-        Trip::create($incomingFields);
-
+        $trip = Trip::create($incomingFields);
+ 
         $tripStatus=array(
             "message" => "Trip Added Successfully",
+            "tripId" => $trip->id,
             "status" => "success");
 
         return response()->json($tripStatus);
