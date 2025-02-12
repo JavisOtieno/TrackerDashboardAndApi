@@ -42,7 +42,7 @@ class TripController extends Controller
         return response()->json($tripStatus);
         
     }
-    public function index(Request $request){
+    public function index(){
 
         $trips = Trip::all();
         return response()->json(['trips'=>$trips]);
@@ -50,6 +50,18 @@ class TripController extends Controller
     }
     public function show($id){
         $trip = Trip::find($id);
+        return response()->json(['trip'=>$trip]);
+        
+    }
+    public function endTrip($id, Request $request){
+        $incomingFields=$request->validate([
+            'end_lat' => 'required|numeric|between:-90,90',
+            'end_long' => 'required|numeric|between:-180,180',
+
+        ]);
+        $trip = Trip::find($id);
+        $trip->update($incomingFields);
+
         return response()->json(['trip'=>$trip]);
         
     }
