@@ -47,4 +47,10 @@ class TripController extends Controller
         return response()->json(['trips'=>$trips]);
         
     }
+    public function show($id){
+        $trip = Trip::find($id);
+        return response()->json(['trip'=>$trip]);
+        
+    }
+
 }
