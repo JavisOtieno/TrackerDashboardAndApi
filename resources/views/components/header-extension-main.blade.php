@@ -434,7 +434,7 @@
                 </li>
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/dailytrails"><i
-                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__icon fe fe-corner-left-up"></i><span
                             class="side-menu__label">Daily Trails</span></a>
                 </li>
                 <li class="slide">
