@@ -424,18 +424,25 @@
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i
                             class="side-menu__icon fe fe-map"></i><span
-                            class="side-menu__label">Trail Map</span></a>
+                            class="side-menu__label">Live Trail Map</span></a>
                 </li>
+
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/currentlocation"><i
                             class="side-menu__icon fe fe-map-pin"></i><span
-                            class="side-menu__label">Current Location</span></a>
+                            class="side-menu__label">Live Current Location</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/dailytrails"><i
+                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__label">Daily Trails</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/trips"><i
                             class="side-menu__icon fe fe-navigation"></i><span
                             class="side-menu__label">Trips</span></a>
                 </li>
+
                 {{-- <li class="slide">
                   <a class="side-menu__item has-link" data-bs-toggle="slide" href="/users"><i
                           class="side-menu__icon fe fe-user"></i><span
