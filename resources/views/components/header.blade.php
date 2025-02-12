@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="RTMS - Route to Market System">
     <meta name="author" content="Stan Consulting Group">
-    <meta name="keywords" content="sales, sales force automation, route to market system, rtms, sfa">
+    <meta name="keywords" content="sales, sales force automation, route to market system, tracker, sfa">
 
     <!-- FAVICON -->
     <!--<link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/images/brand/favicon.ico')}}>-->
@@ -17,7 +17,7 @@
     
 
     <!-- TITLE -->
-    <title>SCG RTMS - Route to Market System</title>
+    <title>SCG Tracker System</title>
 
     <!-- BOOTSTRAP CSS -->
     <link id="style" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
