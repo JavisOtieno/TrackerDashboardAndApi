@@ -66,6 +66,8 @@ class TripController extends Controller
             "message" => "Trip Ended Successfully",
             "tripId" => $trip->id,
             "status" => "success");
+
+        return response()->json($tripStatus);
         
     }
 
