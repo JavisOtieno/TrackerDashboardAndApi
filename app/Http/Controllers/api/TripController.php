@@ -44,7 +44,7 @@ class TripController extends Controller
     public function index(Request $request){
 
         $trips = Trip::all();
-        return response()->json($trips);
+        return response()->json(['trips'=>$trips]);
         
     }
 }
