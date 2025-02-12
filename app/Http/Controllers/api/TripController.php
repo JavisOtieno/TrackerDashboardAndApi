@@ -18,8 +18,6 @@ class TripController extends Controller
             'start_lat'=>'required|string|max:255',
             'start_long'=>'required|string|max:255',
             'end_location'=>'required|string|max:255',
-            'end_lat'=>'required|string|max:255',
-            'end_long'=>'required|string|max:255',
             'description'=>'required|string|max:3000',
             'amount'=>'required|numeric|digits_between:1,11',
 
