@@ -10,6 +10,7 @@ class Location extends Model
     use HasFactory;
     protected $fillable = [
         'lat',
+        'trip_id',
         'long',
   
     ];
