@@ -15,6 +15,7 @@ use App\Http\Controllers\api\LocationController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+//test
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
