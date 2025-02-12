@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('start_lat');
             $table->string('start_long');
             $table->string('end_location');
-            $table->string('end_lat');
-            $table->string('end_long');
+            $table->string('end_lat')->nullable();
+            $table->string('end_long')->nullable();
             $table->longText('description');
             $table->unsignedBigInteger('amount');
             $table->timestamps();
