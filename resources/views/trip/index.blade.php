@@ -473,7 +473,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 });
             }
         });
-        
+
         waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
                 trip.end_long) }, stopover: true });
 
@@ -512,6 +512,8 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 route.legs.forEach(leg => {
                     totalDistance += leg.distance.value; // distance.value is in meters
                 });
+
+                alert(totalDistance);
 
                 if (totalDistance < 50) {
                     console.log('Route is less than 50 meters, not drawing directions.');

@@ -381,6 +381,7 @@
                                 totalDistance += leg.distance.value; // distance.value is in meters
                             });
 
+
                             if (totalDistance < 50) {
                                 console.log('Route is less than 50 meters, not drawing directions.');
                                 // var bounds = new google.maps.LatLngBounds();
