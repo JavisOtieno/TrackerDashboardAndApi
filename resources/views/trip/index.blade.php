@@ -539,7 +539,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                     totalDistance += leg.distance.value; // distance.value is in meters
                 });
 
-                distanceDiv.innerText = ": Distance : "+totalDistance/1000+" km";
+                distanceDiv.innerText = ": Distance : "+totalDistance/1000+" km"+" : Estimate (Assuming 30L/km): "30*totalDistance/1000;
 
 
                 if (totalDistance < 50) {
