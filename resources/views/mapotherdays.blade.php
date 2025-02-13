@@ -222,13 +222,16 @@
                     // }
                     document.addEventListener("DOMContentLoaded", function() {
                     $('#setDate').on('change', function() {
-                    alert($('#setDate').val());
+                    var date = $('#setDate').val();
+                    alert(date);
+                    fetchAndUpdateLocations(date);
                     });
                 });
                 }
 
-                async function fetchAndUpdateLocations() {
+                async function fetchAndUpdateLocations(date) {
                     try {
+                        alert(date);
                         const response = await fetch('/api'); // Use correct endpoint
                         const newLocations = await response.json();
                         // const filtered = newLocations.filter(location => location.id > 460);
