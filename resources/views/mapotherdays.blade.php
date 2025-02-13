@@ -411,6 +411,10 @@
                     }
                     markers.forEach(marker => marker.setMap(null));
                     markers = [];
+                    if (directionsRenderer) {
+                        directionsRenderer.setMap(null); // Remove the route from the map
+                        directionsRenderer = null; // Reset the renderer instance
+                    }
                 }
 
                 // Initialize when Google Maps API loads
