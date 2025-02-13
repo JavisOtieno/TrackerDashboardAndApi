@@ -192,6 +192,7 @@
                 let updateInterval = 30000; // 30 seconds
                 let updateTimer = null;
                 let routePolyline = null; // Add this line
+                let directionsRenderer = null;
 
                 async function initializeMap() {
                     // Initial setup with server-rendered data
@@ -364,7 +365,7 @@
 
                     var directionsService = new google.maps.DirectionsService();
                     // var directionsRenderer = new google.maps.DirectionsRenderer();
-                    var directionsRenderer = new google.maps.DirectionsRenderer({
+                    directionsRenderer = new google.maps.DirectionsRenderer({
                         preserveViewport: true // Prevents automatic bounds adjustment
                     });
                     directionsRenderer.setMap(map);
