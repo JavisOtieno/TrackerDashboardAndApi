@@ -445,6 +445,8 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         
         //alert('we get here');
         //alert (trip['tripitems'][0]['outlet']['lat']);
+        distanceDiv.innerText = "";
+
         
         //console.log(trip);
         waypoints=[];
