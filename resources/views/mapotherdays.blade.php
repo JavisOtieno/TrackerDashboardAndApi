@@ -41,7 +41,7 @@
                             <div class="form-group col-md-3 mb-3">
                                 <label for="date" class="form-label">Date</label>
                                 {{-- <input  name="order" id="order"> --}}
-                                <input type="date" class="form-control" name="date" id="date" placeholder="date" autocomplete="date" value="{{old('date')}}"/>
+                                <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date')}}"/>
                             </div>
                             </div>
                             <div class="m-2">
@@ -220,6 +220,9 @@
                     // if (!updateTimer) {
                     //     updateTimer = setInterval(fetchAndUpdateLocations, updateInterval);
                     // }
+                    $('#setDate').on('change', function() {
+                    alert($('#setDate').val());
+                    });
                 }
 
                 async function fetchAndUpdateLocations() {
