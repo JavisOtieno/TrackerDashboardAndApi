@@ -480,10 +480,11 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         
        
         console.log('Map instance:', map);
+        alert(trip.end_lat)
        
         
 
-        if(trip.end_lat==undefined){
+        if(trip.end_lat==null){
             alert("endpoint undefined")
             const origin = waypoints.shift().location;
 
