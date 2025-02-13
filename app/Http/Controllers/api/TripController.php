@@ -42,7 +42,7 @@ class TripController extends Controller
     }
     public function index(){
 
-        $trips = Trip::all();
+        $trips = Trip::orderBy('created_at', 'desc')->get();
         return response()->json(['trips'=>$trips]);
         
     }

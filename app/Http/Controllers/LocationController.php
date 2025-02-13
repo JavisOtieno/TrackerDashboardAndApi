@@ -12,7 +12,8 @@ class LocationController extends Controller
     public function index(){
 
         $locations = Location::all();
-        $locations = Location::whereDate('created_at', today())->get();
+        $locations = Location::whereDate('created_at', today())
+        ->orderBy('created_at', 'desc')->get();
 
         return view('map', ['locations'=>$locations]);
     }
@@ -20,7 +21,8 @@ class LocationController extends Controller
 
         // $locations = Location::all();
         // $locations = Location::whereDate('created_at', )->get();
-        $locations = Location::whereDate('created_at', Carbon::yesterday())->get();
+        $locations = Location::whereDate('created_at', Carbon::yesterday())
+        ->orderBy('created_at', 'desc')->get();
         return view('mapotherdays', ['locations'=>$locations]);
     }
     public function showCurrentLocation(){
