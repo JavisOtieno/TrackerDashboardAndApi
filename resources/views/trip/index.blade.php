@@ -453,6 +453,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             markers.forEach(marker => {
                 marker.setMap(null);
             });
+
             if (directionsRenderer.getMap()) {
             directionsRenderer.set('directions', null); // Clear previous route
             }
@@ -476,11 +477,12 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                     location: { lat: Number(location.lat), lng: Number(location.long) },
                     stopover: true
                 });
-            }
-            locations.push({
+                locations.push({
                 "lat": Number(location.lat),
                 "long": Number(location.long)
             });
+            }
+ 
         });
 
 
