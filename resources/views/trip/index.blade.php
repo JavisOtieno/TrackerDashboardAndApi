@@ -466,10 +466,9 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             console.log(location);
             // Accessing outlet details
             // console.log(tripitem.outlet);
-            waypoints.push({ location: { lat: Number(location.lat), lng: Number(location.long) }, stopover: true });
             count ++;
-            if(count==20){
-                break;
+            if(count<20){
+                waypoints.push({ location: { lat: Number(location.lat), lng: Number(location.long) }, stopover: true });
             }
         });
         waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
