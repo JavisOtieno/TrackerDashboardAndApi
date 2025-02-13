@@ -329,10 +329,109 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
     // alert("we get here");
     var waypoints = [];
  
-   
+    // if(trips.length>0){
+    // var bounds = new google.maps.LatLngBounds();
+    
+    // trips[0]['tripitems'].forEach(tripitem => {
+    //     var lat1 = Number(tripitem['outlet']['lat']);
+    //     var long1 = Number(tripitem['outlet']['long']);
+    
+    //     waypoints.push({ location: { lat: lat1, lng: long1 }, stopover: true });
+
+    //     const myPosition = { lat: lat1, lng: long1 };
+    //     console.log(myPosition);
+
+    //     // var markerElement = new google.maps.marker.AdvancedMarkerElement({
+    //     //         position: myPosition,
+    //     //         map: map,
+    //     //         title: 'Visit Marker', // Add a title if needed
+    //     //     });
+
+    //         // Extend the bounds to include this marker's position
+    //         bounds.extend(myPosition);
+
+    //         // var infoContent = "<div><h3>"+visit['outlet']['name']+"</h3>"+
+    //         //     "<p>Latitude: "+lat1+"</p>"+
+    //         //     "<p>Longitude: "+long1+"</p>"+
+    //         //     "<p>Seller: "+visit['user']['name']+"</p>"+
+    //         // "</div>";
+
+    //         // Create an InfoWindow
+    //         // var infoWindow = new google.maps.InfoWindow({
+    //         //     content: infoContent
+    //         // });
+    //         //
+    //         var infowindow = new google.maps.InfoWindow({
+    //             content: "<div><h3>"+tripitem['outlet']['name']+"</h3>"+
+    //                 // "<p>Seller: "+( tripitem['outlet']['user']===null ? 'Deleted User': tripitem['outlet']['user']['name'])+"</p>"+
+    //                 "<p>Latitude: "+lat1+"</p>"+
+    //                 "<p>Longitude: "+long1+"</p>"+
+    //                 "</div>"
+    //         });
+
+    //         // Add a click event listener to the marker to open the InfoWindow
+    //         // marker.addListener('click', function() {
+    //         //     infoWindow.open(map, marker);
+    //         // });
+            
+        
+       
+    //     // var marker = new google.maps.Marker({position: myPosition,
+    //     //     title: tripitem['outlet']['name'],
+    //     // });
+    //     // google.maps.event.addListener(marker, 'click', function() {
+    //     //         infowindow.open(map,marker);
+    //     //     });
+    //     // marker.setMap(map);
+        
+    // });
+    // map.fitBounds(bounds);
+    
+    //             const origin = waypoints.shift().location;
+    //             const destination = waypoints.pop().location;
+
+    //             const request = {
+    //                 origin: origin,
+    //                 destination: destination,
+    //                 waypoints: waypoints,
+    //                 optimizeWaypoints: true,
+    //                 travelMode: 'DRIVING'
+    //             };
+
+    //             directionsService.route(request, function(result, status) {
+    //                 if (status == 'OK') {
+    //                     directionsRenderer.setDirections(result);
+    //                     console.log('Route drawn with result:', result);
+                       
+    //                 } else {
+    //                     console.error('Directions request failed due to ' + status);
+    //                 }
+    //             });
+
+
+
+
+
+
+
+
+
+    // var lat1 = trips[0]['tripitems'][0]['outlet']['lat'];
+    // var long1 = trips[0]['tripitems'][0]['outlet']['long'];
+    // }
+
 });
-
-
+   // console.log(recentVisits);
+    
+    // const myPosition = { lat: -25.344, lng: 131.031 };
+    // //console.log(myPosition);
+    // const myPosition2 = { lat: Number(lat1), lng: Number(long1) };
+    // //console.log(myPosition2);
+    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    // var marker = new google.maps.Marker({position: myPosition});
+    // marker.setMap(map);
+    // var marker2 = new google.maps.Marker({position: myPosition2});
+    // marker2.setMap(map);
     }
 
     var markers = [];
@@ -347,14 +446,13 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         waypoints=[];
         if(markers==undefined){
             // console.log(markers);
-            // alert("undefined");
+            alert("undefined");
         }else{
-            // alert("defined");
+            alert("defined");
             // console.log(markers);
             markers.forEach(marker => {
                 marker.setMap(null);
             });
-            markers = []; // Reset the markers array
             locations = [];
 
             if (directionsRenderer.getMap()) {
@@ -372,7 +470,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         });
         var  count = 0;
         const totalLocations = trip.locations.length;
-        const step = Math.ceil(totalLoca]tions / 20); // Calculate step size
+        const step = Math.ceil(totalLocations / 20); // Calculate step size
 
         trip.locations.forEach((location, index) => {
             if (index % step === 0) { // Push every 'step'-th location
