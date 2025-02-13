@@ -224,7 +224,7 @@
                     $('#setDate').on('change', function() {
                     alert($('#setDate').val());
                     });
-                }
+                });
                 }
 
                 async function fetchAndUpdateLocations() {
