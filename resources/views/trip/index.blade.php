@@ -504,6 +504,10 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         }else{
             waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
                 trip.end_long) }, stopover: true });
+            locations.push({
+                "lat": Number(trip.end_lat),
+                "long": Number(trip.end_long)
+            });
 
             const origin = waypoints.shift().location;
             const destination = waypoints.pop().location;
@@ -532,12 +536,12 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 if (totalDistance < 50) {
                     console.log('Route is less than 50 meters, not drawing directions.');
                     var bounds = new google.maps.LatLngBounds();
-                    addMarkers(map,trip.locations,bounds);
+                    addMarkers(map,locations,bounds);
                     map.fitBounds(bounds);
                 } else {
                     directionsRenderer.setDirections(result);
                     console.log('Route drawn with result:', result);
-                    addMarkers(map,trip.locations);
+                    addMarkers(map,locations);
                 }
 
             } else {
