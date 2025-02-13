@@ -10,7 +10,8 @@ class TripController extends Controller
     //
     public function index(){
 
-        $trips = Trip::all();
+        // $trips = Trip::all();
+        $trips = Trip::with('locations')->get();
         return view('trip.index', ['trips'=>$trips]);
     }
     public function deleteTrip($id){

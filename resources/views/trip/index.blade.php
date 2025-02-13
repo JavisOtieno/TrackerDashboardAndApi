@@ -458,14 +458,15 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         }
         
  
-        // trip.tripitems.forEach(tripitem => {
-        //     console.log(tripitem);
-        //     // Accessing outlet details
-        //     console.log(tripitem.outlet);
-        //     waypoints.push({ location: { lat: Number(tripitem.outlet.lat), lng: Number(tripitem.outlet.long) }, stopover: true });
-        // });
+
         waypoints.push({ location: { lat: Number(trip.start_lat), lng: Number(
             trip.start_long) }, stopover: true });
+        trip.locations.forEach(location => {
+            console.log(location);
+            // Accessing outlet details
+            // console.log(tripitem.outlet);
+            waypoints.push({ location: { lat: Number(location.lat), lng: Number(location.long) }, stopover: true });
+        });
         waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
                 trip.end_long) }, stopover: true });
 
