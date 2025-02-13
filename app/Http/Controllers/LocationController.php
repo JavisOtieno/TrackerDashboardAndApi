@@ -16,7 +16,7 @@ class LocationController extends Controller
 
         return view('map', ['locations'=>$locations]);
     }
-    public function otherdays(Request $request){
+    public function otherDaysTrail(Request $request){
 
         // $locations = Location::all();
         // $locations = Location::whereDate('created_at', )->get();

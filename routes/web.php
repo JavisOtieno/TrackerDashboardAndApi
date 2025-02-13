@@ -19,6 +19,7 @@ use App\Http\Controllers\LocationController;
 //     return view('welcome');
 // });
 Route::get('/', [LocationController::class, 'index']);
+Route::get('/otherdays', [LocationController::class, 'otherDaysTrail']);
 Route::get('/currentlocation', [LocationController::class, 'showCurrentLocation']);
 
 Route::get('/trips', [TripController::class, 'index']);
