@@ -454,6 +454,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 marker.setMap(null);
             });
             locations = [];
+            markers = [];
 
             if (directionsRenderer.getMap()) {
             directionsRenderer.set('directions', null); // Clear previous route
