@@ -215,9 +215,9 @@
                     processLocations(locations, true);
 
                     // Start update cycle
-                    if (!updateTimer) {
-                        updateTimer = setInterval(fetchAndUpdateLocations, updateInterval);
-                    }
+                    // if (!updateTimer) {
+                    //     updateTimer = setInterval(fetchAndUpdateLocations, updateInterval);
+                    // }
                 }
 
                 async function fetchAndUpdateLocations() {
