@@ -446,9 +446,9 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         waypoints=[];
         if(markers==undefined){
             // console.log(markers);
-            // alert("undefined");
+            alert("undefined");
         }else{
-            // alert("defined");
+            alert("defined");
             // console.log(markers);
             markers.forEach(marker => {
                 marker.setMap(null);
