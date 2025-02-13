@@ -474,16 +474,13 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             }
         });
 
-        waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
-                trip.end_long) }, stopover: true });
+
 
         
        
         console.log('Map instance:', map);
-        alert(trip.end_lat)
        
         
-
         if(trip.end_lat==null){
             alert("endpoint undefined")
             const origin = waypoints.shift().location;
@@ -493,6 +490,9 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 map.fitBounds(bounds);
 
         }else{
+            waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
+                trip.end_long) }, stopover: true });
+
             const origin = waypoints.shift().location;
             const destination = waypoints.pop().location;
 
