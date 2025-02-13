@@ -39,7 +39,7 @@ class LocationController extends Controller
     public function getOtherDaysLocations($date){
 
         // $locations = Location::all();
-        $locations = Location::whereDate('created_at', today())->get();
+        $locations = Location::whereDate('created_at', $date)->get();
         return response()->json($locations);
         
     }
