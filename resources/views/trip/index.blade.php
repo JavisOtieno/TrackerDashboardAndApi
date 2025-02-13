@@ -347,14 +347,15 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         waypoints=[];
         if(markers==undefined){
             // console.log(markers);
-            alert("undefined");
+            // alert("undefined");
         }else{
-            alert("defined");
+            // alert("defined");
             // console.log(markers);
             markers.forEach(marker => {
                 marker.setMap(null);
             });
             markers = []; // Reset the markers array
+            locations = [];
 
             if (directionsRenderer.getMap()) {
             directionsRenderer.set('directions', null); // Clear previous route
@@ -371,7 +372,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         });
         var  count = 0;
         const totalLocations = trip.locations.length;
-        const step = Math.ceil(totalLocations / 20); // Calculate step size
+        const step = Math.ceil(totalLoca]tions / 20); // Calculate step size
 
         trip.locations.forEach((location, index) => {
             if (index % step === 0) { // Push every 'step'-th location
