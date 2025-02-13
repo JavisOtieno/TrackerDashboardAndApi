@@ -460,7 +460,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         
  
 
-        waypoints.push({ location: { lat: trip.start_lat , lng: trip.start_long }, stopover: true });
+        waypoints.push({ location: { lat: Number(trip.start_lat) , lng: Number(trip.start_long) }, stopover: true });
                 // Adding a new location
         locations.push({
             "lat": Number(trip.start_lat),
