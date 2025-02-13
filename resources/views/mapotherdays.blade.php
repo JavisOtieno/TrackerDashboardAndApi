@@ -251,6 +251,10 @@
                     const path = []; // Array to store coordinates for polyline
                     var waypoints = [];
 
+                    const totalLocations = locations.length;
+                    const step = Math.ceil(totalLocations / 20); // Calculate step size
+
+
                     locations.forEach(location => {
                         const lat1 = Number(location.lat);
                         const long1 = Number(location.long);
@@ -260,13 +264,13 @@
                             lng: long1
                         };
                         // waypoints.push({ location: position, stopover: true });
-                        waypoints.push({
-                            location: {
-                                lat: Number(location.lat),
-                                lng: Number(location.long)
-                            },
-                            stopover: true
-                        });
+                        if (index % step === 0) { // Push every 'step'-th location
+                            waypoints.push({
+                                location: { lat: Number(location.lat), lng: Number(location.long) },
+                                stopover: true
+                            });
+                        }
+                        
                         // waypoints.push({ location: { lat: Number(routeplanitem.outlet.lat),
                         //      lng: Number(routeplanitem.outlet.long) }, stopover: true });
 
@@ -340,7 +344,7 @@
 
                     const origin = waypoints.shift().location;
                     const destination = waypoints.pop().location;
-                    waypoints = [];
+                    // waypoints = [];
                     console.log("origin");
                     console.log(origin);
                     console.log("origin");
