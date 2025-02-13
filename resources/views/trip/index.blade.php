@@ -459,8 +459,12 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         
  
 
-        waypoints.push({ location: { lat: Number(trip.start_lat), lng: Number(
-            trip.start_long) }, stopover: true });
+        waypoints.push({ location: { lat: , lng:  }, stopover: true });
+                // Adding a new location
+        locations.push({
+            "lat": Number(trip.start_lat),
+            "long": Number(trip.start_long)
+        });
         var  count = 0;
         const totalLocations = trip.locations.length;
         const step = Math.ceil(totalLocations / 20); // Calculate step size
@@ -472,13 +476,20 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                     stopover: true
                 });
             }
+            locations.push({
+                "lat": Number(location.lat),
+                "long": Number(location.long)
+            });
         });
+
+
 
 
 
         
        
         console.log('Map instance:', map);
+
        
         
         if(trip.end_lat==null){
@@ -486,7 +497,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             // const origin = waypoints.shift().location;
 
             var bounds = new google.maps.LatLngBounds();
-            addMarkers(map,waypoints,bounds);
+            addMarkers(map,locations,bounds);
             map.fitBounds(bounds);
 
         }else{
