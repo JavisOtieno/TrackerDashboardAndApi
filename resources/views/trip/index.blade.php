@@ -130,6 +130,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Map</h5>
+                            <div id="distance"></div>
                             <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -320,6 +321,8 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
     
    var googleMapsDiv= document.getElementById("googleMapTrips");
 
+   var distanceDiv= document.getElementById("distance");
+
 
     
     map = new google.maps.Map(googleMapsDiv,mapProp);
@@ -446,9 +449,9 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         waypoints=[];
         if(markers==undefined){
             // console.log(markers);
-            alert("undefined");
+            // alert("undefined");
         }else{
-            alert("defined");
+            // alert("defined");
             // console.log(markers);
             markers.forEach(marker => {
                 marker.setMap(null);
@@ -498,7 +501,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
        
         
         if(trip.end_lat==null){
-            alert("endpoint undefined")
+            // alert("endpoint undefined")
             // const origin = waypoints.shift().location;
 
             var bounds = new google.maps.LatLngBounds();
@@ -535,7 +538,9 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                     totalDistance += leg.distance.value; // distance.value is in meters
                 });
 
-                alert(totalDistance);
+                distanceDiv.innerText = "New Distance Value";
+
+                
 
                 if (totalDistance < 50) {
                     console.log('Route is less than 50 meters, not drawing directions.');
