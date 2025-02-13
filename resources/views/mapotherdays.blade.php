@@ -255,7 +255,7 @@
                     const step = Math.ceil(totalLocations / 20); // Calculate step size
 
 
-                    locations.forEach(location => {
+                    locations.forEach((location, index) => {
                         const lat1 = Number(location.lat);
                         const long1 = Number(location.long);
                         // alert("location here");
