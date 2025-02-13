@@ -220,9 +220,11 @@
                     // if (!updateTimer) {
                     //     updateTimer = setInterval(fetchAndUpdateLocations, updateInterval);
                     // }
+                    document.addEventListener("DOMContentLoaded", function() {
                     $('#setDate').on('change', function() {
                     alert($('#setDate').val());
                     });
+                }
                 }
 
                 async function fetchAndUpdateLocations() {
