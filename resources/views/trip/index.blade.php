@@ -483,11 +483,11 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
         
         if(trip.end_lat==null){
             alert("endpoint undefined")
-            const origin = waypoints.shift().location;
+            // const origin = waypoints.shift().location;
 
             var bounds = new google.maps.LatLngBounds();
-                addMarkers(map,trip.locations,bounds);
-                map.fitBounds(bounds);
+            addMarkers(map,waypoints,bounds);
+            map.fitBounds(bounds);
 
         }else{
             waypoints.push({ location: { lat: Number(trip.end_lat), lng: Number(
