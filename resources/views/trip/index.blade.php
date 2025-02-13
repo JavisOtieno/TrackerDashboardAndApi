@@ -296,6 +296,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
 
 <script>
     var map;
+    var distanceDiv;
     
     function myMap2() {
         var trips= @json($trips);
@@ -321,7 +322,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
     
    var googleMapsDiv= document.getElementById("googleMapTrips");
 
-   var distanceDiv= document.getElementById("distance");
+   distanceDiv= document.getElementById("distance");
 
 
     
