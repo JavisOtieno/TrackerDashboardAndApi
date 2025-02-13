@@ -130,7 +130,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Map</h5>
-                            <div id="distance" class="modal-title"></div>
+                            <h5 id="distance" class="modal-title"></h5>
                             <button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -539,7 +539,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                     totalDistance += leg.distance.value; // distance.value is in meters
                 });
 
-                distanceDiv.innerText = "<br/>Distance : "+totalDistance;
+                distanceDiv.innerText = "Distance : "+totalDistance/1000+" km";
 
 
                 if (totalDistance < 50) {
