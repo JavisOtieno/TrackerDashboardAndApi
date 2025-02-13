@@ -14,7 +14,7 @@ class LocationController extends Controller
        
         $incomingFields=$request->validate([
             'lat' => 'required|numeric|between:-90,90',
-            'trip_id' => 'required|numeric|digits_between:1,11',
+            'trip_id' => 'nullable|numeric|digits_between:1,11',
             'long' => 'required|numeric|between:-180,180',
         ]);
 
