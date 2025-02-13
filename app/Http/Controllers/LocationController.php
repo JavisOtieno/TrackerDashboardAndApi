@@ -9,14 +9,19 @@ use Illuminate\Http\Request;
 class LocationController extends Controller
 {
     //
-    public function index(Request $request){
+    public function index(){
+
+        $locations = Location::all();
+        $locations = Location::whereDate('created_at', today())->get();
+
+        return view('map', ['locations'=>$locations]);
+    }
+    public function otherdays(Request $request){
 
         // $locations = Location::all();
         // $locations = Location::whereDate('created_at', )->get();
         $locations = Location::whereDate('created_at', Carbon::yesterday())->get();
-
-
-        return view('map', ['locations'=>$locations]);
+        return view('mapotherdays', ['locations'=>$locations]);
     }
     public function showCurrentLocation(){
         $location = Location::orderBy('id', 'desc')->first();
