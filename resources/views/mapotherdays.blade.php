@@ -37,10 +37,12 @@
                             </div>
                         </div>
                         <div class="card-body p-0 mt-2">
-                            <div class="form-group">
+                            <div class="row" style="margin: 0 10px;">
+                            <div class="form-group col-md-3 mb-3">
                                 <label for="date" class="form-label">Date</label>
                                 {{-- <input  name="order" id="order"> --}}
                                 <input type="date" class="form-control" name="date" id="date" placeholder="date" autocomplete="date" value="{{old('date')}}"/>
+                            </div>
                             </div>
                             <div class="m-2">
                                 {{-- <div id="world-map-markers1" class="worldh world-map h-250"></div> --}}
