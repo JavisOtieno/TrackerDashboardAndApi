@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use Carbon\Carbon;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,8 +31,15 @@ class LocationController extends Controller
     }
     public function index(Request $request){
 
-        $locations = Location::all();
+        // $locations = Location::all();
         $locations = Location::whereDate('created_at', today())->get();
+        return response()->json($locations);
+        
+    }
+    public function otherDays($date){
+
+        // $locations = Location::all();
+        $locations = Location::whereDate('created_at', Carbon::yesterday())->get();
         return response()->json($locations);
         
     }
