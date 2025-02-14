@@ -38,23 +38,23 @@ class LoginController extends Controller
                 'authToken' =>  $user->createToken('AuthToken')->plainTextToken,
                 "userId"=>$userId);
 
-                if($user->organization->status=="inactive"){
-                    $loginStatus=array(
-                        "message" => "Organization Suspended",
-                        "status" => "failed",
-                        // "test" => "test",
-                        'authToken' =>  null,
-                        "userId"=>null);
+                // if($user->organization->status=="inactive"){
+                //     $loginStatus=array(
+                //         "message" => "Organization Suspended",
+                //         "status" => "failed",
+                //         // "test" => "test",
+                //         'authToken' =>  null,
+                //         "userId"=>null);
 
-                }else if($user->status=='inactive'){
-                    $loginStatus=array(
-                    "message" => "Account Suspended",
-                        "status" => "failed",
-                        // "test" => "test",
-                        'authToken' =>  null,
-                        "userId"=>null);
+                // }else if($user->status=='inactive'){
+                //     $loginStatus=array(
+                //     "message" => "Account Suspended",
+                //         "status" => "failed",
+                //         // "test" => "test",
+                //         'authToken' =>  null,
+                //         "userId"=>null);
 
-                }
+                // }
 
             }else{
                
