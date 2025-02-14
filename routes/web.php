@@ -37,11 +37,13 @@ Route::put('/saveedittrip/{id}',[TripController::class,'saveEditTrip']);
 
 Route::get('/logout', [LoginController::class,'logout']);
 
-Route::get('/signup', [SignupController::class,'showSignup'])->name('notwork');
-Route::post('/attemptsignup', [SignupController::class,'doSignup']);
+
 
 });
 
 Route::get('/login', [LoginController::class,'showLogin'])->name('login');
 Route::post('/attemptlogin', [LoginController::class,'doLogin']);
+
+Route::get('/signup', [SignupController::class,'showSignup'])->name('notwork');
+Route::post('/attemptsignup', [SignupController::class,'doSignup']);
 

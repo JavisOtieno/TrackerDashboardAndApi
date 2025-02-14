@@ -24,7 +24,7 @@ class LoginController extends Controller
 
             $userId = auth()->user()->id;
 
-            $user = User::inOrganization()->where('email',$request->email)->first();
+            $user = User::where('email',$request->email)->first();
             
 
             // $request->session()->regenerate();
