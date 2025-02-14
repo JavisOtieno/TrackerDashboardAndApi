@@ -20,6 +20,9 @@ use App\Http\Controllers\LocationController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::middleware(['auth','verified'])->group(function () {
+    
 Route::get('/', [LocationController::class, 'index']);
 Route::get('/dailytrails', [LocationController::class, 'otherDaysTrail']);
 Route::get('/currentlocation', [LocationController::class, 'showCurrentLocation']);
@@ -37,4 +40,6 @@ Route::get('/logout', [LoginController::class,'logout']);
 
 Route::get('/signup', [SignupController::class,'showSignup'])->name('notwork');
 Route::post('/attemptsignup', [SignupController::class,'doSignup']);
+
+});
 
