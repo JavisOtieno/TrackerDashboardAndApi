@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\TripController;
+use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\LocationController;
 
 /*
@@ -30,3 +31,5 @@ Route::post('/addtrip', [TripController::class, 'saveTrip']);
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/trip/{id}', [TripController::class, 'show']);
 Route::put('/endtrip/{id}', [TripController::class, 'endTrip']);
+
+Route::post('/login', [LoginController::class,'doLogin']);
