@@ -16,8 +16,43 @@ class LocationController extends Controller
         // ->orderBy('created_at', 'desc')
         ->get();
 
-        return view('map', ['locations'=>$locations]);
+        $totalDistance = 0;
+
+        function haversineDistance($lat1, $lon1, $lat2, $lon2, $unit = 'K')
+        {
+            $earthRadius = ($unit == 'K') ? 6371 : 3958.8; // Earth's radius in km or miles
+
+            $lat1 = deg2rad($lat1);
+            $lon1 = deg2rad($lon1);
+            $lat2 = deg2rad($lat2);
+            $lon2 = deg2rad($lon2);
+
+            $dLat = $lat2 - $lat1;
+            $dLon = $lon2 - $lon1;
+
+            $a = sin($dLat / 2) * sin($dLat / 2) +
+                cos($lat1) * cos($lat2) *
+                sin($dLon / 2) * sin($dLon / 2);
+
+            $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+            return $earthRadius * $c;
+        }
+
+        if ($locations->count() > 1) { // Ensure we have at least two locations
+            for ($i = 0; $i < count($locations) - 1; $i++) {
+                $totalDistance += haversineDistance(
+                    $locations[$i]->lat,
+                    $locations[$i]->long,
+                    $locations[$i + 1]->lat,
+                    $locations[$i + 1]->long
+                );
+            }
+        }
+
+        return view('map', compact('locations','totalDistance'));
     }
+    
     public function otherDaysTrail(Request $request){
 
         // $locations = Location::all();
