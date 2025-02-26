@@ -11,9 +11,9 @@ class LocationController extends Controller
     //
     public function index(){
 
-        $locations = Location::all();
+        // $locations = Location::all();
         $locations = Location::whereDate('created_at', today())
-        // ->orderBy('created_at', 'desc')
+        ->orderBy('created_at', 'asc')
         ->get();
 
         $totalDistance = 0;
