@@ -13,7 +13,8 @@ class LocationController extends Controller
 
         $locations = Location::all();
         $locations = Location::whereDate('created_at', today())
-        ->orderBy('created_at', 'desc')->get();
+        // ->orderBy('created_at', 'desc')
+        ->get();
 
         return view('map', ['locations'=>$locations]);
     }
