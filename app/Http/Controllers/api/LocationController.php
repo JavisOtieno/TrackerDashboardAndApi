@@ -32,7 +32,9 @@ class LocationController extends Controller
     public function index(Request $request){
 
         // $locations = Location::all();
-        $locations = Location::whereDate('created_at', today())->orderBy('created_at', 'desc')->get();
+        $locations = Location::whereDate('created_at', today())
+        ->orderBy('created_at', 'asc')
+        ->get();
         return response()->json($locations);
         
     }
