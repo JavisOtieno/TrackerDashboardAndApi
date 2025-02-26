@@ -32,7 +32,7 @@
                         <div class="card-header">
                             <div>
                                 <h3 class="card-title">Locations</h3>
-                                <p class="card-title">{{$totalDistance}} </p>
+                                <p class="card-title">{{$totalDistance}} km estimate</p>
                             </div>
                         </div>
                         <div class="card-body p-0 mt-2">
