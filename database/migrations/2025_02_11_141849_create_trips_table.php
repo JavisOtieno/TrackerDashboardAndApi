@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('end_long')->nullable();
             $table->longText('description');
             $table->unsignedBigInteger('amount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
