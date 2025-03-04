@@ -71,53 +71,8 @@
                                 </select>
                             </div> --}}
 
-                            <div class="form-group">
-                                <label for="target_group_id" class="form-label">Target Group</label>
-                                <select name="target_group_id" class="form-control form-select select2" data-bs-placeholder="Select Target Group">
-                                    <option value="0">None</option>
-                                        @foreach($targetgroups as $targetgroup)
-                                        <option {{old('target_group_id','')==$targetgroup['id']? 'selected':''}} value="{{$targetgroup['id']}}">{{$targetgroup['name']." - KSh ".number_format($targetgroup['amount'])}}</option>
-                                        @endforeach
-                </select></div>
-
-                <div class="form-group">
-                    <label for="region_id" class="form-label">Region</label>
-                    <select name="region_id" id="region_id" class="form-control 
-                                        select2-show-search form-select" data-bs-placeholder="Select Region">
-                        <option value="0">None</option>
-                            @foreach($regions as $region)
-                            <option {{old('region_id','')==$region['id']? 'selected':''}} value="{{$region['id']}}">{{$region['name']}}</option>
-                            @endforeach
-    </select></div>
-
-    <div class="form-group">
-        <label for="territory_id" class="form-label">Territory</label>
-        <select name="territory_id" id="territory_id" class="form-control 
-                                        select2-show-search form-select" data-bs-placeholder="Select Territory">
-            <option value="0">None</option>
-                @foreach($territories as $territory)
-                <option {{old('territory_id','')==$territory['id']? 'selected':''}} value="{{$territory['id']}}">{{$territory['name']}}</option>
-                @endforeach
-</select></div>
 
 
-<div class="form-group">
-    <label for="cluster_id" class="form-label">Cluster</label>
-<select name="cluster_id" id="cluster_id" class="form-control 
-select2-show-search form-select"
- data-bs-placeholder="Select Cluster">
-
-
-    <option value="0">None</option>
-    @foreach($clusters as $cluster)
-    <option {{old('cluster_id','')==$cluster['id']? 'selected':''}} 
-    value="{{$cluster['id']}}">{{$cluster['name']}}</option>
-    @endforeach
-    
-</select>
-</div>
-
-@include('partials.team-select', ['teams' => $teams])
 
 
                             <div class="form-group">

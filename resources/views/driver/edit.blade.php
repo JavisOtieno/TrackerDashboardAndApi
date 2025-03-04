@@ -68,50 +68,8 @@
                                                     <option {{old('usertype',$user['usertype'])=="sales"? 'selected':''}} value="sales">Sales</option>
                                 </select>
                             </div> --}}
-                            <div class="form-group">
-                                <label for="target_group_id" class="form-label">Targets</label>
-                                <select name="target_group_id" class="form-control form-select
-                                 select2" data-bs-placeholder="Select Target">
-                                    <option {{old('target_group_id',$user['target_group_id'])=="0"? 'selected':''}} value="0">None</option>
-                                    @foreach($targetgroups as $targetgroup)
-                                        <option {{old('target_group_id',$user['target_group_id'])==$targetgroup['id']? 'selected':''}} value="{{$targetgroup['id']}}">{{$targetgroup['name']." - KSh ".number_format($targetgroup['amount'])}}</option>
-
-                                        @endforeach
-                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="region_id" class="form-label">Region</label>
-                                <select name="region_id" id="region_id" class="form-control 
-                                        select2-show-search form-select" data-bs-placeholder="Select Region">
-                                    <option {{old('region_id',$user['region_id'])=="0"? 'selected':''}} value="0">None</option>
-                                    @foreach($regions as $region)
-                                        <option {{old('target_group_id',$user['region_id'])==$region['id']? 'selected':''}} value="{{$region['id']}}">{{$region['name']}}</option>
-
-                                        @endforeach
-                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="territory_id" class="form-label">Territory</label>
-                                <select name="territory_id" id="territory_id" class="form-control 
-                            select2-show-search form-select" data-bs-placeholder="Select Territory">
-                                    <option {{old('territory_id',$user['territory_id'])=="0"? 'selected':''}} value="0">None</option>
-                                    @foreach($territories as $territory)
-                                        <option {{old('territory_id',$user['territory_id'])==$territory['id']? 'selected':''}} value="{{$territory['id']}}">{{$territory['name']}}</option>
-
-                                        @endforeach
-                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="cluster_id" class="form-label">Cluster</label>
-                            <select name="cluster_id" id="cluster_id" class="form-control 
-                            select2-show-search form-select" data-bs-placeholder="Select Cluster">
-                                <option value="0">None</option>
-                                @foreach($clusters as $cluster)
-                                <option  {{old('cluster_id',$user['cluster_id'])==$cluster['id']? 'selected':''}} value="{{$cluster['id']}}">{{$cluster['name']}}</option>
-                                @endforeach
-                                
-                            </select>
-                        </div>
+                            <
+                           
                             <div class="form-group">
                                 <label for="status" class="form-label">Status</label>
                                 <select name="status" class="form-control form-select select2" data-bs-placeholder="Select Status">
