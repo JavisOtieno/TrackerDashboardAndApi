@@ -358,11 +358,11 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             var locationTime = hours + ':' + minutes;
 
             //alert(clockinTime);
-            // <h3>${location.user.name}</h3>
+
             var infoWindow = new google.maps.InfoWindow({
                 content: `
                     <div>
-                       
+                        <h3>${location.user ? location.user.name : "N/A"}</h3>
                         <p><strong>Time:</strong> ${locationTime}</p>
                         <p><strong>Latitude:</strong> ${location.lat}</p>
                         <p><strong>Longitude:</strong> ${location.long}</p>
