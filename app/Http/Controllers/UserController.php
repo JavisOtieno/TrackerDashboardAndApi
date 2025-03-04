@@ -22,12 +22,12 @@ class UserController extends CommonController
     //test commit github
     public function apiindex(){
         //$sales = Sale::all();
-        $users = User::inOrganization()->get();
+        $users = User::get();
         return response()->json(['users'=>$users]);
     }
 
     public function admins() {
-        $users = User::inOrganization()->where('usertype','admin')->get();
+        $users = User::where('usertype','admin')->get();
 
         //return $users;
         //dd($sales);
@@ -359,7 +359,7 @@ class UserController extends CommonController
 
         // return $incomingFields;
 
-        $user=User::inOrganization()->find($id);
+        $user=User::find($id);
 
 
         if ($request->input('default_file_removed') == 1 && !$request->hasFile('image')) {
@@ -538,7 +538,7 @@ class UserController extends CommonController
         $incomingFields['password']=strip_tags($incomingFields['password']);
         $usertype=strip_tags($incomingFields['password']);
 
-        $user=User::inOrganization()->find($id);
+        $user=User::find($id);
 
         $user->update($incomingFields);
 
@@ -560,7 +560,7 @@ class UserController extends CommonController
         // {
         // $user_id=Auth::user()->id;
         // }
-        $user = User::inOrganization()->find(auth()->user()->id);
+        $user = User::find(auth()->user()->id);
         return view('edit-profile',['user'=>$user]);
     }
 
