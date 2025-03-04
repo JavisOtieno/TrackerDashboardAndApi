@@ -366,7 +366,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                         <p><strong>Time:</strong> ${locationTime}</p>
                         <p><strong>Latitude:</strong> ${location.lat}</p>
                         <p><strong>Longitude:</strong> ${location.long}</p>
-                        <p><strong>View:</strong> <a href='/location/${location.id}' >View Clockout Details</a></p>
+                        <p><strong>View:</strong> <a href='/location/${location.id}' >View Location Details</a></p>
                     </div>
                 `
             });
