@@ -342,7 +342,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             marker = new google.maps.Marker({
                 position: locationPosition,
                 map: map,
-                title: location.user.name
+                title: location.user ? location.user.name : "N/A"
             });
 
             map.setCenter(locationPosition);
