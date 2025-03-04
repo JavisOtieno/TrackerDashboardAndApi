@@ -296,14 +296,14 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
     var distanceDiv;
     
     function myMap2() {
-        var locations= @json($locations);
+        // var locations= @json($locations);
 
-    if(locations[0] != null){
-    var mapProp= {
-      center:new google.maps.LatLng(Number(locations[0]['start_lat']),
-      Number(locations[0]['start_long'])),
-      zoom:10,
-    };
+    // if(locations[0] != null){
+    // var mapProp= {
+    //   center:new google.maps.LatLng(Number(locations[0]['start_lat']),
+    //   Number(locations[0]['start_long'])),
+    //   zoom:10,
+    // };
     // alert("working well");
     }else{
         var mapProp= {
