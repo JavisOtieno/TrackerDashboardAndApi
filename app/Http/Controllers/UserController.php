@@ -27,19 +27,19 @@ class UserController extends CommonController
     }
 
     public function admins() {
-        $users = User::inOrganization()->with('targetgroup')->where('usertype','admin')->get();
+        $users = User::inOrganization()->where('usertype','admin')->get();
 
         //return $users;
         //dd($sales);
-        // $targetgroups = TargetGroup::all();
+        // $Drivers = TargetGroup::all();
         return view('admin.index', ['users'=>$users]);
     }
     public function drivers() {
-        $users = User::inOrganization()->where('usertype','driver')->get();
+        $users = User::where('usertype','driver')->get();
 
         //return $users;
         //dd($sales);
-        // $targetgroups = TargetGroup::withTrashed();
+        // $Drivers = TargetGroup::withTrashed();
 
         return view('driver.index', ['users'=>$users]);
     }
@@ -67,36 +67,12 @@ class UserController extends CommonController
     
 
 
-    public function addUsersToTargetGroup(Request $request) {
-       
-        $incomingFields=$request->validate([
-            'target_group_id' => 'required|numeric|digits_between:1,20',
-            'usercheckboxes' => 'required|array|min:1',
-    ],[
-        'usercheckboxes.required' => 'You must select at least one driver.',
-        'usercheckboxes.min' => 'You must select at least one driver.',
-    ]);
-    
-         
-        $selectedUsers = $request->input('usercheckboxes', []);
-        
-
-        // Process the selected items
-        foreach ($selectedUsers as $selectedUserId) {
-            $user = User::inOrganization()->find($selectedUserId);
-            $user->update($incomingFields);
-    
-        }
-        
-        return redirect('/adduserstotargetgroups');
-
-    }
 
 
 
     
     public function deleteDriver($id){
-        $user = User::inOrganization()->where('usertype','driver')->find($id);
+        $user = User::where('usertype','driver')->find($id);
         $user->delete();
         return redirect('/drivers');
     }
@@ -104,7 +80,7 @@ class UserController extends CommonController
 
 
     public function deleteAdmin($id){
-        $user = User::inOrganization()->where('usertype','admin')->find($id);
+        $user = User::where('usertype','admin')->find($id);
         $user->delete();
         return redirect('/admins');
     }
@@ -126,10 +102,10 @@ class UserController extends CommonController
         
         $incomingFields['name']=strip_tags($incomingFields['name']);
         $incomingFields['phone']=strip_tags($incomingFields['phone']);
-        $incomingFields['usertype']='admin';
-        $incomingFields['target_group_id']=0;
-        $incomingFields['region_id']=0;
-        $incomingFields['territory_id']=0;
+        // $incomingFields['usertype']='admin';
+        // $incomingFields['target_group_id']=0;
+        // $incomingFields['region_id']=0;
+        // $incomingFields['territory_id']=0;
         $incomingFields['status']='active';
         $incomingFields['email']=strip_tags($incomingFields['email']);
         $incomingFields['password']=strip_tags($incomingFields['password']);
@@ -326,7 +302,7 @@ class UserController extends CommonController
 
 
     public function showEditDriver($id){
-        $user = User::inOrganization()->find($id);
+        $user = User::find($id);
         // $targetgroups = TargetGroup::all();
         // $regions = Region::all();
         // $teams = Team::all();
@@ -335,7 +311,7 @@ class UserController extends CommonController
         return view('driver.edit',compact('user'));
     }
     public function showEditAdmin($id){
-        $user = User::inOrganization()->find($id);
+        $user = User::find($id);
         return view('admin.edit',compact('user'));
     }
 
@@ -350,7 +326,7 @@ class UserController extends CommonController
     // }
 
     public function saveEditDriver($id, Request $request){
-        $teamId = $this->teamIdCheckAssign($request);
+        // $teamId = $this->teamIdCheckAssign($request);
 
         // $organizationId=auth()->user()->organization_id;
         $incomingFields=$request->validate([
@@ -372,13 +348,13 @@ class UserController extends CommonController
         $incomingFields['name']=strip_tags($incomingFields['name']);
         //$incomingFields['usertype']='driver';
         $incomingFields['email']=strip_tags($incomingFields['email']);
-        $incomingFields['target_group_id']=strip_tags($incomingFields['target_group_id']);
+        // $incomingFields['target_group_id']=strip_tags($incomingFields['target_group_id']);
         $incomingFields['phone']=strip_tags($incomingFields['phone']);
         // $incomingFields['organization_id']=$organizationId;
-        $incomingFields['region_id']=strip_tags($incomingFields['region_id']);
-        $incomingFields['territory_id']=strip_tags($incomingFields['territory_id']);
-        $incomingFields['cluster_id']=strip_tags($incomingFields['cluster_id']);
-        $incomingFields['team_id']=$teamId;
+        // $incomingFields['region_id']=strip_tags($incomingFields['region_id']);
+        // $incomingFields['territory_id']=strip_tags($incomingFields['territory_id']);
+        // $incomingFields['cluster_id']=strip_tags($incomingFields['cluster_id']);
+        // $incomingFields['team_id']=$teamId;
         $incomingFields['status']=strip_tags($incomingFields['status']);
 
         // return $incomingFields;
@@ -469,7 +445,7 @@ class UserController extends CommonController
         $incomingFields['phone']=strip_tags($incomingFields['phone']);
         // $incomingFields['organization_id']=$organizationId;
 
-        $user=User::inOrganization()->find($id);
+        $user=User::find($id);
 
         if ($request->input('default_file_removed') == 1 && !$request->hasFile('image')) {
 
@@ -539,7 +515,7 @@ class UserController extends CommonController
     }
 
     public function showChangePassword($usertype,$id){
-        $user = User::inOrganization()->find($id);
+        $user = User::find($id);
         return view('changepassword',compact('usertype','user'));
     }
 
@@ -570,9 +546,9 @@ class UserController extends CommonController
         if($usertype=='admin'){
         return redirect('/admins');
         }
-        else if($usertype=='teamleads'){
-            return redirect('/teamleads');
-            }
+        // else if($usertype=='teamleads'){
+        //     return redirect('/teamleads');
+        //     }
         {
             return redirect('/drivers');
         }
