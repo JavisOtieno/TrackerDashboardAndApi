@@ -102,7 +102,7 @@ class UserController extends CommonController
         
         $incomingFields['name']=strip_tags($incomingFields['name']);
         $incomingFields['phone']=strip_tags($incomingFields['phone']);
-        // $incomingFields['usertype']='admin';
+        $incomingFields['usertype']='admin';
         // $incomingFields['target_group_id']=0;
         // $incomingFields['region_id']=0;
         // $incomingFields['territory_id']=0;
