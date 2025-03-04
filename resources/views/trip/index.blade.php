@@ -60,6 +60,7 @@
                             <th id="view-column">View/Edit</th>
                             <th id="delete-column">Delete</th>
                             {{-- <th>Test Name</th> --}}
+                            <th>Driver</th>
                             <th>Start Location</th>
                             <th>End Location</th>
                             <th>Date</th>
@@ -81,7 +82,7 @@
 <td><a type="button" onclick="deleteItem('{{$trip['id']}}','{{$trip['name']}}','{{$trip['name']}}')"  class="btn btn-danger" style="margin-left: auto;color:white;" data-bs-toggle="modal" href="#modalDelete">Delete</a>
 </td>
     {{-- <td>{{$posaudit['user']['name']}}</td> --}}
-{{-- <td>{{ $trip['user'] ? $trip['user']['name']  . ($trip['user']->trashed() ? ' (Deleted User)' : '') : 'Deleted User'}} --}}
+<td>{{ $trip['user'] ? $trip['user']['name']  . ($trip['user']->trashed() ? ' (Deleted User)' : '') : 'Deleted User'}}
 <td>{{$trip['start_location']}}</td>
 <td>{{$trip['end_location']}}</td>
 <td>{{date('d-M-Y', strtotime($trip['created_at']))}}</td>
