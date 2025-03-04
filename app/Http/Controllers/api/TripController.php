@@ -42,7 +42,10 @@ class TripController extends Controller
     }
     public function index(){
 
-        $trips = Trip::orderBy('created_at', 'desc')->get();
+        $userid = auth()->user()->id;
+
+        $trips = Trip::where('user_id', $userid)->orderBy('created_at', 'desc')->get();
+
         return response()->json(['trips'=>$trips]);
         
     }
