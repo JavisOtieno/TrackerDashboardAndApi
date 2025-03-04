@@ -10,11 +10,11 @@
 
   <!-- PAGE-HEADER -->
   <div class="page-header">
-    <h1 class="page-title">Sellers</h1>
+    <h1 class="page-title">Drivers</h1>
     <div>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">RTMS</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Sellers</li>
+            <li class="breadcrumb-item active" aria-current="page">Drivers</li>
         </ol>
     </div>
 </div>
@@ -27,8 +27,8 @@
                 <div class="card">
                     <div class="card-header">
                     
-                        <h3 class="card-title">Sellers</h3>
-                        <a type="button" href="/add-seller" class="btn btn-danger col-md-3" style="margin-left: auto;margin-right:20px;margin-top:10px;margin-bottom:10px;color:white;">Add Seller</a>
+                        <h3 class="card-title">Drivers</h3>
+                        <a type="button" href="/add-driver" class="btn btn-danger col-md-3" style="margin-left: auto;margin-right:20px;margin-top:10px;margin-bottom:10px;color:white;">Add Driver</a>
                     
                         
                     </div>
@@ -100,7 +100,7 @@
                                         <tr>
                                         <td>{{$user['id']}}</td>
                                         <td>
-                                            <a type="button" href="/editseller/{{$user['id']}}" class="btn btn-info" style="margin-left: auto;color:white;">View/Edit</a>
+                                            <a type="button" href="/editdriver/{{$user['id']}}" class="btn btn-info" style="margin-left: auto;color:white;">View/Edit</a>
                                         </td>
                                         <td><a type="button" onclick="deleteItem({{$user['id']}},'Id: '+{{$user['id']}}+'<br/> Name: '+'{{$user['name']}}'+'<br/> Phone: '+'{{$user['phone']}}'+'<br/> Email: '+'{{$user['email']}}')"  
                                             class="btn btn-danger" style="margin-left: auto;color:white;" 
@@ -182,7 +182,7 @@
         var itemDetails = document.getElementById("itemDetails");
         itemDetails.innerHTML = message;
         var confirmDeleteLink = document.getElementById('confirmDelete'); //or grab it by tagname etc
-        confirmDeleteLink.href = "/deleteseller/"+id;
+        confirmDeleteLink.href = "/deletedriver/"+id;
     }
   </script>
 
