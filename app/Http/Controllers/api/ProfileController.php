@@ -18,9 +18,11 @@ class ProfileController extends Controller
         $user = User::where('id', $userid)->orderBy('created_at', 'desc')->first();
         $tripscount = Trip::where('id', $userid) -> count();
         $locationscount = Location::where('id', $userid) -> count();
+        $tripsamount = Trip::where('id', $userid)->sum('amount');
 
 
-        return response()->json(compact('user','tripscount','locationscount'));
+
+        return response()->json(compact('user','tripscount','locationscount','tripsamount'));
         
     }
 }
