@@ -174,26 +174,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
-        var territories  = @json($territories);
-
-        $('#region_id').on('change', function() {
-            var regionId = $(this).val();
-            var $territorySelect = $('#territory_id');
-            $territorySelect.empty();
-            $territorySelect.append('<option value="0">None</option>');
-
-            if (territories.length > 0) {
-                territories.forEach(territory => {
-                    // alert(territory.id+'">'+territory.name);
-
-                    if(regionId==territory.region_id){
-                    $territorySelect.append('<option value="'+territory.id+'">'+territory.name+'</option>');
-                    }
-
-                });
-            }
-
-        });
+    
 
     
     });
