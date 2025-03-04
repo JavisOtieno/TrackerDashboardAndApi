@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
-            $table->id();
-            $table->string('lat');
-            $table->string('long');
-            
-            $table->timestamps();
+        Schema::table('trips', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::table('trips', function (Blueprint $table) {
+            //
+            $table->dropSoftDeletes();
+        });
     }
 };
