@@ -469,7 +469,7 @@
                                             <li><a href="/admins" class="slide-item"> Admins</a></li>
                                            
                                             @endif
-                                            <li><a href="/sellers" class="slide-item"> Drivers</a></li>
+                                            <li><a href="/drivers" class="slide-item"> Drivers</a></li>
                                             
     
                                             
