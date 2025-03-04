@@ -293,133 +293,29 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
 
 <script>
     var map;
-    var distanceDiv;
+    var marker;
     
     function myMap2() {
-        // var locations= @json($locations);
 
-    // if(locations[0] != null){
-    // var mapProp= {
-    //   center:new google.maps.LatLng(Number(locations[0]['start_lat']),
-    //   Number(locations[0]['start_long'])),
-    //   zoom:10,
-    // };
-    // alert("working well");
-    }else{
+
         var mapProp= {
-      center:new google.maps.LatLng(-1.286389,
-      36.817223),
+      center:new google.maps.LatLng(-1.3,
+      36.8),
       zoom:10,
     };
-    //alert("we are here");
 
-    }
     document.addEventListener("DOMContentLoaded", function() {
-      
     
-   var googleMapsDiv= document.getElementById("googleMapLocations");
-
-   distanceDiv= document.getElementById("distance");
-
-
+   var googleMapsDiv= document.getElementById("googleMapClockin");
     
     map = new google.maps.Map(googleMapsDiv,mapProp);
-    directionsService = new google.maps.DirectionsService();
-    directionsRenderer = new google.maps.DirectionsRenderer();
-    directionsRenderer.setMap(map);
-    // alert("we get here");
-    var waypoints = [];
- 
-    // if(locations.length>0){
-    // var bounds = new google.maps.LatLngBounds();
-    
-    // locations[0]['locationitems'].forEach(locationitem => {
-    //     var lat1 = Number(locationitem['outlet']['lat']);
-    //     var long1 = Number(locationitem['outlet']['long']);
-    
-    //     waypoints.push({ location: { lat: lat1, lng: long1 }, stopover: true });
 
-    //     const myPosition = { lat: lat1, lng: long1 };
-    //     console.log(myPosition);
-
-    //     // var markerElement = new google.maps.marker.AdvancedMarkerElement({
-    //     //         position: myPosition,
-    //     //         map: map,
-    //     //         title: 'Visit Marker', // Add a title if needed
-    //     //     });
-
-    //         // Extend the bounds to include this marker's position
-    //         bounds.extend(myPosition);
-
-    //         // var infoContent = "<div><h3>"+visit['outlet']['name']+"</h3>"+
-    //         //     "<p>Latitude: "+lat1+"</p>"+
-    //         //     "<p>Longitude: "+long1+"</p>"+
-    //         //     "<p>Seller: "+visit['user']['name']+"</p>"+
-    //         // "</div>";
-
-    //         // Create an InfoWindow
-    //         // var infoWindow = new google.maps.InfoWindow({
-    //         //     content: infoContent
-    //         // });
-    //         //
-    //         var infowindow = new google.maps.InfoWindow({
-    //             content: "<div><h3>"+locationitem['outlet']['name']+"</h3>"+
-    //                 // "<p>Seller: "+( locationitem['outlet']['user']===null ? 'Deleted User': locationitem['outlet']['user']['name'])+"</p>"+
-    //                 "<p>Latitude: "+lat1+"</p>"+
-    //                 "<p>Longitude: "+long1+"</p>"+
-    //                 "</div>"
-    //         });
-
-    //         // Add a click event listener to the marker to open the InfoWindow
-    //         // marker.addListener('click', function() {
-    //         //     infoWindow.open(map, marker);
-    //         // });
             
-        
-       
-    //     // var marker = new google.maps.Marker({position: myPosition,
-    //     //     title: locationitem['outlet']['name'],
-    //     // });
-    //     // google.maps.event.addListener(marker, 'click', function() {
-    //     //         infowindow.open(map,marker);
-    //     //     });
-    //     // marker.setMap(map);
-        
-    // });
-    // map.fitBounds(bounds);
-    
-    //             const origin = waypoints.shift().location;
-    //             const destination = waypoints.pop().location;
-
-    //             const request = {
-    //                 origin: origin,
-    //                 destination: destination,
-    //                 waypoints: waypoints,
-    //                 optimizeWaypoints: true,
-    //                 travelMode: 'DRIVING'
-    //             };
-
-    //             directionsService.route(request, function(result, status) {
-    //                 if (status == 'OK') {
-    //                     directionsRenderer.setDirections(result);
-    //                     console.log('Route drawn with result:', result);
-                       
-    //                 } else {
-    //                     console.error('Directions request failed due to ' + status);
-    //                 }
-    //             });
+});
 
 
+    }
 
-
-
-
-
-
-
-    // var lat1 = locations[0]['locationitems'][0]['outlet']['lat'];
-    // var long1 = locations[0]['locationitems'][0]['outlet']['long'];
-    // }
 
     function loadPointOnMap(location){
         
@@ -494,25 +390,6 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             
 
     }
-
-});
-   // console.log(recentVisits);
-    
-    // const myPosition = { lat: -25.344, lng: 131.031 };
-    // //console.log(myPosition);
-    // const myPosition2 = { lat: Number(lat1), lng: Number(long1) };
-    // //console.log(myPosition2);
-    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    // var marker = new google.maps.Marker({position: myPosition});
-    // marker.setMap(map);
-    // var marker2 = new google.maps.Marker({position: myPosition2});
-    // marker2.setMap(map);
-    
-
-
-
-    
-    
     
 
     </script>
