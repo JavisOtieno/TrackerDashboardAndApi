@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('usertype')->default('user')->after('email'); // Adjust placement as needed
+            $table->string('usertype')->default('admin')->after('email'); // Adjust placement as needed
             $table->string('phone')->nullable()->after('usertype'); // Nullable to allow empty values
         });
     }

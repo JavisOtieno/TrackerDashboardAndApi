@@ -27,6 +27,7 @@ class SignupController extends Controller
             'password' => ['required','string','max:255','min:8','confirmed',Password::min(8)->letters()->numbers()],
         ]);
         //return 'test';
+        $incomingFields['status']='active';
         $incomingFields['name']=strip_tags($credentials['name']);
         $incomingFields['phone']=strip_tags($credentials['phone']);
         $incomingFields['usertype']='admin';
