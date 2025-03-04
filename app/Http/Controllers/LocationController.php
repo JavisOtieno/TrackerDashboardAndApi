@@ -52,6 +52,16 @@ class LocationController extends Controller
 
         return view('map', compact('locations','totalDistance'));
     }
+
+    public function locationIndex(){
+
+        // $locations = Location::all();
+        $locations = Location::orderBy('created_at', 'desc')
+        ->get();
+
+        return view('location.index', compact('locations'));
+
+    }
     
     public function otherDaysTrail(Request $request){
 
