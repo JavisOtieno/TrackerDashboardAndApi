@@ -13,7 +13,7 @@ class ProfileController extends Controller
 
         $userid = auth()->user()->id;
 
-        $user = User::where('user_id', $userid)->orderBy('created_at', 'desc')->first();
+        $user = User::where('id', $userid)->orderBy('created_at', 'desc')->first();
 
         return response()->json(['user'=>$user]);
         
