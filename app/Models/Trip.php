@@ -19,7 +19,8 @@ class Trip extends Model
         'end_lat',
         'end_long',
         'description',
-        'amount'
+        'amount',
+        'user_id'
     ];
 
     public function locations()

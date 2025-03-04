@@ -23,9 +23,9 @@ class TripController extends Controller
 
         ]);
         //return $incomingFields;
+        $userid = auth()->user()->id;
+        $incomingFields['user_id']=$userid;
 
-        
-        
         // $incomingFields['name']=strip_tags($incomingFields['name']);
 
         //return $incomingFields['usertype'];

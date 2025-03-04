@@ -12,12 +12,16 @@ class LocationController extends Controller
     //
     public function addLocation(Request $request){
 
+
        
         $incomingFields=$request->validate([
             'lat' => 'required|numeric|between:-90,90',
             'trip_id' => 'nullable|numeric|digits_between:1,11',
             'long' => 'required|numeric|between:-180,180',
         ]);
+        $userid = auth()->user()->id;
+        $incomingFields['user_id']=$userid;
+        
 
         // $incomingFields['user_id']=auth()->user()->id;
 
