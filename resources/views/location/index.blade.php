@@ -421,21 +421,6 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
     // var long1 = locations[0]['locationitems'][0]['outlet']['long'];
     // }
 
-});
-   // console.log(recentVisits);
-    
-    // const myPosition = { lat: -25.344, lng: 131.031 };
-    // //console.log(myPosition);
-    // const myPosition2 = { lat: Number(lat1), lng: Number(long1) };
-    // //console.log(myPosition2);
-    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    // var marker = new google.maps.Marker({position: myPosition});
-    // marker.setMap(map);
-    // var marker2 = new google.maps.Marker({position: myPosition2});
-    // marker2.setMap(map);
-    }
-
-
     function loadPointOnMap(location){
         
 
@@ -509,6 +494,23 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             
 
     }
+
+});
+   // console.log(recentVisits);
+    
+    // const myPosition = { lat: -25.344, lng: 131.031 };
+    // //console.log(myPosition);
+    // const myPosition2 = { lat: Number(lat1), lng: Number(long1) };
+    // //console.log(myPosition2);
+    // var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    // var marker = new google.maps.Marker({position: myPosition});
+    // marker.setMap(map);
+    // var marker2 = new google.maps.Marker({position: myPosition2});
+    // marker2.setMap(map);
+    
+
+
+
     
     
     
