@@ -22,14 +22,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+Route::middleware(['auth','verified'])->group(function () {
+    Route::get('/', [LocationController::class, 'index']);
+    Route::get('/otherdays/{date}', [LocationController::class, 'getOtherDaysLocations']);
+    Route::get('/currentlocation', [LocationController::class, 'getCurrentLocation']);
+});
+
+
+Route::middleware(['auth:sanctum'])->group(function(){
+
 Route::post('/addlocation', [LocationController::class, 'addLocation']);
-Route::get('/', [LocationController::class, 'index']);
-Route::get('/otherdays/{date}', [LocationController::class, 'getOtherDaysLocations']);
-Route::get('/currentlocation', [LocationController::class, 'getCurrentLocation']);
 
 Route::post('/addtrip', [TripController::class, 'saveTrip']);
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/trip/{id}', [TripController::class, 'show']);
 Route::put('/endtrip/{id}', [TripController::class, 'endTrip']);
+
+});
 
 Route::post('/login', [LoginController::class,'doLogin']);
