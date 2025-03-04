@@ -34,6 +34,22 @@ Route::post('/savetrip',[TripController::class,'saveTrip']);
 Route::get('/trip/{id}', [TripController::class,'showEditTrip']);
 Route::put('/saveedittrip/{id}',[TripController::class,'saveEditTrip']);
 
+Route::get('/admins', [UserController::class,'admins']);
+Route::get('/admins/{id}/{object}',[UserController::class,'showAdminsById']);
+Route::get('/deleteadmin/{id}', [UserController::class,'deleteAdmin']);
+Route::post('/saveadmin', [UserController::class,'saveAdmin']);
+Route::get('/add-admin', [UserController::class,'addAdmin']);
+Route::get('/editadmin/{id}', [UserController::class,'showEditAdmin']);
+Route::put('/saveeditadmin/{id}',[UserController::class,'saveEditAdmin']);
+
+Route::get('/drivers', [UserController::class,'drivers']);
+Route::get('/drivers/{id}/{object}',[UserController::class,'showDriversById']);
+Route::get('/deletedriver/{id}', [UserController::class,'deleteDriver']);
+Route::post('/savedriver', [UserController::class,'saveDriver']);
+Route::get('/add-driver', [UserController::class,'addDriver']);
+Route::get('/editdriver/{id}', [UserController::class,'showEditDriver']);
+Route::put('/saveeditdriver/{id}',[UserController::class,'saveEditDriver']);
+
 
 Route::get('/logout', [LoginController::class,'logout']);
 
