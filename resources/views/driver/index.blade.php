@@ -81,11 +81,11 @@
                                         <th>Phone</th>
                                         <th>Email</th>
                                         {{-- <th>Usertype</th> --}}
-                                        <th>Targets</th>
+                                        {{-- <th>Targets</th>
                                         <th>Team</th>
                                         <th>Region</th>
                                         <th>Territory</th>
-                                        <th>Cluster</th>
+                                        <th>Cluster</th> --}}
                                         <th>Status</th>
                                         <th>Date</th>
                                         
@@ -113,11 +113,11 @@
                                         <td>{{$user['phone']}}</td>
                                         <td>{{$user['email']}}</td>
                                         {{-- <td>{{ucfirst($user['usertype'])}}</td> --}}
-                                        <td>{{$user['targetgroup']==null?"None":'KSh '.number_format($user['targetgroup']['amount']) }}</td>
+                                        {{-- <td>{{$user['targetgroup']==null?"None":'KSh '.number_format($user['targetgroup']['amount']) }}</td>
                                         <td>{{$user['team']==null?"None":$user['team']['name']}}</td>
                                         <td>{{$user['region']==null?"None":$user['region']['name']}}</td>
                                         <td>{{$user['territory']==null?"None":$user['territory']['name'] }}</td>
-                                        <td>{{$user['cluster']==null? "None" : $user['cluster']['name']  }}</td>
+                                        <td>{{$user['cluster']==null? "None" : $user['cluster']['name']  }}</td> --}}
                                         <td>{{ucfirst($user['status'])}}</td>
                                         <td>{{date('d-M-Y', strtotime($user['created_at']))}}</td>
 
