@@ -444,6 +444,12 @@
                 </li>
 
                 <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/locations"><i
+                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__label">Locations</span></a>
+                </li>
+
+                <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon fe fe-user"></i><span
                             class="side-menu__label">Users</span><i
