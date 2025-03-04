@@ -89,7 +89,7 @@
 <td><a type="button" 
     {{-- onclick="embedMap2()" --}}
     id=""
-     onclick="rewriteMap({{ $location }})"
+     onclick="loadPointOnMap({{ $location }})"
     class="btn btn-success" style="margin-left: auto;color:white;" data-bs-toggle="modal" href="#largemodal">Map</a>
 </td>
 {{-- <td>
@@ -435,195 +435,80 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
     // marker2.setMap(map);
     }
 
-    var markers = [];
-    var locations = [];
 
-    function rewriteMap(location){
+    function loadPointOnMap(location){
         
-        //alert('we get here');
-        //alert (location['locationitems'][0]['outlet']['lat']);
-        distanceDiv.innerText = "";
 
-        
-        //console.log(location);
-        waypoints=[];
-        if(markers==undefined){
+        if(marker==undefined){
             // console.log(markers);
             // alert("undefined");
         }else{
-            // alert("defined");
-            // console.log(markers);
-            markers.forEach(marker => {
                 marker.setMap(null);
-            });
-            locations = [];
-            markers = [];
 
-            if (directionsRenderer.getMap()) {
-            directionsRenderer.set('directions', null); // Clear previous route
-            }
         }
         
- 
 
-        waypoints.push({ location: { lat: Number(location.start_lat) , lng: Number(location.start_long) }, stopover: true });
-                // Adding a new location
-        locations.push({
-            "lat": Number(location.start_lat),
-            "long": Number(location.start_long)
-        });
-        var  count = 0;
-        const totalLocations = location.locations.length;
-        const step = Math.ceil(totalLocations / 20); // Calculate step size
-
-        location.locations.forEach((location, index) => {
-            if (index % step === 0) { // Push every 'step'-th location
-                waypoints.push({
-                    location: { lat: Number(location.lat), lng: Number(location.long) },
-                    stopover: true
-                });
-                locations.push({
-                "lat": Number(location.lat),
-                "long": Number(location.long)
-            });
-            }
- 
-        });
-
-
-
-
-
-        
-       
+        //waypoints.push({ location: { lat: -1.244, lng: 36.8 }, stopover: true });
         console.log('Map instance:', map);
 
-       
-        
-        if(location.end_lat==null){
-            // alert("endpoint undefined")
-            // const origin = waypoints.shift().location;
 
-            var bounds = new google.maps.LatLngBounds();
-            addMarkers(map,locations,bounds);
-            map.fitBounds(bounds);
+        //should be google.maps.Marker.MAX_ZINDEX + 1 but we're using 
+        //google.maps.Marker.MAX_ZINDEX + itemNumber to overlay multiple on the same for now
 
-        }else{
-            waypoints.push({ location: { lat: Number(location.end_lat), lng: Number(
-                location.end_long) }, stopover: true });
-            locations.push({
-                "lat": Number(location.end_lat),
-                "long": Number(location.end_long)
+        var locationPosition = { lat: parseFloat(location.lat), lng: parseFloat(location.long) };
+
+            //alert('adding marker');
+            marker = new google.maps.Marker({
+                position: locationPosition,
+                map: map,
+                title: location.user.name
             });
 
-            const origin = waypoints.shift().location;
-            const destination = waypoints.pop().location;
+            map.setCenter(locationPosition);
+            map.setZoom(12);
 
-            const request = {
-                origin: origin,
-                destination: destination,
-                waypoints: waypoints,
-                optimizeWaypoints: true,
-                travelMode: 'DRIVING'
-            };
+            var date = new Date(location.created_at);
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
 
-            directionsService.route(request, function(result, status) {
-            if (status == 'OK') {
+            // Pad single digit minutes with a leading zero
+            minutes = minutes < 10 ? '0' + minutes : minutes;
 
-                const route = result.routes[0];
-                let totalDistance = 0;
+            var locationTime = hours + ':' + minutes;
 
-                // Loop through each leg to calculate the total distance
-                route.legs.forEach(leg => {
-                    totalDistance += leg.distance.value; // distance.value is in meters
-                });
+            //alert(clockinTime);
 
-                distanceDiv.innerText = ": Distance : "+totalDistance/1000+" km"+" : Fuel Estimate (Assuming KSh 70/km) in Litres: "+70*totalDistance/1000+" ";
-
-
-                if (totalDistance < 50) {
-                    console.log('Route is less than 50 meters, not drawing directions.');
-                    var bounds = new google.maps.LatLngBounds();
-                    addMarkers(map,locations,bounds);
-                    map.fitBounds(bounds);
-                } else {
-                    directionsRenderer.setDirections(result);
-                    console.log('Route drawn with result:', result);
-                    addMarkers(map,locations);
-                }
-
-            } else {
-                console.error('Directions request failed due to ' + status);
-                 var bounds = new google.maps.LatLngBounds();
-                addMarkers(map,locations,bounds);
-                map.fitBounds(bounds);
-            }
-        });
-
-        }
-
-
-        
-
-        function addMarkers(map,markerpointsset,bounds) {
-            var itemNumber = 1;
-
-            //should be google.maps.Marker.MAX_ZINDEX + 1 but we're using 
-            //google.maps.Marker.MAX_ZINDEX + itemNumber to overlay multiple on the same for now
-
-            markerpointsset.forEach(item => {
-                //alert('adding marker');
-                var marker = new google.maps.Marker({
-                    position: { lat: parseFloat(item.lat), lng: parseFloat(item.long) },
-                    map: map,
-                    label: String(itemNumber),
-                    title: 'Marker',
-                    zIndex: google.maps.Marker.MAX_ZINDEX + itemNumber
-                });
-                itemNumber++;
-
-                if(bounds!=undefined){
-                const waypointPosition = { lat: parseFloat(item.lat), lng: parseFloat(item.long) };
-                console.log(waypointPosition);
-                // Extend the bounds to include this marker's position
-                bounds.extend(waypointPosition);
-                }
-
-                //marker.setMap(map);
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: `
-                        <div>
-                            <p><strong>Latitude:</strong> ${item.lat}</p>
-                            <p><strong>Longitude:</strong> ${item.long}</p>
-                        </div>
-                    `
-                });
-
-                marker.addListener('click', function () {
-                    infoWindow.open(map, marker);
-                });
-
-                markers.push(marker);
-
-               
+            var infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <div>
+                        <h3>${location.user.name}</h3>
+                        <p><strong>Time:</strong> ${locationTime}</p>
+                        <p><strong>Latitude:</strong> ${location.lat}</p>
+                        <p><strong>Longitude:</strong> ${location.long}</p>
+                        <p><strong>View:</strong> <a href='/location/${location.id}' >View Clockout Details</a></p>
+                    </div>
+                `
             });
+
+            // Open the info window
+            let isInfoWindowOpen = true;
+            infoWindow.open(map,marker);
+
+            //added the toggle functionality here because for this case the map opens up the infoview on load
             
-        }
+            marker.addListener('click', function () {
+                if (isInfoWindowOpen) {
+                    infoWindow.close(); // Close the InfoWindow if it's open
+                    isInfoWindowOpen = false; // Update the state
+                } else {
+                    infoWindow.open(map, marker); // Open the InfoWindow if it's closed
+                    isInfoWindowOpen = true; // Update the state
+                }
+            });
 
+            
 
-        
-
-
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     console.log('Map instance:', map);
-    //     alert('we get here too');
-
-    // // function rewriteMap(){
-        
-    // // }
-    
-    // });
+    }
     
     }
     
