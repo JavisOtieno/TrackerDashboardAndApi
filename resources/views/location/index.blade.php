@@ -134,7 +134,7 @@
                         </div>
                     
                         <div class="modal-body">
-                            <div id="googleMapLocations" class="worldh world-map h-500" ></div>
+                            <div id="googleMapLocation" class="worldh world-map h-500" ></div>
                             {{-- <iframe id="mapEmbededForNow" style="width:100%;height:400px;" src = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d4084493.7307095355!2d36.50569875426991!3d-1.3175850003645804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2ske!4v1715327211380!5m2!1sen!2ske"></iframe> --}}
                             <!--<div id="googleMap" style="width:100%;height:400px;"></div>-->
                         </div>
@@ -306,7 +306,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
 
     document.addEventListener("DOMContentLoaded", function() {
     
-   var googleMapsDiv= document.getElementById("googleMapClockin");
+   var googleMapsDiv= document.getElementById("googleMapLocation");
     
     map = new google.maps.Map(googleMapsDiv,mapProp);
 
