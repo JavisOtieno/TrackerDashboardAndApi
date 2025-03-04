@@ -32,6 +32,8 @@ Route::middleware(['auth','verified'])->group(function () {
 
 Route::middleware(['auth:sanctum'])->group(function(){
 
+Route::post('/profile', [ProfileController::class, 'index']);
+
 Route::post('/addlocation', [LocationController::class, 'addLocation']);
 
 Route::post('/addtrip', [TripController::class, 'saveTrip']);
