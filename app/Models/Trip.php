@@ -28,5 +28,11 @@ class Trip extends Model
         return $this->hasMany(Location::class);
     }
 
+    
+    public function user(){
+        //return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
+    }
+
 
 }
