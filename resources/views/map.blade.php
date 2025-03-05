@@ -268,6 +268,8 @@
 
                         // Create info window
                         const date = new Date(location.created_at);
+                        const accuracy = Number(location.accuracy);
+                        const distance = Number(location.distance);
                         const infowindow = new google.maps.InfoWindow({
                             content: `
                                 <div>
@@ -282,6 +284,8 @@
                                     })}</p>
                                     <p>Latitude: ${lat1}</p>
                                     <p>Longitude: ${long1}</p>
+                                    <p>Accuracy: ${accuracy}</p>
+                                    <p>Distance: ${distance}</p>
                                 </div>
                             `
                         });
