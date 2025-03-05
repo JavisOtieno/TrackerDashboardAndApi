@@ -62,6 +62,8 @@
                             <th>Driver</th>
                             <th>Lat</th>
                             <th>Long</th>
+                            <th>Accuracy</th>
+                            <th>Distance</th>
                             <th>Date</th>
                             <th>Time</th>
                     
@@ -81,6 +83,8 @@
 <td>{{ $location['user'] ? $location['user']['name']  . ($location['user']->trashed() ? ' (Deleted User)' : '') : 'Deleted User'}}
 <td>{{$location['lat']}}</td>
 <td>{{$location['long']}}</td>
+<td>{{$location['accuracy']}}</td>
+<td>{{$location['distance']}}</td>
 <td>{{date('d-M-Y', strtotime($location['created_at']))}}</td>
 <td>{{date('H:i', strtotime($location['created_at']))}}</td>
 
