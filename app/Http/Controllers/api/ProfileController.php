@@ -20,8 +20,6 @@ class ProfileController extends Controller
         $locationscount = Location::where('id', $userid) -> count();
         $tripsamount = Trip::where('id', $userid)->sum('amount');
 
-
-
         return response()->json(compact('user','tripscount','locationscount','tripsamount'));
         
     }

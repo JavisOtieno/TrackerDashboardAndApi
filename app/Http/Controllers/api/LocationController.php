@@ -18,6 +18,8 @@ class LocationController extends Controller
             'lat' => 'required|numeric|between:-90,90',
             'trip_id' => 'nullable|numeric|digits_between:1,11',
             'long' => 'required|numeric|between:-180,180',
+            'distance' => 'nullable|numeric',
+            'accuracy' => 'nullable|numeric'
         ]);
         $userid = auth()->user()->id;
         $incomingFields['user_id']=$userid;
