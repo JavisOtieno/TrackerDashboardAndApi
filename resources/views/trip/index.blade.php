@@ -63,6 +63,7 @@
                             <th>Driver</th>
                             <th>Start Location</th>
                             <th>End Location</th>
+                            <th>Sum Distance</th>
                             <th>Date</th>
                             <th>Time</th>
                     
@@ -85,6 +86,7 @@
 <td>{{ $trip['user'] ? $trip['user']['name']  . ($trip['user']->trashed() ? ' (Deleted User)' : '') : 'Deleted User'}}
 <td>{{$trip['start_location']}}</td>
 <td>{{$trip['end_location']}}</td>
+<td>{{$trip['locations_sum_distance']}}</td>
 <td>{{date('d-M-Y', strtotime($trip['created_at']))}}</td>
 <td>{{date('H:i', strtotime($trip['created_at']))}}</td>
 
@@ -614,6 +616,8 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
             });
             
         }
+
+        
 
 
         
