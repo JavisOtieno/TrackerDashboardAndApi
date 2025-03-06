@@ -11,7 +11,7 @@ class TripController extends Controller
     public function index(){
 
         // $trips = Trip::all();
-        $trips = Trip::withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
+        $trips = Trip::with('locations')->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
         return view('trip.index', ['trips'=>$trips]);
     }
     public function deleteTrip($id){
