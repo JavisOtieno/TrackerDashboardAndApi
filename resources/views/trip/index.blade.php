@@ -609,12 +609,23 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
 
                 var locationTime = hours + ':' + minutes;
 
+                var day = date.getDate();
+                var month = date.getMonth(); // Months are zero-based, so add 1
+                var year = date.getFullYear();
+
+                var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+                // Get month name from array
+                var monthName = monthNames[month];
+
+                var locationDate = day + '-' + monthName + '-' + year;
+
                 var infoWindow = new google.maps.InfoWindow({
                     content: `
                         <div>
                             <p><strong>Latitude:</strong> ${item.lat}</p>
                             <p><strong>Longitude:</strong> ${item.long}</p>
-                            <p><strong>Date:</strong> ${date}</p>
+                            <p><strong>Date:</strong> ${locationDate}</p>
                             <p><strong>Date:</strong> ${locationTime}</p>
 
                         </div>
