@@ -476,7 +476,8 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 // Adding a new location
         locations.push({
             "lat": Number(trip.start_lat),
-            "long": Number(trip.start_long)
+            "long": Number(trip.start_long),
+            "date": Number(trip.created_at)
         });
         var  count = 0;
         const totalLocations = trip.locations.length;
@@ -490,7 +491,8 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 });
                 locations.push({
                 "lat": Number(location.lat),
-                "long": Number(location.long)
+                "long": Number(location.long),
+                "date": location.created_at
             });
             }
  
@@ -519,7 +521,9 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 trip.end_long) }, stopover: true });
             locations.push({
                 "lat": Number(trip.end_lat),
-                "long": Number(trip.end_long)
+                "long": Number(trip.end_long),
+                "date": trip.updated_at
+
             });
 
             const origin = waypoints.shift().location;
@@ -596,7 +600,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 }
 
                 //marker.setMap(map);
-                var date = new Date(item.created_at);
+                var date = new Date(item.date);
                 var hours = date.getHours();
                 var minutes = date.getMinutes();
 
