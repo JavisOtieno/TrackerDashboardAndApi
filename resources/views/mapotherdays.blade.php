@@ -238,7 +238,7 @@
                 async function fetchAndUpdateLocations(date) {
                     try {
                         alert(date);
-                        const response = await fetch('/api/otherdays/'+date); // Use correct endpoint
+                        const response = await fetch('/otherdays/'+date); // Use correct endpoint
                         const newLocations = await response.json();
                         // const filtered = newLocations.filter(location => location.id > 460);
 

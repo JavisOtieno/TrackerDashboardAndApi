@@ -62,6 +62,14 @@ class LocationController extends Controller
         return view('location.index', compact('locations'));
 
     }
+    public function getOtherDaysLocations($date){
+
+        // $locations = Location::all();
+        $locations = Location::whereDate('created_at', $date)
+        ->orderBy('created_at', 'desc')->get();
+        return response()->json($locations);
+        
+    }
     
     public function otherDaysTrail(Request $request){
 

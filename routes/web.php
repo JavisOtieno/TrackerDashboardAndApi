@@ -28,6 +28,7 @@ Route::get('/', [LocationController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'locationIndex']);
 Route::get('/dailytrails', [LocationController::class, 'otherDaysTrail']);
 Route::get('/currentlocation', [LocationController::class, 'showCurrentLocation']);
+Route::get('/otherdays/{date}', [LocationController::class, 'getOtherDaysLocations']);
 
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/createtrip', [TripController::class,'addTrip']);
