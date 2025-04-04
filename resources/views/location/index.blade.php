@@ -367,6 +367,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 content: `
                     <div>
                         <h3>${location.user ? location.user.name : "N/A"}</h3>
+                         <p><strong>Date:</strong> ${date}</p>
                         <p><strong>Time:</strong> ${locationTime}</p>
                         <p><strong>Latitude:</strong> ${location.lat}</p>
                         <p><strong>Longitude:</strong> ${location.long}</p>

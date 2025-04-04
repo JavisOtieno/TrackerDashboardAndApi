@@ -596,12 +596,23 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 }
 
                 //marker.setMap(map);
+                var date = new Date(item.created_at);
+                var hours = date.getHours();
+                var minutes = date.getMinutes();
+
+                // Pad single digit minutes with a leading zero
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+
+                var locationTime = hours + ':' + minutes;
 
                 var infoWindow = new google.maps.InfoWindow({
                     content: `
                         <div>
                             <p><strong>Latitude:</strong> ${item.lat}</p>
                             <p><strong>Longitude:</strong> ${item.long}</p>
+                            <p><strong>Date:</strong> ${date}</p>
+                            <p><strong>Date:</strong> ${locationTime}</p>
+
                         </div>
                     `
                 });
