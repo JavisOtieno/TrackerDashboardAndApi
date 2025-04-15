@@ -144,10 +144,16 @@ class TripController extends Controller
 
             $firstlocation = $locations->first();
             $lastlocation = $locations->last();
+
+            if($firstlocation == null){
+                $firstdistance = 0;
+                $lastdistance = 0;
+            }else{
+                $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
+                $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long)
+            }
     
-            $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
-            $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
-    
+            
             $totalDistance =Location::where('trip_id', $trip->id)
             ->sum('distance');
             $incomingFields['distance'] = $totalDistance+$firstdistance+$lastdistance;
