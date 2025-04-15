@@ -158,8 +158,9 @@ class TripController extends CommonController
             
             $totalDistance =Location::where('trip_id', $trip->id)
             ->sum('distance');
-            $incomingFields['distance'] = $totalDistance+$firstdistance+$lastdistance;
-            $viewresults .= $totalDistance.' '.$firstdistance.' '.$lastdistance.'<br/>';
+            $finaltotaldistance = $totalDistance+$firstdistance+$lastdistance;
+            $incomingFields['distance'] = $finaltotaldistance;
+            $viewresults .= $finaltotaldistance.' '.$totalDistance.' '.$firstdistance.' '.$lastdistance.'<br/>';
 
             $trip->update($incomingFields);
 
