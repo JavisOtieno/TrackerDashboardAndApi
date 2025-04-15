@@ -41,6 +41,7 @@ class TripController extends Controller
 
             return $earthRadius * $c;
         }
+        $distanceComparisons = '';
 
         if ($locations->count() > 1) { // Ensure we have at least two locations
             for ($i = 0; $i < count($locations) - 1; $i++) {
@@ -51,7 +52,7 @@ class TripController extends Controller
                     $locations[$i + 1]->long
                 );
                 $totalDistance += $currentDistance;
-                $distanceComparisons .= $currentDistance.' '.$locations[$i+1]->distance.'<br/>';
+                $distanceComparisons .= $currentDistance.' '.$locations[$i+1]->distance.' '.$totalDistance.'<br/>';
             }
         }
 
@@ -66,7 +67,7 @@ class TripController extends Controller
         // }
 
         // return $totalDistance;
-        return $distanceComparisons.'<br/>'.$distanceComparisons;
+        return $distanceComparisons;
         
         return view('trip.index', ['trips'=>$trips]);
     }
