@@ -150,7 +150,7 @@ class TripController extends Controller
                 $lastdistance = 0;
             }else{
                 $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
-                $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long)
+                $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
             }
     
             
