@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Trip;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Controllers\CommonController;
 
-class TripController extends Controller
+class TripController extends CommonController
 {
     //
     public function index(){
