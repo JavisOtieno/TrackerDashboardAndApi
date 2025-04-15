@@ -12,21 +12,21 @@ class TripController extends Controller
 
         // $trips = Trip::all();
         $trips = Trip::with('locations')->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
-        // $tripselected = Trip::with('locations')->find(17);
+        $tripselected = Trip::with('locations')->find(19);
 
-        // $totalDistance = 0;
+        $totalDistance = 0;
 
-        // $previousLocation = null;
-        // foreach ($tripselected->locations as $location) {
-        //     if ($previousLocation) {
-        //         $totalDistance += abs($location->distance - $previousLocation->distance);
-        //     }
-        //     $previousLocation = $location;
-        // }
+        $previousLocation = null;
+        foreach ($tripselected->locations as $location) {
+            if ($previousLocation) {
+                $totalDistance += abs($location->distance - $previousLocation->distance);
+            }
+            $previousLocation = $location;
+        }
 
-        // return $totalDistance;
+        return $totalDistance;
         
-        return view('trip.index', ['trips'=>$trips]);
+        // return view('trip.index', ['trips'=>$trips]);
     }
     public function deleteTrip($id){
         $trip = Trip::find($id);
