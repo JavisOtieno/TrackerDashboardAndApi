@@ -63,7 +63,7 @@ class TripController extends Controller
         //     $previousLocation = $location;
         // }
 
-        // return $totalDistance;
+        return $totalDistance;
         
         // return view('trip.index', ['trips'=>$trips]);
     }
