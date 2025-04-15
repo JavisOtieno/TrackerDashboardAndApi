@@ -63,9 +63,9 @@ class TripController extends Controller
         //     $previousLocation = $location;
         // }
 
-        return $totalDistance;
+        // return $totalDistance;
         
-        // return view('trip.index', ['trips'=>$trips]);
+        return view('trip.index', ['trips'=>$trips]);
     }
     public function deleteTrip($id){
         $trip = Trip::find($id);
