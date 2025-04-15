@@ -44,12 +44,14 @@ class TripController extends Controller
 
         if ($locations->count() > 1) { // Ensure we have at least two locations
             for ($i = 0; $i < count($locations) - 1; $i++) {
-                $totalDistance += haversineDistance(
+                $currentDistance = haversineDistance(
                     $locations[$i]->lat,
                     $locations[$i]->long,
                     $locations[$i + 1]->lat,
                     $locations[$i + 1]->long
                 );
+                $totalDistance += $currentDistance;
+                $distanceComparisons .= $currentDistance.' '.$locations[$i+1]->distance.'<br/>';
             }
         }
 
@@ -64,6 +66,7 @@ class TripController extends Controller
         // }
 
         // return $totalDistance;
+        return $distanceComparisons.'<br/>'.$distanceComparisons;
         
         return view('trip.index', ['trips'=>$trips]);
     }
