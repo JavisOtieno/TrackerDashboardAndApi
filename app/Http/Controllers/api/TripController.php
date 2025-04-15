@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Trip;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\CommonController;
 
-class TripController extends Controller
+class TripController extends CommonController
 {
     //
 
@@ -60,7 +62,21 @@ class TripController extends Controller
             'end_long' => 'required|numeric|between:-180,180',
 
         ]);
+
         $trip = Trip::find($id);
+        $locations = Location::where('trip_id', $id)->orderBy('created_at')->get();
+
+        $firstlocation = $locations->first();
+        $lastlocation = $locations->last();
+
+        $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
+        $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$incomingFields['end_lat'],$incomingFields['end_long']);
+
+        $totalDistance =Location::where('trip_id', $id)
+        ->sum('distance');
+        $incomingFields['distance'] = $totalDistance+$firstdistance+$lastdistance;
+
+        
         $trip->update($incomingFields);
 
         $tripStatus=array(
@@ -71,5 +87,8 @@ class TripController extends Controller
         return response()->json($tripStatus);
         
     }
+
+
+    
 
 }

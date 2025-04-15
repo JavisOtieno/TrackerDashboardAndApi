@@ -134,4 +134,26 @@ class TripController extends Controller
         return redirect('/trips');
         
     }
+
+    public function tempSumTripLocations(){
+        $trips = Trip::all();
+        foreach ($trips as $trip) {
+
+
+            $locations = Location::where('trip_id', $trip->id)->orderBy('created_at')->get();
+
+            $firstlocation = $locations->first();
+            $lastlocation = $locations->last();
+    
+            $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
+            $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
+    
+            $totalDistance =Location::where('trip_id', $trip->id)
+            ->sum('distance');
+            $incomingFields['distance'] = $totalDistance+$firstdistance+$lastdistance;
+
+            $trip->update($incomingFields);
+
+            
+        }
 }
