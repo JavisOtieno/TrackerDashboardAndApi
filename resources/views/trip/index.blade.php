@@ -63,7 +63,8 @@
                             <th>Driver</th>
                             <th>Start Location</th>
                             <th>End Location</th>
-                            <th>Sum Distance</th>
+                            <th>Loc Sum Distance</th>
+                            <th>Distance</th>
                             <th>Date</th>
                             <th>Time</th>
                     
@@ -87,6 +88,7 @@
 <td>{{$trip['start_location']}}</td>
 <td>{{$trip['end_location']}}</td>
 <td>{{$trip['locations_sum_distance']}}</td>
+<td>{{$trip['distance']}}</td>
 <td>{{date('d-M-Y', strtotime($trip['created_at']))}}</td>
 <td>{{date('H:i', strtotime($trip['created_at']))}}</td>
 
