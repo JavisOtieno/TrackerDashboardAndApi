@@ -16,7 +16,6 @@ class Location extends Model
         'trip_id',
         'long',
         'user_id',
-        'type',
         'accuracy',
         'distance'
 
