@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('trips', function (Blueprint $table) {
             //
 
-            $table->string('distance')->nullable()->after('amount'); 
+            $table->string('amount')->nullable()->after('description'); 
         });
     }
 
