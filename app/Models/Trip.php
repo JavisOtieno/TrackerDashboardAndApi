@@ -20,6 +20,7 @@ class Trip extends Model
         'end_long',
         'description',
         'amount',
+        'distance',
         'user_id'
     ];
 
