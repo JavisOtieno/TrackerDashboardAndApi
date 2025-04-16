@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('trips', function (Blueprint $table) {
             //
 
-            $table->string('amount')->nullable()->after('description'); 
+            $table->string('distance')->nullable()->after('amount'); 
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
     {
         Schema::table('trips', function (Blueprint $table) {
             //
-            $table->dropColumn('amount');
+            $table->dropColumn('distance');
         });
     }
 };
