@@ -13,13 +13,13 @@ class Location extends Model
     
     protected $fillable = [
         'lat',
-        'trip_id',
         'long',
+        'trip_id',
         'user_id',
         'accuracy',
-        'distance'
-
-  
+        'distance',
+        'type',
+        'name'
     ];
 
     public function trip(){

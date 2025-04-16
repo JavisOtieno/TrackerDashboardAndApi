@@ -63,13 +63,14 @@ class LocationController extends Controller
     public function addStopOver(Request $request)
     {
         $incomingFields = $request->validate([
+            'name' => 'required|string|max:255',
             'lat' => 'required|numeric|between:-90,90',
             'long' => 'required|numeric|between:-180,180',
             'trip_id' => 'required|numeric|exists:trips,id'
         ]);
 
         $incomingFields['user_id'] = auth()->user()->id;
-        $incomingFields['type'] = 'stop_over';
+        $incomingFields['type'] = 'stopover';
 
         Location::create($incomingFields);
 
