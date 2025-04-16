@@ -83,4 +83,23 @@ class LocationController extends Controller
         $location = Location::orderBy('id', 'desc')->first();
         return view('currentlocation', ['location'=>$location]);
     }
+
+    public function addStopOver(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'lat' => 'required|numeric|between:-90,90',
+            'long' => 'required|numeric|between:-180,180',
+            'trip_id' => 'required|numeric|exists:trips,id'
+        ]);
+
+        $incomingFields['user_id'] = auth()->user()->id;
+        $incomingFields['type'] = 'stop_over';
+
+        Location::create($incomingFields);
+
+        return response()->json([
+            'message' => 'Stop over recorded successfully.',
+            'status' => 'success'
+        ]);
+    }
 }
