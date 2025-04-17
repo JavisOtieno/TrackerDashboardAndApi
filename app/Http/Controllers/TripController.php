@@ -145,7 +145,8 @@ class TripController extends CommonController
         // foreach ($trips as $trip) {
             $trip = Trip::find(19);
 
-            $locations = Location::where('trip_id', $trip->id)->orderBy('created_at')->get();
+            $locations = Location::where('trip_id', $trip->id)
+            ->whereDate('locations.created_at', '=', '2027-03-26')->orderBy('created_at')->get();
 
             $firstlocation = $locations->first();
             $lastlocation = $locations->last();
