@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 class LocationController extends Controller
 {
     //
+    //test 
     public function index(){
 
         // $locations = Location::all();
