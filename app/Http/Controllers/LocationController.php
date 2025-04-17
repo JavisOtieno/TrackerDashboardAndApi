@@ -10,6 +10,7 @@ class LocationController extends Controller
 {
     //
     //test 
+    //test
     public function index(){
 
         // $locations = Location::all();
