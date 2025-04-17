@@ -13,8 +13,7 @@ class TripController extends CommonController
     //
 
     public function saveTrip(Request $request){
-   
-       
+
         $incomingFields=$request->validate([
             'start_location'=>'required|string|max:255',
             'start_lat'=>'required|string|max:255',
@@ -32,8 +31,19 @@ class TripController extends CommonController
 
         //return $incomingFields['usertype'];
 
+        // Save Trip
         $trip = Trip::create($incomingFields);
  
+        // Save start location
+        Location::create([
+            'trip_id' => $trip->id,
+            'user_id' => $userId,
+            'lat' => $incomingFields['start_lat'],
+            'long' => $incomingFields['start_long'],
+            'name' => $incomingFields['start_location'],
+            'type' => 'start',
+        ]);
+
         $tripStatus=array(
             "message" => "Trip Added Successfully",
             "tripId" => $trip->id,
@@ -42,6 +52,7 @@ class TripController extends CommonController
         return response()->json($tripStatus);
         
     }
+
     public function index(){
 
         $userid = auth()->user()->id;
@@ -51,12 +62,15 @@ class TripController extends CommonController
         return response()->json(['trips'=>$trips]);
         
     }
+
     public function show($id){
         $trip = Trip::find($id);
         return response()->json(['trip'=>$trip]);
         
     }
+
     public function endTrip($id, Request $request){
+
         $incomingFields=$request->validate([
             'end_lat' => 'required|numeric|between:-90,90',
             'end_long' => 'required|numeric|between:-180,180',
@@ -64,6 +78,8 @@ class TripController extends CommonController
         ]);
 
         $trip = Trip::find($id);
+        $userId = auth()->user()->id;
+
         $locations = Location::where('trip_id', $id)->orderBy('created_at')->get();
 
         $firstlocation = $locations->first();
@@ -75,9 +91,19 @@ class TripController extends CommonController
         $totalDistance =Location::where('trip_id', $id)
         ->sum('distance');
         $incomingFields['distance'] = $totalDistance+$firstdistance+$lastdistance;
-
         
+        // Update Trip
         $trip->update($incomingFields);
+
+        // Save end point as a location
+        Location::create([
+            'trip_id' => $trip->id,
+            'user_id' => $userId,
+            'lat' => $incomingFields['end_lat'],
+            'long' => $incomingFields['end_long'],
+            'name' => $trip->end_location ?? 'End Point',
+            'type' => 'end',
+        ]);
 
         $tripStatus=array(
             "message" => "Trip Ended Successfully",
@@ -87,8 +113,4 @@ class TripController extends CommonController
         return response()->json($tripStatus);
         
     }
-
-
-    
-
 }
