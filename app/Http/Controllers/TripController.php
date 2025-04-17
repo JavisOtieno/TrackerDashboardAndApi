@@ -10,9 +10,11 @@ use App\Http\Controllers\CommonController;
 class TripController extends CommonController
 {
     //
+    //test
     public function index(){
 
         // $trips = Trip::all();
+        // test
         $trips = Trip::with('locations')->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
         $tripselected = Trip::with('locations')->find(19);
 
@@ -100,7 +102,6 @@ class TripController extends CommonController
         //test
 
         
-        
         // $incomingFields['name']=strip_tags($incomingFields['name']);
 
         //return $incomingFields['usertype'];
@@ -141,8 +142,8 @@ class TripController extends CommonController
     public function tempSumTripLocations(){
         $trips = Trip::all();
         $viewresults = '';
-        foreach ($trips as $trip) {
-
+        // foreach ($trips as $trip) {
+            $trip = Trip::where('id',19);
 
             $locations = Location::where('trip_id', $trip->id)->orderBy('created_at')->get();
 
@@ -167,7 +168,7 @@ class TripController extends CommonController
             $trip->update($incomingFields);
 
             
-        }
+        // }
         return $viewresults;
     }
 }
