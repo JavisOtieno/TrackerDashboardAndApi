@@ -143,7 +143,7 @@ class TripController extends CommonController
         $trips = Trip::all();
         $viewresults = '';
         // foreach ($trips as $trip) {
-            $trip = Trip::find('id',19);
+            $trip = Trip::find(19);
 
             $locations = Location::where('trip_id', $trip->id)->orderBy('created_at')->get();
 
@@ -161,12 +161,14 @@ class TripController extends CommonController
                 $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
                 $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
             }
+            $totaldist = 0;
 
             foreach ($locations as $location) {
                 $currentdistance = $this->haversineDistance($firstlocation->lat,$firstlocation->long,
                 $location->lat,$location->long);
+                $totaldist += $currentdistance;
                 $firstlocation = $location;
-                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.'<br/>';
+                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.'<br/>';
              }
 
 
