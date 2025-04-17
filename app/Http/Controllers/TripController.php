@@ -143,10 +143,13 @@ class TripController extends CommonController
         $trips = Trip::all();
         $viewresults = '';
         // foreach ($trips as $trip) {
-            $trip = Trip::find(19);
+            $trip = Trip::find('id',19);
 
-            $locations = Location::where('trip_id', $trip->id)
-            ->whereBetween('created_at', ['2027-03-26 00:00:00', '2027-03-30 23:59:59'])->orderBy('created_at')->get();
+            $locations = Location::where('trip_id', $trip->id)->orderBy('created_at')->get();
+
+            // $locations = Location::where('trip_id', $trip->id)
+            // ->whereBetween('created_at', ['2027-03-26 00:00:00', '2027-03-30 23:59:59'])->orderBy('created_at')->get();
+
 
             $firstlocation = $locations->first();
             $lastlocation = $locations->last();
