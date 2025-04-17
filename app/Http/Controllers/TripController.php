@@ -161,14 +161,12 @@ class TripController extends CommonController
                 $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
                 $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
             }
-            $totaldistance = 0;
 
             foreach ($locations as $location) {
                 $currentdistance = $this->haversineDistance($firstlocation->lat,$firstlocation->long,
                 $location->lat,$location->long);
-                $totaldistance += $currentdistance;
                 $firstlocation = $location;
-                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldistance.'<br/>';
+                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.'<br/>';
              }
 
 
