@@ -71,7 +71,7 @@ class TripController extends CommonController
 
         // return $totalDistance;
         // return $distanceComparisons;
-        
+
         return view('trip.index', ['trips'=>$trips]);
     }
     public function deleteTrip($id){
@@ -84,8 +84,8 @@ class TripController extends CommonController
     }
 
     public function saveTrip(Request $request){
-   
-       
+
+
         $incomingFields=$request->validate([
             'start_location'=>'required|string|max:255',
             'start_lat'=>'required|string|max:255',
@@ -101,7 +101,7 @@ class TripController extends CommonController
         //test
         //test
 
-        
+
         // $incomingFields['name']=strip_tags($incomingFields['name']);
 
         //return $incomingFields['usertype'];
@@ -109,7 +109,7 @@ class TripController extends CommonController
         Trip::create($incomingFields);
 
         return redirect('/trips');
-        
+
     }
     public function showEditTrip($id){
         $trip = Trip::find($id);
@@ -117,7 +117,7 @@ class TripController extends CommonController
     }
 
     public function saveEditTrip($id, Request $request){
-        
+
         $incomingFields=$request->validate([
             'start_location'=>'required|string|max:255',
             'start_lat'=>'required|string|max:255',
@@ -136,7 +136,7 @@ class TripController extends CommonController
         $trip->update($incomingFields);
 
         return redirect('/trips');
-        
+
     }
 
     public function tempSumTripLocations(){
@@ -157,8 +157,14 @@ class TripController extends CommonController
                 $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
                 $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
             }
-    
-            
+            foreach ($locations as $location) {
+                $currentdistance = $this->haversineDistance($firstlocation->lat,$firstlocation->long,
+                $location->lat,$location->long);
+                $firstlocation = $location;
+                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.'<br/>';
+             }
+
+
             $totalDistance =Location::where('trip_id', $trip->id)
             ->sum('distance');
             $finaltotaldistance = $totalDistance+$firstdistance+$lastdistance;
@@ -167,7 +173,7 @@ class TripController extends CommonController
 
             $trip->update($incomingFields);
 
-            
+
         // }
         return $viewresults;
     }
