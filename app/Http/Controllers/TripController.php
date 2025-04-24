@@ -172,9 +172,10 @@ class TripController extends CommonController
                 $totalDistanceSum = Location::where('trip_id', $trip->id)
                 ->where('created_at', '<=', $location->created_at)
                 ->sum('distance');
-                
 
                 if(round($currentdistance, 5)!=round($location->distance, 5)){
+                    $location->distance = $currentdistance;
+                    $location->save();
                     $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
                 }
 
