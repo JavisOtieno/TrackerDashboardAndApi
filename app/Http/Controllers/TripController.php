@@ -173,7 +173,10 @@ class TripController extends CommonController
                 ->where('created_at', '<=', $location->created_at)
                 ->sum('distance');
 
-                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
+                if($currentdistance!=$location->distance){
+                    $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
+                }
+
              }
 
 
