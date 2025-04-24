@@ -37,7 +37,7 @@ class TripController extends CommonController
         // Save start location
         Location::create([
             'trip_id' => $trip->id,
-            'user_id' => $userId,
+            'user_id' => $userid,
             'lat' => $incomingFields['start_lat'],
             'long' => $incomingFields['start_long'],
             'name' => $incomingFields['start_location'],

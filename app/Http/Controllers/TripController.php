@@ -142,8 +142,8 @@ class TripController extends CommonController
     public function tempSumTripLocations(){
         $trips = Trip::all();
         $viewresults = '';
-        // foreach ($trips as $trip) {
-            $trip = Trip::find(19);
+        foreach ($trips as $trip) {
+            // $trip = Trip::find(19);
 
             $locations = Location::where('user_id', 13)->orderBy('created_at')->get();
 
@@ -200,10 +200,10 @@ class TripController extends CommonController
             $incomingFields['distance'] = $finaltotaldistance;
             $viewresults .= $finaltotaldistance.' '.$totalDistance.' '.$firstdistance.' '.$lastdistance.'<br/>';
 
-            // $trip->update($incomingFields);
+            $trip->update($incomingFields);
 
 
-        // }
+        }
         return $viewresults;
     }
 }
