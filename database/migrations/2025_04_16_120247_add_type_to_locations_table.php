@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('locations', function (Blueprint $table) {
-            $table->enum('type', ['movement', 'stop_over'])->default('movement')->after('distance');
+            $table->enum('type', ['start', 'movement', 'stopover', 'end'])->default('movement')->after('distance');
         });
     }
 
