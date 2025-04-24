@@ -176,7 +176,7 @@ class TripController extends CommonController
 
              }
 
-             $locations = Location::where('trip_id', $trip->id)->orderBy('id') ;
+             $locations = Location::where('trip_id', $trip->id)->orderBy('id')->get() ;
              $firstlocation = $locations->first();
              $lastlocation = $locations->last();
  
