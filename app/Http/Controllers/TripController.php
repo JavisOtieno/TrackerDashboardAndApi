@@ -150,18 +150,11 @@ class TripController extends CommonController
             // $locations = Location::where('trip_id', $trip->id)
             // ->whereBetween('created_at', ['2027-03-26 00:00:00', '2027-03-30 23:59:59'])->orderBy('created_at')->get();
 
+            //totaldist
+            $totaldist = 0;
 
             $firstlocation = $locations->first();
             $lastlocation = $locations->last();
-
-            if($firstlocation == null){
-                $firstdistance = 0;
-                $lastdistance = 0;
-            }else{
-                $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
-                $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
-            }
-            $totaldist = 0;
 
             foreach ($locations as $location) {
                 $currentdistance = $this->haversineDistance($firstlocation->lat,$firstlocation->long,
@@ -181,6 +174,18 @@ class TripController extends CommonController
                 $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
 
 
+             }
+
+             $locations = Location::where('trip_id', $trip->id)->orderBy('id') ;
+             $firstlocation = $locations->first();
+             $lastlocation = $locations->last();
+ 
+             if($firstlocation == null){
+                 $firstdistance = 0;
+                 $lastdistance = 0;
+             }else{
+                 $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
+                 $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$trip->end_lat,$trip->end_long);
              }
 
 
