@@ -195,7 +195,8 @@ class TripController extends CommonController
             // 2. Skip the first item, then sum
             $totalDistance = $distances
              ->skip(1)              // alias of ->slice(1)
-             ->sum();     
+             ->sum();
+                  
             $finaltotaldistance = $totalDistance+$firstdistance+$lastdistance;
             $incomingFields['distance'] = $finaltotaldistance;
             $viewresults .= $finaltotaldistance.' '.$totalDistance.' '.$firstdistance.' '.$lastdistance.'<br/><br/><br/>';

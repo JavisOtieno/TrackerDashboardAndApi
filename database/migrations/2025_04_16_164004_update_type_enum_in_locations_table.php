@@ -19,6 +19,11 @@ return new class extends Migration
      */
     public function down(): void
     {
+        DB::table('locations')
+        ->whereIn('type', ['start', 'end'])
+        ->update(['type' => 'movement']);
+
+        // Now safely change the ENUM definition
         DB::statement("ALTER TABLE `locations` MODIFY `type` ENUM('movement', 'stopover') DEFAULT 'movement'");
     }
 };

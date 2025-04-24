@@ -101,7 +101,7 @@ class TripController extends CommonController
             'user_id' => $userId,
             'lat' => $incomingFields['end_lat'],
             'long' => $incomingFields['end_long'],
-            'name' => $trip->end_location ?? 'End Point',
+            'name' => $trip->end_location,
             'type' => 'end',
         ]);
 
