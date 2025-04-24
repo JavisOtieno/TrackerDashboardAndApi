@@ -23,7 +23,25 @@ class LocationController extends Controller
         ]);
         $userid = auth()->user()->id;
         $incomingFields['user_id']=$userid;
+        $locationlat = $incomingFields['lat'];
+        $locationlong = $incomingFields['long'];
+
+        $lastLocation = Location::where('user_id', auth()->id())
+                ->orderBy('created_at', 'desc')
+                ->first();
+            
+        if ($lastLocation) {
+            $currentdistance = $this->haversineDistance(
+                $lastLocation->lat,
+                $lastLocation->long,
+                $locationlat,
+                $locationlong
+            );
+        } else {
+            $currentdistance = 0;
+        }
         
+        $incomingFields['distance']= $currentdistance;
 
         // $incomingFields['user_id']=auth()->user()->id;
 
