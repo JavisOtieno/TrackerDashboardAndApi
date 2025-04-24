@@ -172,17 +172,12 @@ class TripController extends CommonController
                 // $totalDistanceSum = Location::where('trip_id', $trip->id)
                 // ->where('created_at', '<=', $location->created_at)
                 // ->sum('distance');
-                // $totalDistanceSum = Location::where('trip_id', $trip->id)
-                // ->where('created_at', '<=', $location->created_at)
-                // ->orderBy('created_at', 'asc') // ensure consistent order
-                // ->skip(1) // skip the first record
-                // ->sum('distance');
-                $locations = Location::where('trip_id', $trip->id)
-                    ->where('created_at', '<=', $location->created_at)
-                    ->orderBy('created_at', 'asc')
-                    ->get();
-
-                $totalDistanceSum = $locations->skip(1)->sum('distance');
+                $totalDistanceSum = Location::where('trip_id', $trip->id)
+                ->where('created_at', '<=', $location->created_at)
+                ->skip(1) // skip the first record
+                ->orderBy('created_at', 'asc') // ensure consistent order
+                ->sum('distance');
+                
 
 
                 if(round($currentdistance, 5)!=round($location->distance, 5)){
