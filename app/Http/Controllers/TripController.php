@@ -145,7 +145,7 @@ class TripController extends CommonController
         // foreach ($trips as $trip) {
             $trip = Trip::find(19);
 
-            $locations = Location::where('user_id', 2)->orderBy('created_at')->get();
+            $locations = Location::where('user_id', 1)->orderBy('created_at')->get();
 
             // $locations = Location::where('trip_id', $trip->id)
             // ->whereBetween('created_at', ['2027-03-26 00:00:00', '2027-03-30 23:59:59'])->orderBy('created_at')->get();
@@ -166,13 +166,12 @@ class TripController extends CommonController
                 ->where('created_at', '<=', $location->created_at)
                 ->sum('distance');
 
-                if(round($currentdistance, 5)!=round($location->distance, 5)){
+                if(round($currentdistance, 5)!=round($location->distance, 5) || $location->distance==null ){
                     $location->distance = $currentdistance;
                     $location->save();
                     $viewresults .='<br/>';
                 }
                 $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
-
 
              }
 
