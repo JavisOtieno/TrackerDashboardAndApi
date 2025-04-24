@@ -176,8 +176,9 @@ class TripController extends CommonController
                 if(round($currentdistance, 5)!=round($location->distance, 5)){
                     $location->distance = $currentdistance;
                     $location->save();
-                    $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
                 }
+                $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
+
 
              }
 
