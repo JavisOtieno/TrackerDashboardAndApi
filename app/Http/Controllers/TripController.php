@@ -168,10 +168,16 @@ class TripController extends CommonController
                 $location->lat,$location->long);
                 $totaldist += $currentdistance;
                 $firstlocation = $location;
-                    // Get total distance from DB up to this point (based on created_at timestamp)
+                // Get total distance from DB up to this point (based on created_at timestamp)
+                // $totalDistanceSum = Location::where('trip_id', $trip->id)
+                // ->where('created_at', '<=', $location->created_at)
+                // ->sum('distance');
                 $totalDistanceSum = Location::where('trip_id', $trip->id)
                 ->where('created_at', '<=', $location->created_at)
+                ->orderBy('created_at', 'asc') // ensure consistent order
+                ->skip(1) // skip the first record
                 ->sum('distance');
+
 
                 if(round($currentdistance, 5)!=round($location->distance, 5)){
                     $viewresults .= 'calcdist '.$currentdistance.' lat '.$location->lat.' long'.$location->long.' locdist'.$location->distance.' created at'.$location->created_at.' totaldist '.$totaldist.' totaldistsum '.$totalDistanceSum.'<br/>';
