@@ -25,14 +25,16 @@ class UserControllerTest extends TestCase
 
     public function test_user_index_displays_users_view_with_data()
     {
-        $user = User::factory()->create();
-
-        $response = $this->get('/drivers'); // adjust route accordingly
-
+        //test
+        $user = User::factory()->create(); // acting user
+        $anotherUser = User::factory()->create(); // the user we want to see in the view
+    
+        $response = $this->actingAs($user)->get('/users');
+    
         $response->assertStatus(200);
-        $response->assertViewIs('driver.index');
-        $response->assertViewHas('users', function ($users) use ($user) {
-            return $users->contains($user);
+        $response->assertViewIs('users.index');
+        $response->assertViewHas('users', function ($users) use ($anotherUser) {
+            return $users->contains($anotherUser);
         });
     }
 
