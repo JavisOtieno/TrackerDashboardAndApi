@@ -21,6 +21,14 @@ class UserControllerTest extends TestCase
         $response->assertStatus(200);
     }
     
+    public function test_the_application_returns_a_successful_response(): void
+    {
+        $user = \App\Models\User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/');
+
+        $response->assertStatus(200);
+    }
 
 
     public function test_user_index_displays_users_view_with_data()
