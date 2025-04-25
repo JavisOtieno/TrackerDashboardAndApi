@@ -23,16 +23,16 @@ class UserControllerTest extends TestCase
     
     public function test_the_application_returns_a_successful_response(): void
     {
-        $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
-
-        $this->assertNotNull($user, 'Test user not found in database.');
         // $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
 
         // $this->assertNotNull($user, 'Test user not found in database.');
+        $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
+
+        $this->assertNotNull($user, 'Test user not found in database.');
     
-        // $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($user)->get('/');
     
-        // $response->assertStatus(200);
+        $response->assertStatus(200);
     }
 
 
