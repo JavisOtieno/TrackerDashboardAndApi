@@ -23,7 +23,7 @@ class UserControllerTest extends TestCase
     
     public function test_the_application_returns_a_successful_response(): void
     {
-        $user = \App\Models\User::factory()->create();
+        $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
 
         $response = $this->actingAs($user)->get('/');
 
@@ -36,8 +36,8 @@ class UserControllerTest extends TestCase
         //test
         //test
         //test
-        $user = User::factory()->create(); // acting user
-        $anotherUser = User::factory()->create(); // the user we want to see in the view
+        $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
+        $anotherUser = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
     
         $response = $this->actingAs($user)->get('/users');
     
