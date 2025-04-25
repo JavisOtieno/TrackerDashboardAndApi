@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\CommonController;
 use Carbon\Carbon;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class LocationController extends Controller
+class LocationController extends CommonController
 {
     //
     public function addLocation(Request $request){
@@ -40,7 +41,7 @@ class LocationController extends Controller
         } else {
             $currentdistance = 0;
         }
-        
+
         $incomingFields['distance']= $currentdistance;
 
         // $incomingFields['user_id']=auth()->user()->id;
