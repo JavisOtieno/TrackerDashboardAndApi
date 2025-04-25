@@ -25,8 +25,10 @@ class UserControllerTest extends TestCase
     {
         $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
 
+        $this->assertNotNull($user, 'Test user not found in database.');
+    
         $response = $this->actingAs($user)->get('/');
-
+    
         $response->assertStatus(200);
     }
 
