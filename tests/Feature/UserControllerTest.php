@@ -44,13 +44,13 @@ class UserControllerTest extends TestCase
         $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
         $anotherUser = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
     
-        $response = $this->actingAs($user)->get('/login');
+        $response = $this->actingAs($user)->get('/drivers');
     
         $response->assertStatus(200);
-        // $response->assertViewIs('users.index');
-        // $response->assertViewHas('users', function ($users) use ($anotherUser) {
-        //     return $users->contains($anotherUser);
-        // });
+        $response->assertViewIs('driver.index');
+        $response->assertViewHas('users', function ($users) use ($anotherUser) {
+            return $users->contains($anotherUser);
+        });
     }
 
 
