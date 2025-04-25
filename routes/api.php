@@ -41,7 +41,7 @@ Route::post('/addtrip', [TripController::class, 'saveTrip']);
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/trip/{id}', [TripController::class, 'show']);
 Route::put('/endtrip/{id}', [TripController::class, 'endTrip']);
-Route::post('/addstopover', [LocationController::class, 'addStopOver']);
+Route::post('/addstopover', [TripController::class, 'addStopOver']);
 });
 
 Route::post('/login', [LoginController::class,'doLogin']);

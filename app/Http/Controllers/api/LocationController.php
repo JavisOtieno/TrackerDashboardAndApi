@@ -22,6 +22,7 @@ class LocationController extends CommonController
             'distance' => 'nullable|numeric',
             'accuracy' => 'nullable|numeric'
         ]);
+        
         $userid = auth()->user()->id;
         $incomingFields['user_id']=$userid;
         $locationlat = $incomingFields['lat'];
@@ -79,23 +80,6 @@ class LocationController extends CommonController
         
     }
 
-    public function addStopOver(Request $request)
-    {
-        $incomingFields = $request->validate([
-            'name' => 'required|string|max:255',
-            'lat' => 'required|numeric|between:-90,90',
-            'long' => 'required|numeric|between:-180,180',
-            'trip_id' => 'required|numeric|exists:trips,id'
-        ]);
 
-        $incomingFields['user_id'] = auth()->user()->id;
-        $incomingFields['type'] = 'stopover';
 
-        Location::create($incomingFields);
-
-        return response()->json([
-            'message' => 'Stop over recorded successfully.',
-            'status' => 'success'
-        ]);
-    }
 }

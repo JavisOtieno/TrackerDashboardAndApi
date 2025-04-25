@@ -64,7 +64,9 @@ class TripController extends CommonController
     }
 
     public function show($id){
-        $trip = Trip::find($id);
+        $trip = Trip::with(['locations' => function ($query) {
+            $query->where('type', 'stopover');
+        }])->find($id);
         return response()->json(['trip'=>$trip]);
         
     }
@@ -112,5 +114,25 @@ class TripController extends CommonController
 
         return response()->json($tripStatus);
         
+    }
+
+    public function addStopOver(Request $request)
+    {
+        $incomingFields = $request->validate([
+            'name' => 'required|string|max:255',
+            'lat' => 'required|numeric|between:-90,90',
+            'long' => 'required|numeric|between:-180,180',
+            'trip_id' => 'required|numeric|exists:trips,id'
+        ]);
+
+        $incomingFields['user_id'] = auth()->user()->id;
+        $incomingFields['type'] = 'stopover';
+
+        Location::create($incomingFields);
+
+        return response()->json([
+            'message' => 'Stop over recorded successfully.',
+            'status' => 'success'
+        ]);
     }
 }
