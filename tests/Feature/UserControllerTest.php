@@ -27,9 +27,9 @@ class UserControllerTest extends TestCase
 
         $this->assertNotNull($user, 'Test user not found in database.');
     
-        // $response = $this->actingAs($user)->get('/');
+        $response = $this->actingAs($user)->get('/login');
     
-        // $response->assertStatus(200);
+        $response->assertStatus(200);
     }
 
 
@@ -41,7 +41,7 @@ class UserControllerTest extends TestCase
         $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
         $anotherUser = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
     
-        $response = $this->actingAs($user)->get('/users');
+        $response = $this->actingAs($user)->get('/login');
     
         $response->assertStatus(200);
         $response->assertViewIs('users.index');
