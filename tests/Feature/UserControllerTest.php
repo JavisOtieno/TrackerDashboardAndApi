@@ -26,6 +26,8 @@ class UserControllerTest extends TestCase
     public function test_user_index_displays_users_view_with_data()
     {
         //test
+        //test
+        //test
         $user = User::factory()->create(); // acting user
         $anotherUser = User::factory()->create(); // the user we want to see in the view
     
