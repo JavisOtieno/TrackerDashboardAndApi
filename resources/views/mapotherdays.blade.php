@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group col-md-3 mb-3">
                                 <label for="driverId" class="form-label">Driver</label>
-                                <select name="driverId" class="form-control form-select select2" data-bs-placeholder="Select Region">
+                                <select name="driverId" id="driverId" class="form-control form-select select2" data-bs-placeholder="Select Region">
                                     @foreach($drivers as $driver)
                                         <option value="{{$driver['id']}}">{{$driver['name']}}</option>
     
