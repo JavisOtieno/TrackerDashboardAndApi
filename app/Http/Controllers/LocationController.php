@@ -82,7 +82,7 @@ class LocationController extends Controller
         
         $drivers = User::all();
         $driver = User::first();
-        $locations = Location::whereDate('created_at', Carbon::yesterday())
+        $locations = Location::whereDate('created_at', Carbon::today())
         ->where('user_id',$driver->id)
         ->orderBy('created_at', 'desc')->get();
         return view('mapotherdays', compact('locations','drivers'));
