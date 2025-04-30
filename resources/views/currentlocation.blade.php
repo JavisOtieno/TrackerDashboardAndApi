@@ -238,7 +238,7 @@
                     userswithcurrentlocations.forEach(user => {
                         
                         console.log('userlatestlocation');
-                        console.log(user)
+                        console.log(user.latest_location)
                         console.log('userlatestlocation');
                         // location = user.latest_location;
                         // const lat1 = Number(location.lat);
