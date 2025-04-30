@@ -210,7 +210,7 @@
                     }
                 
                     // Process initial locations
-                    processLocation(location);
+                    // processLocation(location);
                     processLocations(userswithcurrentlocations);
                     
                     // Start update cycle
