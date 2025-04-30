@@ -236,7 +236,8 @@
 
                     const bounds = new google.maps.LatLngBounds();
                     userswithcurrentlocations.forEach(user => {
-                        if (!user.latest_location) return;
+                        const location = user.latest_location || null;
+                        if (!location) return;
                         location = user.latest_location;
                         
                         const lat1 = Number(location.lat);
