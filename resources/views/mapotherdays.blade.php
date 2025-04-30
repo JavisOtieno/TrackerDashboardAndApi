@@ -61,8 +61,8 @@
                                 <label for="live" class="form-label">Live Updates</label>
                                 <select name="live" id="liveSelect" class="form-control form-select select2" data-bs-placeholder="Switch Live Update">
                                 
-                                        <option value="live">Turn on Live Updates</option>
-                                        <option value="offlive">Turn off Live Updates</option>
+                                        <option value="live">Live Updates On</option>
+                                        <option value="offlive">Live Updates Off</option>
                 </select>
                             </div>
                             </div>
