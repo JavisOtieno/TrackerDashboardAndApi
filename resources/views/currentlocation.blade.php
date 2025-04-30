@@ -248,6 +248,12 @@
                     var driverId = $('#driverId').val();
                     // alert(date+' '+driverId);
                     fetchAndUpdateLocation(driverId);
+
+                    
+                  
+                    updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
+
+                    
             
 
                     });
