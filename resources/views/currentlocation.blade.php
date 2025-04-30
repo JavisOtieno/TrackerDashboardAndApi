@@ -246,14 +246,18 @@
 
                     $('#driverId').on('change', function() {
                     var driverId = $('#driverId').val();
+                    var liveSwitch = $('#liveSelect').val();
                     // alert(date+' '+driverId);
                     fetchAndUpdateLocation(driverId);
 
-                    if (updateTimer) {
-                  
-                        clearInterval(updateTimer);
-                        updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
+                    if(liveSwitch=='live'){
 
+                        if (updateTimer) {
+                    
+                            clearInterval(updateTimer);
+                            updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
+
+                        }
                     }
             
 
