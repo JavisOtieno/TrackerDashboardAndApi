@@ -236,7 +236,9 @@
                     
                     // Start update cycle
                     if (!updateTimer) {
-                        updateTimer = setInterval(fetchAndUpdateLocation(0), updateInterval);
+                        // updateTimer = setInterval(fetchAndUpdateLocation(0), updateInterval);
+                        updateTimer = setInterval(() => fetchAndUpdateLocation(0), updateInterval);
+
                     }
                 }
 
