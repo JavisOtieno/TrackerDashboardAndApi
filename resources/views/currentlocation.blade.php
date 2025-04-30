@@ -233,7 +233,7 @@
                     }
                 }
                 function processLocations(userswithcurrentlocations){
-                    
+
                     userswithcurrentlocations.forEach(user => {
                         processLocation(user.latest_location)
                     });
@@ -261,7 +261,7 @@
                 
                         // Create info window
                         const date = new Date(location.created_at);
-                        const username = location.user.name;
+                        // const username = location.user.name;
                         const infowindow = new google.maps.InfoWindow({
                             content: `
                                 <div>
