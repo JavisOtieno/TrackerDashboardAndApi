@@ -238,18 +238,18 @@
                     userswithcurrentlocations.forEach(user => {
                         
                         location = user.latest_location;
-                        const lat1 = Number(location.lat);
-                        const long1 = Number(location.long);
-                        const position = { lat: lat1, lng: long1 };
+                        // const lat1 = Number(location.lat);
+                        // const long1 = Number(location.long);
+                        // const position = { lat: lat1, lng: long1 };
                 
-                        // Create marker
-                        const marker = new google.maps.Marker({
-                            position: position,
-                            label: String(location.id),
-                            title: 'Location',
-                            zIndex: google.maps.Marker.MAX_ZINDEX + location.id,
-                            map: map
-                        });
+                        // // Create marker
+                        // const marker = new google.maps.Marker({
+                        //     position: position,
+                        //     label: String(location.id),
+                        //     title: 'Location',
+                        //     zIndex: google.maps.Marker.MAX_ZINDEX + location.id,
+                        //     map: map
+                        // });
                 
                     //     // Create info window
                     //     const date = new Date(location.created_at);
