@@ -69,7 +69,7 @@ class LocationController extends Controller
 
         // $locations = Location::all();
         $locations = Location::whereDate('created_at', $date)
-        ->where('driver_id',$driverid)
+        // ->where('driver_id',$driverid)
         ->orderBy('created_at', 'desc')->get();
         return response()->json($locations);
         
