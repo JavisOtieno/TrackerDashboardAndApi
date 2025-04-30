@@ -49,7 +49,7 @@
             </select>
                         </div>
                         <div id ="liveSwitch"  class="form-group col-md-3 mb-3">
-                            <label for="live" class="form-label">Live Updates</label>
+                            <label for="live" class="form-label">Live Updates (Every 30s)</label>
                             <select name="live" id="liveSelect" class="form-control form-select select2" data-bs-placeholder="Switch Live Update">
                             
                                     <option value="live">Live Updates On</option>
