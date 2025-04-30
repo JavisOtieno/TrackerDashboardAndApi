@@ -276,7 +276,7 @@
                                     })}</p>
                                     <p>Latitude: ${lat1}</p>
                                     <p>Longitude: ${long1}</p>
-                                    <p>Name: ${username}</p>
+                                    
                                 </div>
                             `
                         });
