@@ -36,8 +36,8 @@
                 <input type="text" class="form-control" id="nameInput" placeholder="Name">
             </div> --}}
             <div class="col-md-3 mb-3">
-                <label for="locationName" class="form-label">Location Name</label>
-                <input type="text" class="form-control" id="locationNameInput" placeholder="Location Name">
+                <label for="driverName" class="form-label">Driver Name</label>
+                <input type="text" class="form-control" id="driverNameInput" placeholder="Driver Name">
             </div>
             <div class="col-md-3 mb-3">
                 <label for="date" class="form-label">From</label>

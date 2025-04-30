@@ -644,6 +644,25 @@ $(function(e) {
         // });
 
     }
+    else if(tableLoaded=="locations" || tableLoaded=="trips"){
+        
+        var driverNameColumnIndex = table2.columns().header().toArray().findIndex(header => $(header).text() === 'Driver');
+
+
+        $('#driverNameInput').on('keyup', function() {
+
+            table2.column(driverNameColumnIndex).search(this.value).draw(); // Column index 1 for 'Name'
+            
+        });
+
+
+        // $('#phoneInput').on('keyup', function() {
+        //     //alert(this.value);
+        //     table2.column(3).search(this.value).draw(); // Column index 3 for 'Phone'
+        // });
+
+    }
+
     else if(tableLoaded=="Outletstouser"){
         console.log("table allocate");
         console.log(tableAllocate.columns().header().toArray());
