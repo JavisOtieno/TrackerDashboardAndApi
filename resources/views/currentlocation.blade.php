@@ -185,9 +185,9 @@
                     let userswithlocations = @json($userswithlocations);
 
 
-                    console.log('userswithlocations');
-                    console.log(userswithlocations);
-                    console.log('userswithlocations');
+                    console.log('userswithcurrentlocations');
+                    console.log(userswithcurrentlocations);
+                    console.log('userswithcurrentlocations');
                 
                     // Map configuration
                     const mapProp = location ? {
