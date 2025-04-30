@@ -255,7 +255,7 @@
                 
                         // Create info window
                         const date = new Date(location.created_at);
-                        // const username = location.user.name;
+                        const username = user.name;
                         const infowindow = new google.maps.InfoWindow({
                             content: `
                                 <div>
@@ -270,6 +270,7 @@
                                     })}</p>
                                     <p>Latitude: ${lat1}</p>
                                     <p>Longitude: ${long1}</p>
+                                    <p>Name: ${username}</p>
                                     
                                 </div>
                             `
