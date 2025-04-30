@@ -282,6 +282,7 @@
 
                     $('#liveSwitch').on('change', function() {
                         var liveSwitch = $('#liveSwitch').val();
+                        alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
                             alert('off live');
