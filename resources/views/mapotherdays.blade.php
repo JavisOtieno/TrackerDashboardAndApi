@@ -59,7 +59,7 @@
                             </div>
                             <div id ="liveSwitch" style="display: none;" class="form-group col-md-3 mb-3">
                                 <label for="live" class="form-label">Live Updates</label>
-                                <select name="live" id="live" class="form-control form-select select2" data-bs-placeholder="Switch Live Update">
+                                <select name="live" id="liveSelect" class="form-control form-select select2" data-bs-placeholder="Switch Live Update">
                                 
                                         <option value="live">Turn on Live Updates</option>
                                         <option value="offlive">Turn off Live Updates</option>
@@ -280,8 +280,8 @@
                     });
 
 
-                    $('#liveSwitch').on('change', function() {
-                        var liveSwitch = $('#liveSwitch').val();
+                    $('#liveSelect').on('change', function() {
+                        var liveSwitch = $('#liveSelect').val();
                         alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
