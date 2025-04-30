@@ -182,6 +182,8 @@
                 async function initializeMap() {
                     // Initial setup with server-rendered data
                     let location = @json($location);
+
+                    console.log(location);
                 
                     // Map configuration
                     const mapProp = location ? {

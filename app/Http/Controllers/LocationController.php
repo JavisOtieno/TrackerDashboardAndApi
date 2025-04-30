@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
@@ -83,6 +84,8 @@ class LocationController extends Controller
     }
     public function showCurrentLocation(){
         $location = Location::with('user')->orderBy('id', 'desc')->first();
-        return view('currentlocation', ['location'=>$location]);
+
+        $userswithcurrentlocations = User::with('latestLocation')->get();
+        return view('currentlocation', compact('location','userswithcurrentlocations'));
     }
 }
