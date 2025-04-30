@@ -82,7 +82,7 @@ class LocationController extends Controller
         return view('mapotherdays', ['locations'=>$locations]);
     }
     public function showCurrentLocation(){
-        $location = Location::orderBy('id', 'desc')->first();
+        $location = Location::with('user')->orderBy('id', 'desc')->first();
         return view('currentlocation', ['location'=>$location]);
     }
 }
