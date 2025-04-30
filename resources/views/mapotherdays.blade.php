@@ -46,7 +46,7 @@
                             <div class="form-group col-md-3 mb-3">
                                 <label for="date" class="form-label">Date</label>
                                 {{-- <input  name="order" id="order"> --}}
-                                <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date',\Carbon\Carbon::today()->toDateString())}}"/>
+                                <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date',\Carbon\Carbon::yesterday()->toDateString())}}"/>
                             </div>
                             <div class="form-group col-md-3 mb-3">
                                 <label for="driverId" class="form-label">Driver</label>
