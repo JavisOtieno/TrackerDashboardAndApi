@@ -249,8 +249,9 @@
                     // alert(date+' '+driverId);
                     fetchAndUpdateLocation(driverId);
 
-                    if (!updateTimer) {
+                    if (updateTimer) {
                   
+                        clearInterval(updateTimer);
                         updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
 
                     }
