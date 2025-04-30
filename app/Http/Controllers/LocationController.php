@@ -80,7 +80,8 @@ class LocationController extends Controller
         // $locations = Location::whereDate('created_at', )->get();
         $locations = Location::whereDate('created_at', Carbon::yesterday())
         ->orderBy('created_at', 'desc')->get();
-        return view('mapotherdays', ['locations'=>$locations]);
+        $drivers = User::all();
+        return view('mapotherdays', compact('locations','drivers'));
     }
     public function showCurrentLocation(){
         $location = Location::with('user')->orderBy('id', 'desc')->first();

@@ -48,6 +48,15 @@
                                 {{-- <input  name="order" id="order"> --}}
                                 <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date',\Carbon\Carbon::yesterday()->toDateString())}}"/>
                             </div>
+                            <div class="form-group">
+                                <label for="driverId" class="form-label">Drivers</label>
+                                <select name="driverId" class="form-control form-select select2" data-bs-placeholder="Select Region">
+                                    @foreach($drivers as $driver)
+                                        <option value="{{$driver['id']}}">{{$driver['name']}}</option>
+    
+                                        @endforeach
+                </select>
+                            </div>
                             </div>
                             <div class="m-2">
                                 {{-- <div id="world-map-markers1" class="worldh world-map h-250"></div> --}}
