@@ -234,6 +234,7 @@
                 }
                 function processLocations(userswithcurrentlocations){
 
+                    const bounds = new google.maps.LatLngBounds();
                     userswithcurrentlocations.forEach(user => {
                         processLocation(user.latest_location)
                     });
@@ -243,7 +244,7 @@
                 function processLocation(location) {
                     if (!location) return;
                 
-                    const bounds = new google.maps.LatLngBounds();
+                    
                     
                     
                         const lat1 = Number(location.lat);
