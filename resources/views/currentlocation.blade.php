@@ -36,6 +36,27 @@
                     </div>
                 </div>
                 <div class="card-body p-0 mt-2">
+                    <div class="row" style="margin: 0 10px;">
+                       
+                        <div class="form-group col-md-3 mb-3">
+                            <label for="driverId" class="form-label">Driver</label>
+                            <select name="driverId" id="driverId" class="form-control form-select select2" data-bs-placeholder="Select Driver">
+                                <option value="0">All Drivers</option>
+                                @foreach($drivers as $driver)
+                                    <option value="{{$driver['id']}}">{{$driver['name']}}</option>
+
+                                    @endforeach
+            </select>
+                        </div>
+                        <div id ="liveSwitch"  class="form-group col-md-3 mb-3">
+                            <label for="live" class="form-label">Live Updates</label>
+                            <select name="live" id="liveSelect" class="form-control form-select select2" data-bs-placeholder="Switch Live Update">
+                            
+                                    <option value="live">Live Updates On</option>
+                                    <option value="offlive">Live Updates Off</option>
+            </select>
+                        </div>
+                        </div>
                     <div class="m-2" >
                         {{-- <div id="world-map-markers1" class="worldh world-map h-250"></div> --}}
                         <div id="googleMap" class="worldh world-map h-500" ></div>
