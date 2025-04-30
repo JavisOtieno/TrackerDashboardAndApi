@@ -285,14 +285,17 @@
                         alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
-                            alert('off live');
+                            // alert('off live');
                             if (updateTimer) {
+                                alert('updatetimer exists. ok')
                                 clearInterval(updateTimer);
                                 updateTimer = null;
                             }
                         }else{
-                            alert('live');
+                            // alert('live');
+                            
                             if (!updateTimer) {
+                                alert('updatetime does not exist. ok')
                                 updateTimer = setInterval(() => fetchAndUpdateLocations(date, driverId), updateInterval);
                             }
                         }
