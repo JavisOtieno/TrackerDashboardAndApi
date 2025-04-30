@@ -182,7 +182,7 @@
                 async function initializeMap() {
                     // Initial setup with server-rendered data
                     let location = @json($location);
-                    let userswithlocations = @json($userswithlocations);
+                    let userswithcurrentlocations = @json($userswithcurrentlocations);
 
 
                     console.log('userswithcurrentlocations');
