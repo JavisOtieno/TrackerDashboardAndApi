@@ -278,6 +278,24 @@
 
 
                     });
+
+
+                    $('#liveSwitch').on('change', function() {
+                        var liveSwitch = $('#liveSwitch').val();
+
+                        if(liveSwitch=='live'){
+                            if (updateTimer) {
+                                clearInterval(updateTimer);
+                                updateTimer = null;
+                            }
+                        }else{
+                            if (!updateTimer) {
+                                updateTimer = setInterval(() => fetchAndUpdateLocations(date, driverId), updateInterval);
+                            }
+                        }
+
+                    });
+
                 });
                 }
 
