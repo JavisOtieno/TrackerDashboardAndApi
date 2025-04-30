@@ -211,6 +211,7 @@
                 
                     // Process initial locations
                     processLocation(location);
+                    processLocations(userswithcurrentlocations);
                     
                     // Start update cycle
                     if (!updateTimer) {
@@ -230,6 +231,13 @@
                         console.error('Update failed:', error);
                         // Optional: Implement retry logic
                     }
+                }
+                function processLocations(userswithcurrentlocations){
+                    
+                    userswithcurrentlocations.forEach(user => {
+                        processLocation(user.latest_location)
+                    });
+                    
                 }
                 
                 function processLocation(location) {
