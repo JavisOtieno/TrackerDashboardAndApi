@@ -221,12 +221,15 @@
                 
                 async function fetchAndUpdateLocation() {
                     try {
-                        const response = await fetch('/api/currentlocation'); // Use correct endpoint
-                        const newLocation = await response.json();
-                        // const filtered = newLocations.filter(location => location.id > 460);
+                        const response = await fetch('/currentlocations'); // Use correct endpoint
+                        // const newLocation = await response.json();
+                        // // const filtered = newLocations.filter(location => location.id > 460);
                         
+                        // clearMarkers();
+                        // processLocation(newLocation);
+                        const userswithcurrentlocations = await response.json();
                         clearMarkers();
-                        processLocation(newLocation);
+                        processLocations(userswithcurrentlocations);
                     } catch (error) {
                         console.error('Update failed:', error);
                         // Optional: Implement retry logic

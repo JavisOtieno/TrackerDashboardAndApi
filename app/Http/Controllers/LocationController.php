@@ -93,4 +93,10 @@ class LocationController extends Controller
         $userswithcurrentlocations = User::with('latestLocation')->get();
         return view('currentlocation', compact('location','userswithcurrentlocations'));
     }
+    public function getCurrentLocations(){
+        $location = Location::with('user')->orderBy('id', 'desc')->first();
+
+        $userswithcurrentlocations = User::with('latestLocation')->get();
+        return response()->json($userswithcurrentlocations);
+    }
 }
