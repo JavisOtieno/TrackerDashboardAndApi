@@ -64,6 +64,7 @@ class TripController extends CommonController
     }
 
     public function show($id){
+        
         $trip = Trip::with(['locations' => function ($query) {
             $query->where('type', 'stopover');
         }])->find($id);
