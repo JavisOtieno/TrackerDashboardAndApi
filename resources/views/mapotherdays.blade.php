@@ -235,19 +235,23 @@
                     // if (!updateTimer) {
                     //     updateTimer = setInterval(fetchAndUpdateLocations, updateInterval);
                     // }
+
                     document.addEventListener("DOMContentLoaded", function() {
-                    $('#setDate').on('change', function() {
+                    $('#setDate','#driverId').on('change', function() {
                     var date = $('#setDate').val();
-                    alert(date);
-                    fetchAndUpdateLocations(date);
+                    var driverId = $('#driverId').val();
+                    alert(date+' '+driverId);
+                    fetchAndUpdateLocations(date,driverId);
+
                     });
                 });
                 }
 
-                async function fetchAndUpdateLocations(date) {
+                async function fetchAndUpdateLocations(date,driverId) {
+
                     try {
-                        alert(date);
-                        const response = await fetch('/otherdays/'+date); // Use correct endpoint
+                        alert(date+' '+driverId);
+                        const response = await fetch('/otherdays/'+date+'/'+driverId); // Use correct endpoint
                         const newLocations = await response.json();
                         // const filtered = newLocations.filter(location => location.id > 460);
 

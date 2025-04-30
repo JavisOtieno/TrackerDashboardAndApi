@@ -65,10 +65,11 @@ class LocationController extends Controller
         return view('location.index', compact('locations'));
 
     }
-    public function getOtherDaysLocations($date){
+    public function getOtherDaysLocations($date,$driverid){
 
         // $locations = Location::all();
         $locations = Location::whereDate('created_at', $date)
+        ->where('driver_id',$driverid)
         ->orderBy('created_at', 'desc')->get();
         return response()->json($locations);
         
