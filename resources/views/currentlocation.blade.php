@@ -239,6 +239,31 @@
                         updateTimer = setInterval(fetchAndUpdateLocation, updateInterval);
                     }
                 }
+
+                $('#liveSelect').on('change', function() {
+                        var liveSwitch = $('#liveSelect').val();
+                        var date = $('#setDate').val();
+                        var driverId = $('#driverId').val();
+
+                        // alert(liveSwitch);
+
+                        if(liveSwitch=='offlive'){
+                            // alert('off live');
+                            if (updateTimer) {
+                                // alert('updatetimer exists. ok')
+                                clearInterval(updateTimer);
+                                updateTimer = null;
+                            }
+                        }else{
+                            // alert('live');
+                            
+                            if (!updateTimer) {
+                                // alert('updatetime does not exist. ok')
+                                updateTimer = setInterval(() => fetchAndUpdateLocation, updateInterval);
+                            }
+                        }
+
+                    });
                 
                 async function fetchAndUpdateLocation() {
                     try {
