@@ -251,7 +251,7 @@
                     $('#setDate,#driverId').on('change', function() {
                     var date = $('#setDate').val();
                     var driverId = $('#driverId').val();
-                    alert(date+' '+driverId);
+                    // alert(date+' '+driverId);
                     fetchAndUpdateLocations(date,driverId);
 
                     var today = new Date();
@@ -259,7 +259,7 @@
 
                     
                     if (date === todayFormatted) {
-                        alert("The selected date is today.");
+                        // alert("The selected date is today.");
                         $('#liveSwitch').css('display', 'block');
 
                                             // Start update cycle
@@ -273,7 +273,7 @@
 
                     } else {
                         $('#liveSwitch').css('display', 'none');
-                        alert("The selected date is not today.");
+                        // alert("The selected date is not today.");
                     }
 
 
@@ -285,13 +285,13 @@
                         var liveSwitch = $('#liveSelect').val();
                         var date = $('#setDate').val();
                         var driverId = $('#driverId').val();
-                        
-                        alert(liveSwitch);
+
+                        // alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
                             // alert('off live');
                             if (updateTimer) {
-                                alert('updatetimer exists. ok')
+                                // alert('updatetimer exists. ok')
                                 clearInterval(updateTimer);
                                 updateTimer = null;
                             }
@@ -299,7 +299,7 @@
                             // alert('live');
                             
                             if (!updateTimer) {
-                                alert('updatetime does not exist. ok')
+                                // alert('updatetime does not exist. ok')
                                 updateTimer = setInterval(() => fetchAndUpdateLocations(date, driverId), updateInterval);
                             }
                         }
@@ -312,7 +312,7 @@
                 async function fetchAndUpdateLocations(date,driverId) {
 
                     try {
-                        alert(date+' '+driverId);
+                        // alert(date+' '+driverId);
                         const response = await fetch('/otherdays/'+date+'/'+driverId); // Use correct endpoint
                         console.log(response);
                         const newLocations = await response.json();
