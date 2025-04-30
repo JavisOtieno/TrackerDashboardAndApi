@@ -240,6 +240,8 @@
                     }
                 }
 
+                document.addEventListener("DOMContentLoaded", function() {
+
                 $('#liveSelect').on('change', function() {
                         var liveSwitch = $('#liveSelect').val();
                         var date = $('#setDate').val();
@@ -264,6 +266,8 @@
                         }
 
                     });
+
+                });
                 
                 async function fetchAndUpdateLocation() {
                     try {
