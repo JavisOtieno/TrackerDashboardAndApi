@@ -38,7 +38,7 @@
                 <div class="card-body p-0 mt-2">
                     <div class="row" style="margin: 0 10px;">
                        
-                        <div class="form-group col-md-3 mb-3">
+                        {{-- <div class="form-group col-md-3 mb-3">
                             <label for="driverId" class="form-label">Driver</label>
                             <select name="driverId" id="driverId" class="form-control form-select select2" data-bs-placeholder="Select Driver">
                                 <option value="0">All Drivers</option>
@@ -47,7 +47,7 @@
 
                                     @endforeach
             </select>
-                        </div>
+                        </div> --}}
                         <div id ="liveSwitch"  class="form-group col-md-3 mb-3">
                             <label for="live" class="form-label">Live Updates</label>
                             <select name="live" id="liveSelect" class="form-control form-select select2" data-bs-placeholder="Switch Live Update">
