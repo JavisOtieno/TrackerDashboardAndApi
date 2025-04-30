@@ -293,6 +293,9 @@
                         // clearMarkers();
                         // processLocation(newLocation);
                         const userswithcurrentlocations = await response.json();
+                        console.log('userswithcurrent');
+                        console.log(userswithcurrentlocations);
+                        console.log('userwwithcurrent');
                         clearMarkers();
                         processLocations(userswithcurrentlocations);
                     } catch (error) {
