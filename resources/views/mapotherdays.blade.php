@@ -252,9 +252,13 @@
                     if (date === todayFormatted) {
                         alert("The selected date is today.");
                                             // Start update cycle
+                    // if (!updateTimer) {
+                    //     updateTimer = setInterval(fetchAndUpdateLocations(date,driverId), updateInterval);
+                    // }
                     if (!updateTimer) {
-                        updateTimer = setInterval(fetchAndUpdateLocations(date,driverId), updateInterval);
+                        updateTimer = setInterval(() => fetchAndUpdateLocations(date, driverId), updateInterval);
                     }
+
 
                     } else {
                         alert("The selected date is not today.");
