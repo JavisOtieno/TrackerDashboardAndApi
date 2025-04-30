@@ -247,7 +247,7 @@
                 
                         // Create info window
                         const date = new Date(location.created_at);
-                        const username = new Date(location.user.name);
+                        const username = location.user.name;
                         const infowindow = new google.maps.InfoWindow({
                             content: `
                                 <div>
