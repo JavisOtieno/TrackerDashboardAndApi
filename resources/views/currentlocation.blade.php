@@ -236,52 +236,53 @@
 
                     const bounds = new google.maps.LatLngBounds();
                     userswithcurrentlocations.forEach(user => {
-                        location = user.latest_location;
-                        const lat1 = Number(location.lat);
-                        const long1 = Number(location.long);
-                        const position = { lat: lat1, lng: long1 };
+                        
+                    //     location = user.latest_location;
+                    //     const lat1 = Number(location.lat);
+                    //     const long1 = Number(location.long);
+                    //     const position = { lat: lat1, lng: long1 };
                 
-                        // Create marker
-                        const marker = new google.maps.Marker({
-                            position: position,
-                            label: String(location.id),
-                            title: 'Location',
-                            zIndex: google.maps.Marker.MAX_ZINDEX + location.id,
-                            map: map
-                        });
+                    //     // Create marker
+                    //     const marker = new google.maps.Marker({
+                    //         position: position,
+                    //         label: String(location.id),
+                    //         title: 'Location',
+                    //         zIndex: google.maps.Marker.MAX_ZINDEX + location.id,
+                    //         map: map
+                    //     });
                 
-                        // Create info window
-                        const date = new Date(location.created_at);
-                        // const username = location.user.name;
-                        const infowindow = new google.maps.InfoWindow({
-                            content: `
-                                <div>
-                                    <h3>Date: ${date.toLocaleDateString('en-GB', {
-                                        day: 'numeric',
-                                        month: 'short',
-                                        year: 'numeric'
-                                    })}</h3>
-                                    <p>Time: ${date.toLocaleTimeString('en-GB', {
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                    })}</p>
-                                    <p>Latitude: ${lat1}</p>
-                                    <p>Longitude: ${long1}</p>
+                    //     // Create info window
+                    //     const date = new Date(location.created_at);
+                    //     // const username = location.user.name;
+                    //     const infowindow = new google.maps.InfoWindow({
+                    //         content: `
+                    //             <div>
+                    //                 <h3>Date: ${date.toLocaleDateString('en-GB', {
+                    //                     day: 'numeric',
+                    //                     month: 'short',
+                    //                     year: 'numeric'
+                    //                 })}</h3>
+                    //                 <p>Time: ${date.toLocaleTimeString('en-GB', {
+                    //                     hour: '2-digit',
+                    //                     minute: '2-digit'
+                    //                 })}</p>
+                    //                 <p>Latitude: ${lat1}</p>
+                    //                 <p>Longitude: ${long1}</p>
                                     
-                                </div>
-                            `
-                        });
+                    //             </div>
+                    //         `
+                    //     });
                 
-                        // Add click listener
-                        marker.addListener('click', () => {
-                            infowindow.open(map, marker);
-                        });
+                    //     // Add click listener
+                    //     marker.addListener('click', () => {
+                    //         infowindow.open(map, marker);
+                    //     });
                 
-                        markers.push(marker);
-                        bounds.extend(position);
+                    //     markers.push(marker);
+                    //     bounds.extend(position);
                    
                 
-                    map.fitBounds(bounds);
+                    // map.fitBounds(bounds);
                     });
                     
                 }
