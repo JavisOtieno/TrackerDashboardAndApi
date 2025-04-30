@@ -249,11 +249,11 @@
                     // alert(date+' '+driverId);
                     fetchAndUpdateLocation(driverId);
 
-                    
+                    if (!updateTimer) {
                   
-                    updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
+                        updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
 
-                    
+                    }
             
 
                     });
