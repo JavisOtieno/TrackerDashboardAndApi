@@ -46,7 +46,7 @@
                             <div class="form-group col-md-3 mb-3">
                                 <label for="date" class="form-label">Date</label>
                                 {{-- <input  name="order" id="order"> --}}
-                                <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date',\Carbon\Carbon::yesterday()->toDateString())}}"/>
+                                <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date',\Carbon\Carbon::today()->toDateString())}}"/>
                             </div>
                             <div class="form-group col-md-3 mb-3">
                                 <label for="driverId" class="form-label">Driver</label>
@@ -246,8 +246,16 @@
                     var today = new Date();
                     var todayFormatted = today.toISOString().split('T')[0];
 
+                    let updateInterval = 30000; // 30 seconds
+                    let updateTimer = null;
+
                     if (date === todayFormatted) {
                         alert("The selected date is today.");
+                                            // Start update cycle
+                    if (!updateTimer) {
+                        updateTimer = setInterval(fetchAndUpdateLocations(date,driverId), updateInterval);
+                    }
+
                     } else {
                         alert("The selected date is not today.");
                     }
