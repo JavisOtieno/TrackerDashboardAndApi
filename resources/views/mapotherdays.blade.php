@@ -237,7 +237,7 @@
                     // }
 
                     document.addEventListener("DOMContentLoaded", function() {
-                    $('#setDate','#driverId').on('change', function() {
+                    $('#setDate,#driverId').on('change', function() {
                     var date = $('#setDate').val();
                     var driverId = $('#driverId').val();
                     alert(date+' '+driverId);
