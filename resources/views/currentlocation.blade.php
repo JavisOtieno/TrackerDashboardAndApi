@@ -240,9 +240,9 @@
                         console.log('userlatestlocation');
                         console.log(user.latest_location)
                         console.log('userlatestlocation');
-                        // location = user.latest_location;
-                        // const lat1 = Number(location.lat);
-                        // const long1 = Number(location.long);
+                        var locationnew = user.latest_location;
+                        const lat1 = Number(locationnew.lat);
+                        const long1 = Number(locationnew.long);
                         // const position = { lat: lat1, lng: long1 };
                 
                         // // Create marker
