@@ -245,6 +245,9 @@
                     // }
 
                     document.addEventListener("DOMContentLoaded", function() {
+                    let updateInterval = 30000; // 30 seconds
+                    let updateTimer = null;
+
                     $('#setDate,#driverId').on('change', function() {
                     var date = $('#setDate').val();
                     var driverId = $('#driverId').val();
@@ -254,9 +257,7 @@
                     var today = new Date();
                     var todayFormatted = today.toISOString().split('T')[0];
 
-                    let updateInterval = 30000; // 30 seconds
-                    let updateTimer = null;
-
+                    
                     if (date === todayFormatted) {
                         alert("The selected date is today.");
                         $('#liveSwitch').css('display', 'block');
