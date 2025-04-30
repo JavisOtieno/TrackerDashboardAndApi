@@ -252,6 +252,7 @@
                     try {
                         alert(date+' '+driverId);
                         const response = await fetch('/otherdays/'+date+'/'+driverId); // Use correct endpoint
+                        console.log(response);
                         const newLocations = await response.json();
                         // const filtered = newLocations.filter(location => location.id > 460);
 
