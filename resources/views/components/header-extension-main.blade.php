@@ -421,16 +421,17 @@
                 <li class="sub-category">
                     <h3>Main</h3>
                 </li>
-                <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i
-                            class="side-menu__icon fe fe-map"></i><span
-                            class="side-menu__label">Live Trail Map</span></a>
-                </li>
+
 
                 <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/currentlocation"><i
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/"><i
                             class="side-menu__icon fe fe-map-pin"></i><span
                             class="side-menu__label">Live Current Location</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/livetrail"><i
+                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__label">Live Trail Map</span></a>
                 </li>
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/dailytrails"><i

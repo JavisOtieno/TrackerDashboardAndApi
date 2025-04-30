@@ -24,10 +24,10 @@ use App\Http\Controllers\LocationController;
 
 Route::middleware(['auth','verified'])->group(function () {
 
-Route::get('/', [LocationController::class, 'index']);
+Route::get('/livetrail', [LocationController::class, 'index']);
 Route::get('/locations', [LocationController::class, 'locationIndex']);
 Route::get('/dailytrails', [LocationController::class, 'otherDaysTrail']);
-Route::get('/currentlocation', [LocationController::class, 'showCurrentLocation']);
+Route::get('/', [LocationController::class, 'showCurrentLocation']);
 Route::get('/otherdays/{date}', [LocationController::class, 'getOtherDaysLocations']);
 
 Route::get('/trips', [TripController::class, 'index']);
