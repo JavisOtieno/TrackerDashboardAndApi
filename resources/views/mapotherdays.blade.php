@@ -1,6 +1,6 @@
 
 
-@extends('layout')
+@extends('layout-form')
 
 @section('content')
 
