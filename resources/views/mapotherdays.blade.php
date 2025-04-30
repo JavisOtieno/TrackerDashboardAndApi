@@ -283,12 +283,14 @@
                     $('#liveSwitch').on('change', function() {
                         var liveSwitch = $('#liveSwitch').val();
 
-                        if(liveSwitch=='live'){
+                        if(liveSwitch=='offlive'){
+                            alert('off live');
                             if (updateTimer) {
                                 clearInterval(updateTimer);
                                 updateTimer = null;
                             }
                         }else{
+                            alert('live');
                             if (!updateTimer) {
                                 updateTimer = setInterval(() => fetchAndUpdateLocations(date, driverId), updateInterval);
                             }
