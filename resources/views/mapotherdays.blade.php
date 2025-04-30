@@ -283,6 +283,9 @@
 
                     $('#liveSelect').on('change', function() {
                         var liveSwitch = $('#liveSelect').val();
+                        var date = $('#setDate').val();
+                        var driverId = $('#driverId').val();
+                        
                         alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
