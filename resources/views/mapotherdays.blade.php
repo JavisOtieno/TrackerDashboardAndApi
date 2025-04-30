@@ -273,6 +273,11 @@
 
                     } else {
                         $('#liveSwitch').css('display', 'none');
+                        if (updateTimer) {
+                                // alert('updatetimer exists. ok')
+                                clearInterval(updateTimer);
+                                updateTimer = null;
+                            }
                         // alert("The selected date is not today.");
                     }
 
