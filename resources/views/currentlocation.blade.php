@@ -263,7 +263,8 @@
                             if (!updateTimer) {
                                 alert('updatetime does not exist. ok')
                                 alert(updateInterval)
-                                updateTimer = setInterval(() => fetchAndUpdateLocation, updateInterval);
+                                // updateTimer = setInterval(() => fetchAndUpdateLocation, updateInterval);
+                                updateTimer = setInterval(fetchAndUpdateLocation, updateInterval);
                             }
                         }
 
