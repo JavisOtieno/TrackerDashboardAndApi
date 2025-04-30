@@ -243,6 +243,17 @@
                     alert(date+' '+driverId);
                     fetchAndUpdateLocations(date,driverId);
 
+                    var today = new Date();
+                    var todayFormatted = today.toISOString().split('T')[0];
+
+                    if (date === todayFormatted) {
+                        alert("The selected date is today.");
+                    } else {
+                        alert("The selected date is not today.");
+                    }
+
+
+
                     });
                 });
                 }
