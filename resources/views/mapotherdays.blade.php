@@ -48,7 +48,7 @@
                                 {{-- <input  name="order" id="order"> --}}
                                 <input type="date" class="form-control" name="date" id="setDate" placeholder="date" autocomplete="date" value="{{old('date',\Carbon\Carbon::yesterday()->toDateString())}}"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-md-3 mb-3">
                                 <label for="driverId" class="form-label">Drivers</label>
                                 <select name="driverId" class="form-control form-select select2" data-bs-placeholder="Select Region">
                                     @foreach($drivers as $driver)
