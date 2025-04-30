@@ -259,7 +259,7 @@
 
                     if (date === todayFormatted) {
                         alert("The selected date is today.");
-                        $('#liveSwitch').toggle();
+                        $('#liveSwitch').css('display', 'block');
 
                                             // Start update cycle
                     // if (!updateTimer) {
@@ -271,7 +271,7 @@
 
 
                     } else {
-                        $('#liveSwitch').toggle();
+                        $('#liveSwitch').css('display', 'none');
                         alert("The selected date is not today.");
                     }
 
