@@ -245,20 +245,20 @@
                         var date = $('#setDate').val();
                         var driverId = $('#driverId').val();
 
-                        // alert(liveSwitch);
+                        alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
-                            // alert('off live');
+                            alert('off live');
                             if (updateTimer) {
-                                // alert('updatetimer exists. ok')
+                                alert('updatetimer exists. ok')
                                 clearInterval(updateTimer);
                                 updateTimer = null;
                             }
                         }else{
-                            // alert('live');
+                            alert('live');
                             
                             if (!updateTimer) {
-                                // alert('updatetime does not exist. ok')
+                                alert('updatetime does not exist. ok')
                                 updateTimer = setInterval(() => fetchAndUpdateLocation, updateInterval);
                             }
                         }
