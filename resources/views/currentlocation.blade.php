@@ -236,11 +236,19 @@
                     
                     // Start update cycle
                     if (!updateTimer) {
-                        updateTimer = setInterval(fetchAndUpdateLocation, updateInterval);
+                        updateTimer = setInterval(fetchAndUpdateLocation(0), updateInterval);
                     }
                 }
 
                 document.addEventListener("DOMContentLoaded", function() {
+
+                    $('#driverId').on('change', function() {
+                    var driverId = $('#driverId').val();
+                    // alert(date+' '+driverId);
+                    fetchAndUpdateLocation(driverId);
+            
+
+                    });
 
                 // updateInterval = 30000; // 30 seconds
 
@@ -248,23 +256,25 @@
                         var liveSwitch = $('#liveSelect').val();
                         var driverId = $('#driverId').val();
 
-                        alert(liveSwitch);
+                        // alert(liveSwitch);
 
                         if(liveSwitch=='offlive'){
-                            alert('off live');
+                            // alert('off live');
                             if (updateTimer) {
-                                alert('updatetimer exists. ok')
+                                // alert('updatetimer exists. ok')
                                 clearInterval(updateTimer);
                                 updateTimer = null;
                             }
                         }else{
-                            alert('live');
+                            // alert('live');
                             
                             if (!updateTimer) {
-                                alert('updatetime does not exist. ok')
-                                alert(updateInterval)
+                                // alert('updatetime does not exist. ok')
+                                // alert(updateInterval)
                                 // updateTimer = setInterval(() => fetchAndUpdateLocation, updateInterval);
-                                updateTimer = setInterval(fetchAndUpdateLocation, updateInterval);
+                                // updateTimer = setInterval(fetchAndUpdateLocation, updateInterval);
+                                updateTimer = setInterval(() => fetchAndUpdateLocation(driverId), updateInterval);
+
                             }
                         }
 
@@ -272,9 +282,9 @@
 
                 });
                 
-                async function fetchAndUpdateLocation() {
+                async function fetchAndUpdateLocation(driverId) {
                     try {
-                        const response = await fetch('/currentlocations'); // Use correct endpoint
+                        const response = await fetch('/currentlocations/'+driverId); // Use correct endpoint
                         // const newLocation = await response.json();
                         // // const filtered = newLocations.filter(location => location.id > 460);
                         

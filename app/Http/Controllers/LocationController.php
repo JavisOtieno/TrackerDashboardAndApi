@@ -94,8 +94,12 @@ class LocationController extends Controller
         $userswithcurrentlocations = User::with('latestLocation')->get();
         return view('currentlocation', compact('location','userswithcurrentlocations','drivers'));
     }
-    public function getCurrentLocations(){
-        $location = Location::with('user')->orderBy('id', 'desc')->first();
+    public function getCurrentLocations($driverid){
+        if($driverid==0){
+            $location = Location::with('user')->orderBy('id', 'desc')->first();
+        }else{
+            $location = Location::with('user')->where('user_id',$driverid)->orderBy('id', 'desc')->first();
+        }
 
         $userswithcurrentlocations = User::with('latestLocation')->get();
         return response()->json($userswithcurrentlocations);
