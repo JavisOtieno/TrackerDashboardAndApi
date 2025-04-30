@@ -242,11 +242,10 @@
 
                 document.addEventListener("DOMContentLoaded", function() {
 
-                updateInterval = 30000; // 30 seconds
+                // updateInterval = 30000; // 30 seconds
 
                 $('#liveSelect').on('change', function() {
                         var liveSwitch = $('#liveSelect').val();
-                        var date = $('#setDate').val();
                         var driverId = $('#driverId').val();
 
                         alert(liveSwitch);
