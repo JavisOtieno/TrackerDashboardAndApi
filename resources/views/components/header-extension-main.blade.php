@@ -428,11 +428,11 @@
                             class="side-menu__icon fe fe-map-pin"></i><span
                             class="side-menu__label">Live Current Location</span></a>
                 </li>
-                <li class="slide">
+                {{-- <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/livetrail"><i
                             class="side-menu__icon fe fe-map"></i><span
                             class="side-menu__label">Live Trail Map</span></a>
-                </li>
+                </li> --}}
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/dailytrails"><i
                             class="side-menu__icon fe fe-corner-left-up"></i><span
