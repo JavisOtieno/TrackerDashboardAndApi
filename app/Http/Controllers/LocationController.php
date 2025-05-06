@@ -102,6 +102,7 @@ class LocationController extends Controller
         }else{
             $userswithcurrentlocations = User::with('latestLocation')->where('id',$driverid)->get();
         }
+        
         return response()->json($userswithcurrentlocations);
     }
 }
