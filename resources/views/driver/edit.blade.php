@@ -96,35 +96,9 @@
                                 <label for="password" class="form-label">Password</label>
                                 <a href="/changepassword/driver/{{$user['id']}}" class="col-11 btn btn-info mb-0">Change Password</a>                            
                             </div>
-                            <div class="form-group">
-                                <label for="stock" class="form-label">Stock</label>
-                                <a href="/editdriverstock/{{$user['id']}}" class="col-11 btn btn-info mb-0">Edit Driver Stock</a>                            
-                            </div>
+                          
 
-                            <div class="form-group">
-                                <label for="driverComponents" class="form-label">Driver Activities</label>
-                                <div class="col-12">
-                                    <div class="row">
-                                <a href="/clockins/{{$user['id']}}/user" class="btn btn-info col-md-5 mt-0 mb-2">View Driver Clockins</a>
-                                <a href="/clockouts/{{$user['id']}}/user" class="btn btn-info col-md-5 offset-md-1 mt-0 mb-2">View Driver Clockouts</a>
-                                    </div>
-                                    <div class="row">
-                                <a href="/outlets/{{$user['id']}}/user" class="btn btn-info col-md-5 mt-0 mb-2">View Driver Outlets</a>
-                                <a href="/visits/{{$user['id']}}/user" class="btn btn-info col-md-5 offset-md-1 mt-0 mb-2">View Driver Visits</a>
-                                    </div>
-                                    <div class="row">
-                                <a href="/sales/{{$user['id']}}/user" class="btn btn-info col-md-5 mt-0 mb-2">View Driver Sales</a>
-                                <a href="/posaudits/{{$user['id']}}/user" class="btn btn-info col-md-5 offset-md-1 mt-0 mb-2">View Driver POS Audits</a>
-                                    </div>
-                                    <div class="row">
-                                <a href="/competitiveanalysis/{{$user['id']}}/user" class="btn col-md-5 btn-info mt-0 mb-2">View Driver Competitive Analysis</a>
-                                <a href="/feedback/{{$user['id']}}/user" class="btn btn-info col-md-5 offset-md-1 mt-0 mb-2">View Driver Feedback</a>
-                                    </div>
-                                    <div class="row">
-                                <a href="/routeplans/{{$user['id']}}/user" class="btn btn-info col-md-5 mt-0 mb-2">View Driver RoutePlans</a>
-                                <a href="/dayroutes/{{$user['id']}}" class="btn btn-info col-md-5 offset-md-1 mt-0 mb-2">View Driver Day Routes</a>
-                                    </div>
-                            </div>
+                          
 
                             </div>
                             
