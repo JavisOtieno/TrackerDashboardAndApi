@@ -20,7 +20,8 @@ class LocationController extends CommonController
             'trip_id' => 'nullable|numeric|digits_between:1,11',
             'long' => 'required|numeric|between:-180,180',
             'distance' => 'nullable|numeric',
-            'accuracy' => 'nullable|numeric'
+            'accuracy' => 'nullable|numeric',
+            'type' => 'required|string|max:255'
         ]);
         
         $userid = auth()->user()->id;

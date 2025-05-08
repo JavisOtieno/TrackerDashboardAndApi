@@ -35,14 +35,14 @@ class TripController extends CommonController
         $trip = Trip::create($incomingFields);
  
         // Save start location
-        Location::create([
-            'trip_id' => $trip->id,
-            'user_id' => $userid,
-            'lat' => $incomingFields['start_lat'],
-            'long' => $incomingFields['start_long'],
-            'name' => $incomingFields['start_location'],
-            'type' => 'start',
-        ]);
+        // Location::create([
+        //     'trip_id' => $trip->id,
+        //     'user_id' => $userid,
+        //     'lat' => $incomingFields['start_lat'],
+        //     'long' => $incomingFields['start_long'],
+        //     'name' => $incomingFields['start_location'],
+        //     'type' => 'start',
+        // ]);
 
         $tripStatus=array(
             "message" => "Trip Added Successfully",
@@ -99,14 +99,14 @@ class TripController extends CommonController
         $trip->update($incomingFields);
 
         // Save end point as a location
-        Location::create([
-            'trip_id' => $trip->id,
-            'user_id' => $userId,
-            'lat' => $incomingFields['end_lat'],
-            'long' => $incomingFields['end_long'],
-            'name' => $trip->end_location,
-            'type' => 'end',
-        ]);
+        // Location::create([
+        //     'trip_id' => $trip->id,
+        //     'user_id' => $userId,
+        //     'lat' => $incomingFields['end_lat'],
+        //     'long' => $incomingFields['end_long'],
+        //     'name' => $trip->end_location,
+        //     'type' => 'end',
+        // ]);
 
         $tripStatus=array(
             "message" => "Trip Ended Successfully",
