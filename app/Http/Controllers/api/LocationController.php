@@ -21,7 +21,7 @@ class LocationController extends CommonController
             'long' => 'required|numeric|between:-180,180',
             'distance' => 'nullable|numeric',
             'accuracy' => 'nullable|numeric',
-            'type' => 'required|string|max:255'
+            // 'type' => 'required|string|max:255'
         ]);
         
         $userid = auth()->user()->id;
