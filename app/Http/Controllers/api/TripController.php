@@ -85,15 +85,15 @@ class TripController extends CommonController
 
         $locations = Location::where('trip_id', $id)->orderBy('created_at')->get();
 
-        $firstlocation = $locations->first();
-        $lastlocation = $locations->last();
+        // $firstlocation = $locations->first();
+        // $lastlocation = $locations->last();
 
-        $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
-        $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$incomingFields['end_lat'],$incomingFields['end_long']);
+        // $firstdistance = $this->haversineDistance($trip->start_lat,$trip->start_long,$firstlocation->lat,$firstlocation->long);
+        // $lastdistance = $this->haversineDistance($lastlocation->lat,$lastlocation->long,$incomingFields['end_lat'],$incomingFields['end_long']);
 
         $totalDistance =Location::where('trip_id', $id)
         ->sum('distance');
-        $incomingFields['distance'] = $totalDistance+$firstdistance+$lastdistance;
+        $incomingFields['distance'] = $totalDistance;
         
         // Update Trip
         $trip->update($incomingFields);
