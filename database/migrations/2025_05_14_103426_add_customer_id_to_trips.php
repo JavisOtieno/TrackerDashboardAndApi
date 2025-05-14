@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('trips', function (Blueprint $table) {
             //
+            // $table->string('status')->after('phone'); // Adjust placement as needed
+            $table->string('customer_id')->nullable()->after('user_id'); 
         });
     }
 
@@ -23,6 +25,8 @@ return new class extends Migration
     {
         Schema::table('trips', function (Blueprint $table) {
             //
+
+            $table->dropColumn(['customer_id']);
         });
     }
 };
