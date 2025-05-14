@@ -308,9 +308,10 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
 
     if(trips[0] != null){
     var mapProp= {
-      center:new google.maps.LatLng(Number(trips[0]['start_lat']),
-      Number(trips[0]['start_long'])),
-      zoom:10,
+      center:new google.maps.LatLng(
+        Number(trips[0]['start_lat']),
+        Number(trips[0]['start_long'])),
+        zoom:10,
     };
     // alert("working well");
     }else{
@@ -554,14 +555,18 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
 
 
                 if (totalDistance < 50) {
+                    
                     console.log('Route is less than 50 meters, not drawing directions.');
                     var bounds = new google.maps.LatLngBounds();
                     addMarkers(map,locations,bounds);
                     map.fitBounds(bounds);
+
                 } else {
+
                     directionsRenderer.setDirections(result);
                     console.log('Route drawn with result:', result);
                     addMarkers(map,locations);
+
                 }
 
             } else {
@@ -570,6 +575,7 @@ AIzaSyALLsNWwOC09xsRAqrK0S7dINi6BpNc7iw&callback=embedMap2"></script> --}}
                 addMarkers(map,locations,bounds);
                 map.fitBounds(bounds);
             }
+
         });
 
         }
