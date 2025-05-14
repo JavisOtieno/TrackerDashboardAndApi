@@ -55,6 +55,10 @@
                             <label for="driver_name" class="form-label">Driver Name</label>
                             <input readonly type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Driver Name" value="{{ old('driver_name', $trip['user']['name']) }}" autocomplete="driver_name">
                         </div>
+                        <div class="form-group">
+                            <label for="customer_name" class="form-label">Customer Name</label>
+                            <input readonly type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Customer Name" value="{{ old('customer_name', $trip['customer']['name']) }}" autocomplete="driver_name">
+                        </div>
                             <div class="form-group">
                                 <label for="start_location" class="form-label">Start Location</label>
                                 <input type="text" class="form-control" name="start_location" id="start_location" placeholder="Start Location" value="{{ old('start_location', $trip['start_location']) }}" autocomplete="start_location">
