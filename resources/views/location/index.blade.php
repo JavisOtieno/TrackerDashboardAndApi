@@ -12,7 +12,7 @@
     <h1 class="page-title">Locations</h1>
     <div>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">RTMS</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Tracker</a></li>
             <li class="breadcrumb-item active" aria-current="page">Locations</li>
         </ol>
     </div>

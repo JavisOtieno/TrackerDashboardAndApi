@@ -9,11 +9,11 @@
 
   <!-- PAGE-HEADER -->
   <div class="page-header">
-    <h1 class="page-title">Drivers</h1>
+    <h1 class="page-title">Customers</h1>
     <div>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Tracker</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit Driver</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Customer</li>
         </ol>
     </div>
 </div>
@@ -23,13 +23,13 @@
 <div class="col-xl-12 row">
     <div class="card col-md-8">
         <div class="card-header">
-            <h3 class="card-title">Edit Driver</h3> 
+            <h3 class="card-title">Edit Customer</h3> 
         </div>
         <div class="card-body">
             <!--<p>Use <code class="highlighter-rouge">.table-striped</code>to add zebra-striping to any table row within the <code class="highlighter-rouge">.tbody</code>.</p>-->
             
                 
-                    <form action="/saveeditdriver/{{$user['id']}}" method="POST" enctype="multipart/form-data">
+                    <form action="/saveeditcustomer/{{$user['id']}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="">
@@ -95,7 +95,7 @@
                             
                             <div class="form-group">
                                 <label for="password" class="form-label">Password</label>
-                                <a href="/changepassword/driver/{{$user['id']}}" class="col-11 btn btn-info mb-0">Change Password</a>                            
+                                <a href="/changepassword/customer/{{$user['id']}}" class="col-11 btn btn-info mb-0">Change Password</a>                            
                             </div>
                           
 

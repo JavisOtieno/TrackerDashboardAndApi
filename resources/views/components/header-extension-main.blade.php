@@ -477,6 +477,7 @@
                                            
                                             @endif
                                             <li><a href="/drivers" class="slide-item"> Drivers</a></li>
+                                            <li><a href="/customers" class="slide-item"> Customers</a></li>
                                             
     
                                             

@@ -56,6 +56,15 @@ Route::get('/editdriver/{id}', [UserController::class,'showEditDriver']);
 Route::put('/saveeditdriver/{id}',[UserController::class,'saveEditDriver']);
 
 
+Route::get('/customers', [UserController::class,'customers']);
+Route::get('/customers/{id}/{object}',[UserController::class,'showCustomersById']);
+Route::get('/deletecustomer/{id}', [UserController::class,'deleteCustomer']);
+Route::post('/savecustomer', [UserController::class,'saveCustomer']);
+Route::get('/add-customer', [UserController::class,'addCustomer']);
+Route::get('/editcustomer/{id}', [UserController::class,'showEditCustomer']);
+Route::put('/saveeditcustomer/{id}',[UserController::class,'saveEditCustomer']);
+
+
 Route::get('/logout', [LoginController::class,'logout']);
 
 
