@@ -68,7 +68,7 @@
                                                     <option {{old('usertype',$user['usertype'])=="sales"? 'selected':''}} value="sales">Sales</option>
                                 </select>
                             </div> --}}
-                            <
+                            
                            
                             <div class="form-group">
                                 <label for="status" class="form-label">Status</label>
