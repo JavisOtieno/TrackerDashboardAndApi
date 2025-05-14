@@ -57,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label for="customer_name" class="form-label">Customer Name</label>
-                            <input readonly type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Customer Name" value="{{ old('customer_name', $trip['customer']['name']) }}" autocomplete="driver_name">
+                            <input readonly type="text" class="form-control" name="driver_name" id="driver_name" placeholder="Customer Name" value="{{ old('customer_name', ($trip['customer']?$trip['customer']['name']:'Customer Not Found') ) }}" autocomplete="driver_name">
                         </div>
                             <div class="form-group">
                                 <label for="start_location" class="form-label">Start Location</label>
