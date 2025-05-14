@@ -61,6 +61,7 @@
                             <th id="delete-column">Delete</th>
                             {{-- <th>Test Name</th> --}}
                             <th>Driver</th>
+                            <th>Customer</th>
                             <th>Start Location</th>
                             <th>End Location</th>
                             <th>Loc Sum Distance</th>
@@ -85,6 +86,7 @@
 </td>
     {{-- <td>{{$posaudit['user']['name']}}</td> --}}
 <td>{{ $trip['user'] ? $trip['user']['name']  . ($trip['user']->trashed() ? ' (Deleted User)' : '') : 'Deleted User'}}
+<td>{{ $trip['customer'] ? $trip['customer']['name']  . ($trip['customer']->trashed() ? ' (Deleted Customer)' : '') : 'Deleted Customer'}}
 <td>{{$trip['start_location']}}</td>
 <td>{{$trip['end_location']}}</td>
 <td>{{$trip['locations_sum_distance']}}</td>
