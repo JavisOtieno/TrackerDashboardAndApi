@@ -115,7 +115,7 @@ class TripController extends CommonController
 
         }else{
                 $tripStatus=array(
-                "message" => "Move closer to the starting point",
+                "message" => "Move closer to the starting point - ".$distance,
                 "tripId" => $trip->id,
                 "status" => "errors");
 
