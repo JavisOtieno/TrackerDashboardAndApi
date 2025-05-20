@@ -210,7 +210,7 @@ class TripController extends CommonController
         
         //return $incomingFields;
         $userid = auth()->user()->id;
-        $incomingFields['user_id']=$userid;
+        $incomingFields['customer_id']=$userid;
 
         $incomingFields['status']='order';
 
