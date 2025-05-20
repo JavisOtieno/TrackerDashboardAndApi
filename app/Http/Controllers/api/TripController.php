@@ -28,6 +28,7 @@ class TripController extends CommonController
         //return $incomingFields;
         $userid = auth()->user()->id;
         $incomingFields['user_id']=$userid;
+        $incomingFields['status']='start';
 
         // $incomingFields['name']=strip_tags($incomingFields['name']);
 
@@ -96,6 +97,7 @@ class TripController extends CommonController
         $totalDistance =Location::where('trip_id', $id)
         ->sum('distance');
         $incomingFields['distance'] = $totalDistance;
+        $incomingFields['status']='end';
         
         // Update Trip
         $trip->update($incomingFields);
@@ -156,6 +158,8 @@ class TripController extends CommonController
         //return $incomingFields;
         $userid = auth()->user()->id;
         $incomingFields['user_id']=$userid;
+
+        $incomingFields['status']='order';
 
         // $incomingFields['name']=strip_tags($incomingFields['name']);
 
