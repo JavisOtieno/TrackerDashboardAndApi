@@ -244,6 +244,16 @@ class TripController extends CommonController
 
         $userid = auth()->user()->id;
 
+        $trips = Trip::where('customer_id', $userid)->orderBy('created_at', 'desc')->get();
+
+        return response()->json(['trips'=>$trips]);
+        
+    }
+
+    public function indexPendingOrders(){
+
+        $userid = auth()->user()->id;
+
         $trips = Trip::where('status', 'order')->orderBy('created_at', 'desc')->get();
 
         return response()->json(['trips'=>$trips]);
