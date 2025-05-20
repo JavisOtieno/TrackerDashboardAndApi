@@ -12,6 +12,8 @@ class TripController extends CommonController
 {
     //
 
+
+
     public function saveTrip(Request $request){
 
         $incomingFields=$request->validate([
@@ -136,4 +138,68 @@ class TripController extends CommonController
             'status' => 'success'
         ]);
     }
+
+
+
+        public function saveTripCustomer(Request $request){
+
+        $incomingFields=$request->validate([
+            'start_location'=>'required|string|max:255',
+            'start_lat'=>'required|string|max:255',
+            'start_long'=>'required|string|max:255',
+            'end_location'=>'required|string|max:255',
+            'description'=>'required|string|max:3000',
+            'amount'=>'required|numeric|digits_between:1,11',
+
+        ]);
+        
+        //return $incomingFields;
+        $userid = auth()->user()->id;
+        $incomingFields['user_id']=$userid;
+
+        // $incomingFields['name']=strip_tags($incomingFields['name']);
+
+        //return $incomingFields['usertype'];
+
+        // Save Trip
+        $trip = Trip::create($incomingFields);
+ 
+        // Save start location
+        // Location::create([
+        //     'trip_id' => $trip->id,
+        //     'user_id' => $userid,
+        //     'lat' => $incomingFields['start_lat'],
+        //     'long' => $incomingFields['start_long'],
+        //     'name' => $incomingFields['start_location'],
+        //     'type' => 'start',
+        // ]);
+
+        $tripStatus=array(
+            "message" => "Trip Added Successfully",
+            "tripId" => $trip->id,
+            "status" => "success");
+
+        return response()->json($tripStatus);
+        
+    }
+
+    public function indexCustomer(){
+
+        $userid = auth()->user()->id;
+
+        $trips = Trip::where('user_id', $userid)->orderBy('created_at', 'desc')->get();
+
+        return response()->json(['trips'=>$trips]);
+        
+    }
+
+    public function showCustomer($id){
+        
+        $trip = Trip::with(['locations' => function ($query) {
+            $query->where('type', 'stopover');
+        }])->find($id);
+        return response()->json(['trip'=>$trip]);
+        
+    }
+
 }

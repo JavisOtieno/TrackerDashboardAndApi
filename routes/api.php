@@ -40,6 +40,11 @@ Route::post('/addlocation', [LocationController::class, 'addLocation']);
 Route::post('/addtrip', [TripController::class, 'saveTrip']);
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/trip/{id}', [TripController::class, 'show']);
+
+Route::post('/addtripcustomer', [TripController::class, 'saveTripCustomer']);
+Route::get('/tripscustomer', [TripController::class, 'indexCustomer']);
+Route::get('/tripcustomer/{id}', [TripController::class, 'showCustomer']);
+
 Route::put('/endtrip/{id}', [TripController::class, 'endTrip']);
 Route::post('/addstopover', [TripController::class, 'addStopOver']);
 });

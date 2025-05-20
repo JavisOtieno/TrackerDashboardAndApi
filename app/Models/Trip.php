@@ -21,6 +21,8 @@ class Trip extends Model
         'description',
         'amount',
         'distance',
+        'status',
+        'customer_id',
         'user_id'
     ];
 
