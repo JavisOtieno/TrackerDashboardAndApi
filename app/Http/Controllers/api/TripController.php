@@ -75,6 +75,59 @@ class TripController extends CommonController
         
     }
 
+        public function startTrip($id, Request $request){
+
+        $incomingFields=$request->validate([
+            'lat' => 'required|numeric|between:-90,90',
+            'long' => 'required|numeric|between:-180,180',
+
+        ]);
+
+        $trip = Trip::find($id);
+        $userId = auth()->user()->id;
+
+        $incomingFields['status'] = 'start';
+        $incomingFields['user_id']=$userId;
+
+        $distance = $this->haversineDistance($trip->start_lat,$trip->start_long,
+        $incomingFields['lat'],$incomingFields['long']);
+
+        if($distance<0.040){
+
+            // Update Trip
+            $trip->update($incomingFields);
+
+            // Save end point as a location
+            // Location::create([
+            //     'trip_id' => $trip->id,
+            //     'user_id' => $userId,
+            //     'lat' => $incomingFields['end_lat'],
+            //     'long' => $incomingFields['end_long'],
+            //     'name' => $trip->end_location,
+            //     'type' => 'end',
+            // ]);
+
+            $tripStatus=array(
+                "message" => "Trip Started Successfully",
+                "tripId" => $trip->id,
+                "status" => "success");
+
+
+        }else{
+                $tripStatus=array(
+                "message" => "Move closer to the starting point",
+                "tripId" => $trip->id,
+                "status" => "error");
+
+        }
+
+        
+
+
+        return response()->json($tripStatus);
+        
+    }
+
     public function endTrip($id, Request $request){
 
         $incomingFields=$request->validate([

@@ -46,6 +46,7 @@ Route::get('/tripscustomer', [TripController::class, 'indexCustomer']);
 Route::get('/tripcustomer/{id}', [TripController::class, 'showCustomer']);
 
 Route::put('/endtrip/{id}', [TripController::class, 'endTrip']);
+Route::put('/starttrip/{id}', [TripController::class, 'startTrip']);
 Route::post('/addstopover', [TripController::class, 'addStopOver']);
 });
 
