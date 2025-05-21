@@ -39,6 +39,7 @@ Route::post('/addlocation', [LocationController::class, 'addLocation']);
 
 Route::post('/addtrip', [TripController::class, 'saveTrip']);
 Route::get('/trips', [TripController::class, 'index']);
+Route::get('/orders', [TripController::class, 'indexOrders']);
 Route::get('/trip/{id}', [TripController::class, 'show']);
 
 Route::post('/addtripcustomer', [TripController::class, 'saveTripCustomer']);

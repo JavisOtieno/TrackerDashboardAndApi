@@ -32,6 +32,7 @@ Route::get('/currentlocations/{driverid}', [LocationController::class, 'getCurre
 Route::get('/otherdays/{date}/{driverid}', [LocationController::class, 'getOtherDaysLocations']);
 
 Route::get('/trips', [TripController::class, 'index']);
+Route::get('/orders', [TripController::class, 'indexOrders']);
 Route::get('/createtrip', [TripController::class,'addTrip']);
 Route::get('/deletetrip/{id}', [TripController::class,'deleteTrip']);
 Route::post('/savetrip',[TripController::class,'saveTrip']);

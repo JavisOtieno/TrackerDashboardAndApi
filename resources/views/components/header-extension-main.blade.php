@@ -443,6 +443,11 @@
                             class="side-menu__icon fe fe-navigation"></i><span
                             class="side-menu__label">Trips</span></a>
                 </li>
+                                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/orders"><i
+                            class="side-menu__icon fe fe-navigation"></i><span
+                            class="side-menu__label">Orders</span></a>
+                </li>
 
                 <li class="slide">
                     <a class="side-menu__item has-link" data-bs-toggle="slide" href="/locations"><i

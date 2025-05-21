@@ -65,6 +65,7 @@ class TripController extends CommonController
         return response()->json(['trips'=>$trips]);
         
     }
+    
 
     public function show($id){
         

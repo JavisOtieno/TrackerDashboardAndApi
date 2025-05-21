@@ -15,7 +15,8 @@ class TripController extends CommonController
 
         // $trips = Trip::all();
         // test
-        $trips = Trip::with('locations')->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
+        $trips = Trip::with('locations')->where('status', '!=', 'order')
+        ->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
         $tripselected = Trip::with('locations')->find(19);
 
         $locations = Location::where('trip_id','19')
@@ -24,56 +25,26 @@ class TripController extends CommonController
 
         $totalDistance = 0;
 
-        // function haversineDistance($lat1, $lon1, $lat2, $lon2, $unit = 'K')
-        // {
-        //     $earthRadius = ($unit == 'K') ? 6371 : 3958.8; // Earth's radius in km or miles
+        return view('trip.index', ['trips'=>$trips]);
+    }
 
-        //     $lat1 = deg2rad($lat1);
-        //     $lon1 = deg2rad($lon1);
-        //     $lat2 = deg2rad($lat2);
-        //     $lon2 = deg2rad($lon2);
+        public function indexOrders(){
 
-        //     $dLat = $lat2 - $lat1;
-        //     $dLon = $lon2 - $lon1;
+        // $trips = Trip::all();
+        // test
+        $trips = Trip::with('locations')->where('status', 'order')
+        ->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
+        $tripselected = Trip::with('locations')->find(19);
 
-        //     $a = sin($dLat / 2) * sin($dLat / 2) +
-        //         cos($lat1) * cos($lat2) *
-        //         sin($dLon / 2) * sin($dLon / 2);
+        $locations = Location::where('trip_id','19')
+        ->orderBy('created_at', 'asc')
+        ->get();
 
-        //     $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
-
-        //     return $earthRadius * $c;
-        // }
-        // $distanceComparisons = '';
-
-        // if ($locations->count() > 1) { // Ensure we have at least two locations
-        //     for ($i = 0; $i < count($locations) - 1; $i++) {
-        //         $currentDistance = haversineDistance(
-        //             $locations[$i]->lat,
-        //             $locations[$i]->long,
-        //             $locations[$i + 1]->lat,
-        //             $locations[$i + 1]->long
-        //         );
-        //         $totalDistance += $currentDistance;
-        //         $distanceComparisons .= $currentDistance.' '.$locations[$i+1]->distance.' '.$totalDistance.'<br/>';
-        //     }
-        // }
-
-        // $totalDistance = 0;
-
-        // $previousLocation = null;
-        // foreach ($tripselected->locations as $location) {
-        //     if ($previousLocation) {
-        //         $totalDistance += abs($location->distance - $previousLocation->distance);
-        //     }
-        //     $previousLocation = $location;
-        // }
-
-        // return $totalDistance;
-        // return $distanceComparisons;
+        $totalDistance = 0;
 
         return view('trip.index', ['trips'=>$trips]);
     }
+
     public function deleteTrip($id){
         $trip = Trip::find($id);
         $trip->delete();
