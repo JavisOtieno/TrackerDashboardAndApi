@@ -36,6 +36,7 @@ Route::get('/orders', [TripController::class, 'indexOrders']);
 Route::get('/createtrip', [TripController::class,'addTrip']);
 Route::get('/deletetrip/{id}', [TripController::class,'deleteTrip']);
 Route::post('/savetrip',[TripController::class,'saveTrip']);
+Route::post('/savetripcustomer',[TripController::class,'saveTripCustomer']);
 Route::get('/trip/{id}', [TripController::class,'showEditTrip']);
 Route::put('/saveedittrip/{id}',[TripController::class,'saveEditTrip']);
 Route::get('/tempsumtripdistance',[TripController::class,'tempSumTripLocations']);
