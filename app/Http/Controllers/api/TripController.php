@@ -95,7 +95,7 @@ class TripController extends CommonController
         $distance = $this->haversineDistance($trip->start_lat,$trip->start_long,
         $incomingFields['lat'],$incomingFields['long']);
 
-        if($distance<0.040){
+        if($distance<0.200){
 
             // Update Trip
             $trip->update($incomingFields);
