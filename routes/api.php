@@ -34,6 +34,7 @@ Route::middleware(['auth','verified'])->group(function () {
 Route::middleware(['auth:sanctum'])->group(function(){
 
 Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/profilecustomer', [ProfileController::class, 'indexCustomer']);
 
 Route::post('/addlocation', [LocationController::class, 'addLocation']);
 
