@@ -15,7 +15,11 @@ class TripController extends CommonController
 
         // $trips = Trip::all();
         // test
-        $trips = Trip::with('locations')->where('status', '!=', 'order')
+        $trips = Trip::with('locations')
+            ->where(function ($query) {
+                $query->where('status', '!=', 'order')
+                    ->orWhereNull('status');
+            })
         ->withSum('locations', 'distance')->orderBy('created_at', 'desc')->get();
         $tripselected = Trip::with('locations')->find(19);
 
