@@ -46,7 +46,7 @@ class TripController extends CommonController
 
         $totalDistance = 0;
 
-        return view('trip.index', ['trips'=>$trips]);
+        return view('order.index', ['trips'=>$trips]);
     }
 
     public function deleteTrip($id){
