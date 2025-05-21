@@ -73,7 +73,7 @@ class TripController extends CommonController
             $query->where('type', 'stopover');
         }])->find($id);
         $location = Location::where('trip_id',$trip->id)
-                ->orderBy('created_at', 'desc')->get();
+                ->orderBy('created_at', 'desc')->first();
         return response()->json(compact('trip','location'));
         
     }
