@@ -456,6 +456,22 @@
                 </li>
 
                 <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/admins"><i
+                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__label">Admins</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/drivers"><i
+                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__label">Drivers</span></a>
+                </li>
+                <li class="slide">
+                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="/customers"><i
+                            class="side-menu__icon fe fe-map"></i><span
+                            class="side-menu__label">Customers</span></a>
+                </li>
+
+                <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
                             class="side-menu__icon fe fe-user"></i><span
                             class="side-menu__label">Users</span><i
