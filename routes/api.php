@@ -45,6 +45,7 @@ Route::get('/trip/{id}', [TripController::class, 'show']);
 
 Route::post('/addtripcustomer', [TripController::class, 'saveTripCustomer']);
 Route::get('/tripscustomer', [TripController::class, 'indexCustomer']);
+Route::get('/tripscustomerorders', [TripController::class, 'indexCustomerOrders']);
 Route::get('/tripspendingorders', [TripController::class, 'indexPendingOrders']);
 Route::get('/tripcustomer/{id}', [TripController::class, 'showCustomer']);
 
