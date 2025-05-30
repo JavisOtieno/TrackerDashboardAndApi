@@ -61,7 +61,7 @@ class TripController extends CommonController
 
         $userid = auth()->user()->id;
 
-        $trips = Trip::where('user_id', $userid)->orderBy('created_at', 'desc')->get();
+        $trips = Trip::with('customer')->where('user_id', $userid)->orderBy('created_at', 'desc')->get();
 
         return response()->json(['trips'=>$trips]);
         
