@@ -23,7 +23,7 @@ class TripController extends CommonController
             'end_location'=>'required|string|max:255',
             'description'=>'required|string|max:3000',
             'amount'=>'required|numeric|digits_between:1,11',
-            'customer_id' => 'required|numeric|exists:users,id'
+            'customer_id' => 'nullable|numeric|exists:users,id'
 
         ]);
         //return $incomingFields;
