@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\TripController;
+use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\ProfileController;
 use App\Http\Controllers\api\LocationController;
@@ -52,6 +53,11 @@ Route::get('/tripcustomer/{id}', [TripController::class, 'showCustomer']);
 Route::put('/endtrip/{id}', [TripController::class, 'endTrip']);
 Route::put('/starttrip/{id}', [TripController::class, 'startTrip']);
 Route::post('/addstopover', [TripController::class, 'addStopOver']);
+
+
+Route::get('/customers', [UserController::class, 'customers']);
+
 });
+
 
 Route::post('/login', [LoginController::class,'doLogin']);
