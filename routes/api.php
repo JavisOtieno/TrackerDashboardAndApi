@@ -56,6 +56,7 @@ Route::post('/addstopover', [TripController::class, 'addStopOver']);
 
 
 Route::get('/customers', [UserController::class, 'customers']);
+Route::post('/addcustomer', [UserController::class, 'saveCustomer']);
 
 });
 
