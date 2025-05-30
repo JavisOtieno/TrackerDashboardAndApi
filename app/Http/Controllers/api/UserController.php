@@ -55,6 +55,13 @@ class UserController extends Controller
 
         $user->save();
 
-        return response()->json(['message' => 'Customer created successfully', 'customer' => $user], 201);
+        $customerStatus=array(
+            "message" => "Customer Added Successfully",
+            "customerId" => $user->id,
+            "status" => "success");
+
+        return response()->json($customerStatus);
+
+        // return response()->json(['message' => 'Customer created successfully',  "tripId" => $trip->id,"status" => "success"], 201);
     }
 }
