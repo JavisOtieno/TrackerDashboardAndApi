@@ -14,14 +14,15 @@ class UserController extends Controller
 {
     //
 
-        public function customers() {
-        $customers = User::where('usertype','customer')->get();
+    public function customers()
+    {
+        $customers = User::where('usertype', 'customer')->get();
 
         //return $users;
         //dd($sales);
         // $Customers = TargetGroup::withTrashed();
 
-        return response()->json(['customers'=>$customers]);
+        return response()->json(['customers' => $customers]);
     }
 
 
