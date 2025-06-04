@@ -70,9 +70,15 @@ class TripController extends CommonController
 
     public function show($id){
         
-        $trip = Trip::with(['locations' => function ($query) {
-            $query->where('type', 'stopover');
-        }])->find($id);
+        // $trip = Trip::with(['locations' => function ($query) {
+        //     $query->where('type', 'stopover');
+        // }])->find($id);
+        $trip = Trip::with([
+            'locations' => function ($query) {
+                $query->where('type', 'stopover');
+            },
+            'customer'
+        ])->find($id);
         $location = Location::where('trip_id',$trip->id)
                 ->orderBy('created_at', 'desc')->first();
         return response()->json(compact('trip','location'));
