@@ -77,7 +77,8 @@ class TripController extends CommonController
             'locations' => function ($query) {
                 $query->where('type', 'stopover');
             },
-            'customer'
+            'customer',
+            'user'
         ])->find($id);
         $location = Location::where('trip_id',$trip->id)
                 ->orderBy('created_at', 'desc')->first();
