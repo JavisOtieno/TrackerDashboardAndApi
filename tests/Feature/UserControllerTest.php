@@ -38,14 +38,12 @@ class UserControllerTest extends TestCase
 
     public function test_user_index_displays_users_view_with_data()
     {
-        //test
-        //test
-        //test
-        $user = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
-        $anotherUser = \App\Models\User::where('email', 'javisotieno@gmail.com')->first();
-    
+        // Create an admin user
+        $user = \App\Models\User::factory()->create(['usertype' => 'admin']);
+        $anotherUser = \App\Models\User::factory()->create(['usertype' => 'admin']);
+
         $response = $this->actingAs($user)->get('/admins');
-    
+
         $response->assertStatus(200);
         $response->assertViewIs('admin.index');
         $response->assertViewHas('users', function ($users) use ($anotherUser) {
