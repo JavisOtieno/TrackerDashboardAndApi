@@ -44,6 +44,8 @@ class TripController extends CommonController
         ->orderBy('created_at', 'asc')
         ->get();
 
+        
+
         $totalDistance = 0;
 
         return view('order.index', ['trips'=>$trips]);

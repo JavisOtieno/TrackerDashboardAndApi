@@ -21,6 +21,10 @@ class LocationController extends Controller
 
         $totalDistance = 0;
 
+
+
+
+
         function haversineDistance($lat1, $lon1, $lat2, $lon2, $unit = 'K')
         {
             $earthRadius = ($unit == 'K') ? 6371 : 3958.8; // Earth's radius in km or miles
@@ -52,6 +56,7 @@ class LocationController extends Controller
                 );
             }
         }
+
 
         return view('map', compact('locations','totalDistance'));
     }
