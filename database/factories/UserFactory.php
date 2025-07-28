@@ -24,9 +24,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'usertype' => 'admin', // or use $this->faker->randomElement(['admin', 'driver'])
+            'phone' => $this->faker->unique()->phoneNumber(),
+            'status' => 'active', // or any valid default for your app
+            'image' => null, // or $this->faker->imageUrl() if you want a fake image
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
