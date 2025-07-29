@@ -13,7 +13,7 @@ use Laravel\Sanctum\Sanctum;
 
 class LocationControllerTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
     use WithFaker;
 
     protected $user;
@@ -22,11 +22,7 @@ class LocationControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        
-        // Create a user for testing
         $this->user = User::factory()->create();
-        
-        // Create a trip for testing
         $this->trip = Trip::factory()->create([
             'user_id' => $this->user->id
         ]);
@@ -38,7 +34,6 @@ class LocationControllerTest extends TestCase
     public function test_add_location_successfully()
     {
         Sanctum::actingAs($this->user);
-
         $locationData = [
             'lat' => 40.7128,
             'long' => -74.0060,
@@ -47,15 +42,12 @@ class LocationControllerTest extends TestCase
             'accuracy' => 10.5,
             'trip_id' => $this->trip->id
         ];
-
         $response = $this->postJson('/api/addlocation', $locationData);
-
         $response->assertStatus(200)
                 ->assertJson([
                     'message' => 'Location Added Successfully',
                     'status' => 'success'
                 ]);
-
         $this->assertDatabaseHas('locations', [
             'lat' => 40.7128,
             'long' => -74.0060,
@@ -67,14 +59,9 @@ class LocationControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * Test adding location with distance calculation when previous location exists
-     */
     public function test_add_location_calculates_distance_from_previous_location()
     {
         Sanctum::actingAs($this->user);
-
-        // Create a previous location
         $previousLocation = Location::factory()->create([
             'user_id' => $this->user->id,
             'lat' => 40.7128,
@@ -82,46 +69,33 @@ class LocationControllerTest extends TestCase
             'type' => 'start',
             'created_at' => Carbon::now()->subMinutes(5)
         ]);
-
         $locationData = [
             'lat' => 40.7589,
             'long' => -73.9851,
             'type' => 'movement',
             'name' => 'Times Square'
         ];
-
         $response = $this->postJson('/api/addlocation', $locationData);
-
         $response->assertStatus(200);
-
-        // Check that distance was calculated and stored
         $location = Location::where('lat', 40.7589)
                            ->where('long', -73.9851)
                            ->where('user_id', $this->user->id)
                            ->first();
-        
         $this->assertNotNull($location);
         $this->assertGreaterThan(0, $location->distance);
     }
 
-    /**
-     * Test adding first location (no previous location)
-     */
     public function test_add_first_location_sets_distance_to_zero()
     {
         Sanctum::actingAs($this->user);
-
         $locationData = [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'start',
             'name' => 'Starting Point'
         ];
-
         $response = $this->postJson('/api/addlocation', $locationData);
-
         $response->assertStatus(200);
-
         $this->assertDatabaseHas('locations', [
             'lat' => 40.7128,
             'long' => -74.0060,
@@ -130,54 +104,36 @@ class LocationControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * Test validation errors for addLocation
-     */
     public function test_add_location_validation_errors()
     {
         Sanctum::actingAs($this->user);
-
-        // Test missing required fields
         $response = $this->postJson('/api/addlocation', []);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['lat', 'long', 'type']);
-
-        // Test invalid latitude
         $response = $this->postJson('/api/addlocation', [
-            'lat' => 100, // Invalid latitude
+            'lat' => 100,
             'long' => -74.0060,
             'type' => 'start'
         ]);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['lat']);
-
-        // Test invalid longitude
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
-            'long' => 200, // Invalid longitude
+            'long' => 200,
             'type' => 'start'
         ]);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['long']);
-
-        // Test invalid trip_id
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'start',
             'trip_id' => 'invalid'
         ]);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['trip_id']);
     }
 
-    /**
-     * Test unauthorized access to addLocation
-     */
     public function test_add_location_requires_authentication()
     {
         $locationData = [
@@ -185,76 +141,53 @@ class LocationControllerTest extends TestCase
             'long' => -74.0060,
             'type' => 'start'
         ];
-
         $response = $this->postJson('/api/addlocation', $locationData);
-
         $response->assertStatus(401);
     }
 
-    /**
-     * Test getting today's locations
-     */
     public function test_index_returns_todays_locations()
     {
-        Sanctum::actingAs($this->user);
-
-        // Create locations for today
-        $todayLocations = Location::factory()->count(3)->create([
+        $this->actingAs($this->user);
+        $fixedDate = Carbon::create(2024, 1, 15, 12, 0, 0, 'UTC');
+        Location::factory()->count(3)->create([
             'user_id' => $this->user->id,
             'type' => 'movement',
-            'created_at' => Carbon::today()
+            'created_at' => $fixedDate,
         ]);
-
-        // Create locations for yesterday
-        $yesterdayLocations = Location::factory()->count(2)->create([
+        Location::factory()->count(2)->create([
             'user_id' => $this->user->id,
             'type' => 'movement',
-            'created_at' => Carbon::yesterday()
+            'created_at' => $fixedDate->copy()->subDay(),
         ]);
-
-        $response = $this->getJson('/api/');
-
+        $response = $this->get('/api/');
         $response->assertStatus(200)
                 ->assertJsonCount(3);
-
-        // Verify only today's locations are returned
         $responseData = $response->json();
-        $today = Carbon::today()->toDateString();
+        $today = $fixedDate->toDateString();
         foreach ($responseData as $location) {
             $locationDate = Carbon::parse($location['created_at'])->toDateString();
             $this->assertEquals($today, $locationDate);
         }
     }
 
-    /**
-     * Test getting locations for a specific date
-     */
     public function test_get_other_days_locations_returns_locations_for_specific_date()
     {
-        Sanctum::actingAs($this->user);
-
+        $this->actingAs($this->user);
         $targetDate = '2024-01-15';
-        
-        // Create locations for the target date
-        $targetDateLocations = Location::factory()->count(3)->create([
+        $fixedDate = Carbon::create(2024, 1, 15, 12, 0, 0, 'UTC');
+        Location::factory()->count(3)->create([
             'user_id' => $this->user->id,
             'type' => 'movement',
-            'created_at' => Carbon::parse($targetDate)
+            'created_at' => $fixedDate,
         ]);
-
-        // Create locations for a different date
-        $otherDateLocations = Location::factory()->count(2)->create([
+        Location::factory()->count(2)->create([
             'user_id' => $this->user->id,
             'type' => 'movement',
-            'created_at' => Carbon::parse('2024-01-16')
+            'created_at' => $fixedDate->copy()->addDay(),
         ]);
-
-        $response = $this->getJson("/api/otherdays/{$targetDate}");
-
+        $response = $this->get("/api/otherdays/{$targetDate}");
         $response->assertStatus(200)
                 ->assertJsonCount(3);
-
-        // Verify only locations for the target date are returned
         $responseData = $response->json();
         foreach ($responseData as $location) {
             $locationDate = Carbon::parse($location['created_at'])->toDateString();
@@ -262,92 +195,61 @@ class LocationControllerTest extends TestCase
         }
     }
 
-    /**
-     * Test getting current location (latest location)
-     */
     public function test_get_current_location_returns_latest_location()
     {
-        Sanctum::actingAs($this->user);
-
-        // Create multiple locations
+        $this->actingAs($this->user);
         $oldLocation = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'start',
             'created_at' => Carbon::now()->subHours(2)
         ]);
-
         $latestLocation = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'end',
             'created_at' => Carbon::now()->subMinutes(5)
         ]);
-
-        $response = $this->getJson('/api/currentlocation');
-
+        $response = $this->get('/api/currentlocation');
         $response->assertStatus(200)
                 ->assertJson([
                     'id' => $latestLocation->id
                 ]);
     }
 
-    /**
-     * Test get current location when no locations exist
-     */
     public function test_get_current_location_returns_null_when_no_locations()
     {
-        Sanctum::actingAs($this->user);
-
-        $response = $this->getJson('/api/currentlocation');
-
+        $this->actingAs($this->user);
+        $response = $this->get('/api/currentlocation');
         $response->assertStatus(200);
         $this->assertNull($response->json());
     }
 
-    /**
-     * Test authentication required for index endpoint
-     */
     public function test_index_requires_authentication()
     {
-        $response = $this->getJson('/api/');
-
+        $response = $this->get('/api/');
         $response->assertStatus(401);
     }
 
-    /**
-     * Test authentication required for getOtherDaysLocations endpoint
-     */
     public function test_get_other_days_locations_requires_authentication()
     {
-        $response = $this->getJson('/api/otherdays/2024-01-15');
-
+        $response = $this->get('/api/otherdays/2024-01-15');
         $response->assertStatus(401);
     }
 
-    /**
-     * Test authentication required for getCurrentLocation endpoint
-     */
     public function test_get_current_location_requires_authentication()
     {
-        $response = $this->getJson('/api/currentlocation');
-
+        $response = $this->get('/api/currentlocation');
         $response->assertStatus(401);
     }
 
-    /**
-     * Test location data structure in responses
-     */
     public function test_location_response_has_correct_structure()
     {
-        Sanctum::actingAs($this->user);
-
+        $this->actingAs($this->user);
         $location = Location::factory()->create([
             'user_id' => $this->user->id,
             'trip_id' => $this->trip->id,
             'type' => 'movement'
         ]);
-
-        $response = $this->getJson('/api/');
-
+        $response = $this->get('/api/');
         $response->assertStatus(200)
                 ->assertJsonStructure([
                     '*' => [
@@ -366,13 +268,9 @@ class LocationControllerTest extends TestCase
                 ]);
     }
 
-    /**
-     * Test adding location with optional fields
-     */
     public function test_add_location_with_optional_fields()
     {
         Sanctum::actingAs($this->user);
-
         $locationData = [
             'lat' => 40.7128,
             'long' => -74.0060,
@@ -381,11 +279,8 @@ class LocationControllerTest extends TestCase
             'accuracy' => 15.2,
             'trip_id' => $this->trip->id
         ];
-
         $response = $this->postJson('/api/addlocation', $locationData);
-
         $response->assertStatus(200);
-
         $this->assertDatabaseHas('locations', [
             'lat' => 40.7128,
             'long' => -74.0060,
@@ -397,24 +292,17 @@ class LocationControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * Test adding location without trip_id
-     */
     public function test_add_location_without_trip_id()
     {
         Sanctum::actingAs($this->user);
-
         $locationData = [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'movement',
             'name' => 'Checkpoint'
         ];
-
         $response = $this->postJson('/api/addlocation', $locationData);
-
         $response->assertStatus(200);
-
         $this->assertDatabaseHas('locations', [
             'lat' => 40.7128,
             'long' => -74.0060,
@@ -425,154 +313,110 @@ class LocationControllerTest extends TestCase
         ]);
     }
 
-    /**
-     * Test that locations are ordered by created_at ascending for index
-     */
     public function test_index_returns_locations_ordered_by_created_at_ascending()
     {
-        Sanctum::actingAs($this->user);
-
-        // Create locations with different timestamps
+        $this->actingAs($this->user);
+        $fixedDate = Carbon::create(2024, 1, 15, 8, 0, 0, 'UTC');
         $location1 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'start',
-            'created_at' => Carbon::today()->addHours(1)
+            'created_at' => $fixedDate->copy()->addHour()
         ]);
-
         $location2 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'end',
-            'created_at' => Carbon::today()->addHours(3)
+            'created_at' => $fixedDate->copy()->addHours(3)
         ]);
-
         $location3 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'movement',
-            'created_at' => Carbon::today()->addHours(2)
+            'created_at' => $fixedDate->copy()->addHours(2)
         ]);
-
-        $response = $this->getJson('/api/');
-
+        $response = $this->get('/api/');
         $response->assertStatus(200);
-        
         $responseData = $response->json();
         $this->assertEquals($location1->id, $responseData[0]['id']);
         $this->assertEquals($location3->id, $responseData[1]['id']);
         $this->assertEquals($location2->id, $responseData[2]['id']);
     }
 
-    /**
-     * Test that other days locations are ordered by created_at descending
-     */
     public function test_get_other_days_locations_returns_locations_ordered_by_created_at_descending()
     {
-        Sanctum::actingAs($this->user);
-
+        $this->actingAs($this->user);
         $targetDate = '2024-01-15';
-
-        // Create locations with different timestamps
+        $fixedDate = Carbon::create(2024, 1, 15, 8, 0, 0, 'UTC');
         $location1 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'start',
-            'created_at' => Carbon::parse($targetDate)->addHours(1)
+            'created_at' => $fixedDate->copy()->addHour()
         ]);
-
         $location2 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'end',
-            'created_at' => Carbon::parse($targetDate)->addHours(3)
+            'created_at' => $fixedDate->copy()->addHours(3)
         ]);
-
         $location3 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'movement',
-            'created_at' => Carbon::parse($targetDate)->addHours(2)
+            'created_at' => $fixedDate->copy()->addHours(2)
         ]);
-
-        $response = $this->getJson("/api/otherdays/{$targetDate}");
-
+        $response = $this->get("/api/otherdays/{$targetDate}");
         $response->assertStatus(200);
-        
         $responseData = $response->json();
         $this->assertEquals($location2->id, $responseData[0]['id']);
         $this->assertEquals($location3->id, $responseData[1]['id']);
         $this->assertEquals($location1->id, $responseData[2]['id']);
     }
 
-    /**
-     * Test that getCurrentLocation returns the location with highest ID
-     */
     public function test_get_current_location_returns_location_with_highest_id()
     {
-        Sanctum::actingAs($this->user);
-
-        // Create locations with different IDs but same timestamp
+        $this->actingAs($this->user);
         $location1 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'start',
             'created_at' => Carbon::now()
         ]);
-
         $location2 = Location::factory()->create([
             'user_id' => $this->user->id,
             'type' => 'end',
             'created_at' => Carbon::now()
         ]);
-
-        $response = $this->getJson('/api/currentlocation');
-
+        $response = $this->get('/api/currentlocation');
         $response->assertStatus(200)
                 ->assertJson([
                     'id' => max($location1->id, $location2->id)
                 ]);
     }
 
-    /**
-     * Test validation for accuracy field
-     */
     public function test_add_location_accuracy_validation()
     {
         Sanctum::actingAs($this->user);
-
-        // Test invalid accuracy (non-numeric)
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'start',
             'accuracy' => 'invalid'
         ]);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['accuracy']);
     }
 
-    /**
-     * Test validation for distance field
-     */
     public function test_add_location_distance_validation()
     {
         Sanctum::actingAs($this->user);
-
-        // Test invalid distance (non-numeric)
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'start',
             'distance' => 'invalid'
         ]);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['distance']);
     }
 
-    /**
-     * Test validation for name field length
-     */
     public function test_add_location_name_length_validation()
     {
         Sanctum::actingAs($this->user);
-
-        // Test name too long
         $longName = str_repeat('a', 256);
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
@@ -580,39 +424,26 @@ class LocationControllerTest extends TestCase
             'type' => 'start',
             'name' => $longName
         ]);
-
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['name']);
     }
 
-    /**
-     * Test validation for type field - only enum values allowed
-     */
     public function test_add_location_type_enum_validation()
     {
         Sanctum::actingAs($this->user);
-
-        // Test invalid type value - this should be caught by validation before reaching database
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'invalid_type'
         ]);
-
-        // The validation should catch this before it reaches the database
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['type']);
     }
 
-    /**
-     * Test all valid type enum values
-     */
     public function test_add_location_with_all_valid_type_values()
     {
         Sanctum::actingAs($this->user);
-
         $validTypes = ['start', 'movement', 'stopover', 'end'];
-
         foreach ($validTypes as $type) {
             $locationData = [
                 'lat' => 40.7128,
@@ -620,11 +451,8 @@ class LocationControllerTest extends TestCase
                 'type' => $type,
                 'name' => "Location {$type}"
             ];
-
             $response = $this->postJson('/api/addlocation', $locationData);
-
             $response->assertStatus(200);
-
             $this->assertDatabaseHas('locations', [
                 'lat' => 40.7128,
                 'long' => -74.0060,
