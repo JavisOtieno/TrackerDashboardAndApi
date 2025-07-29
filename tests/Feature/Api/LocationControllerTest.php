@@ -13,7 +13,8 @@ use Laravel\Sanctum\Sanctum;
 
 class LocationControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    // use RefreshDatabase, 
+    use WithFaker;
 
     protected $user;
     protected $trip;
