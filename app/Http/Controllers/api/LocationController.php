@@ -21,7 +21,7 @@ class LocationController extends CommonController
             'long' => 'required|numeric|between:-180,180',
             'distance' => 'nullable|numeric',
             'accuracy' => 'nullable|numeric',
-            'type' => 'required|string|max:255',
+            'type' => 'required|string|in:start,movement,stopover,end',
             'name' => 'nullable|string|max:255'
         ]);
         
@@ -78,7 +78,7 @@ class LocationController extends CommonController
     public function getCurrentLocation(Request $request){
 
         $location = Location::orderBy('id', 'desc')->first();
-        return response()->json($location);
+        return response()->json($location ?: null);
         
     }
 

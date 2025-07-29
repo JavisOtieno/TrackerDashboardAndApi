@@ -94,14 +94,13 @@ class LocationControllerTest extends TestCase
         $response->assertStatus(200);
 
         // Check that distance was calculated and stored
-        $this->assertDatabaseHas('locations', [
-            'lat' => 40.7589,
-            'long' => -73.9851,
-            'user_id' => $this->user->id,
-            'distance' => function ($value) {
-                return is_numeric($value) && $value > 0;
-            }
-        ]);
+        $location = Location::where('lat', 40.7589)
+                           ->where('long', -73.9851)
+                           ->where('user_id', $this->user->id)
+                           ->first();
+        
+        $this->assertNotNull($location);
+        $this->assertGreaterThan(0, $location->distance);
     }
 
     /**
@@ -219,9 +218,10 @@ class LocationControllerTest extends TestCase
 
         // Verify only today's locations are returned
         $responseData = $response->json();
+        $today = Carbon::today()->toDateString();
         foreach ($responseData as $location) {
-            $this->assertEquals(Carbon::today()->toDateString(), 
-                Carbon::parse($location['created_at'])->toDateString());
+            $locationDate = Carbon::parse($location['created_at'])->toDateString();
+            $this->assertEquals($today, $locationDate);
         }
     }
 
@@ -256,8 +256,8 @@ class LocationControllerTest extends TestCase
         // Verify only locations for the target date are returned
         $responseData = $response->json();
         foreach ($responseData as $location) {
-            $this->assertEquals($targetDate, 
-                Carbon::parse($location['created_at'])->toDateString());
+            $locationDate = Carbon::parse($location['created_at'])->toDateString();
+            $this->assertEquals($targetDate, $locationDate);
         }
     }
 
@@ -591,13 +591,14 @@ class LocationControllerTest extends TestCase
     {
         Sanctum::actingAs($this->user);
 
-        // Test invalid type value
+        // Test invalid type value - this should be caught by validation before reaching database
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
             'long' => -74.0060,
             'type' => 'invalid_type'
         ]);
 
+        // The validation should catch this before it reaches the database
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['type']);
     }
