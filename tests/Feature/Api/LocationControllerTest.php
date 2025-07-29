@@ -6,13 +6,14 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Location;
 use App\Models\Trip;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Carbon\Carbon;
 use Laravel\Sanctum\Sanctum;
 
 class LocationControllerTest extends TestCase
 {
-    use WithFaker;
+    use RefreshDatabase, WithFaker;
 
     protected $user;
     protected $trip;
@@ -77,13 +78,14 @@ class LocationControllerTest extends TestCase
             'user_id' => $this->user->id,
             'lat' => 40.7128,
             'long' => -74.0060,
+            'type' => 'start',
             'created_at' => Carbon::now()->subMinutes(5)
         ]);
 
         $locationData = [
             'lat' => 40.7589,
             'long' => -73.9851,
-            'type' => 'waypoint',
+            'type' => 'movement',
             'name' => 'Times Square'
         ];
 
@@ -199,12 +201,14 @@ class LocationControllerTest extends TestCase
         // Create locations for today
         $todayLocations = Location::factory()->count(3)->create([
             'user_id' => $this->user->id,
+            'type' => 'movement',
             'created_at' => Carbon::today()
         ]);
 
         // Create locations for yesterday
         $yesterdayLocations = Location::factory()->count(2)->create([
             'user_id' => $this->user->id,
+            'type' => 'movement',
             'created_at' => Carbon::yesterday()
         ]);
 
@@ -233,12 +237,14 @@ class LocationControllerTest extends TestCase
         // Create locations for the target date
         $targetDateLocations = Location::factory()->count(3)->create([
             'user_id' => $this->user->id,
+            'type' => 'movement',
             'created_at' => Carbon::parse($targetDate)
         ]);
 
         // Create locations for a different date
         $otherDateLocations = Location::factory()->count(2)->create([
             'user_id' => $this->user->id,
+            'type' => 'movement',
             'created_at' => Carbon::parse('2024-01-16')
         ]);
 
@@ -265,11 +271,13 @@ class LocationControllerTest extends TestCase
         // Create multiple locations
         $oldLocation = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'start',
             'created_at' => Carbon::now()->subHours(2)
         ]);
 
         $latestLocation = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'end',
             'created_at' => Carbon::now()->subMinutes(5)
         ]);
 
@@ -290,8 +298,8 @@ class LocationControllerTest extends TestCase
 
         $response = $this->getJson('/api/currentlocation');
 
-        $response->assertStatus(200)
-                ->assertJson(null);
+        $response->assertStatus(200);
+        $this->assertNull($response->json());
     }
 
     /**
@@ -333,7 +341,8 @@ class LocationControllerTest extends TestCase
 
         $location = Location::factory()->create([
             'user_id' => $this->user->id,
-            'trip_id' => $this->trip->id
+            'trip_id' => $this->trip->id,
+            'type' => 'movement'
         ]);
 
         $response = $this->getJson('/api/');
@@ -397,7 +406,7 @@ class LocationControllerTest extends TestCase
         $locationData = [
             'lat' => 40.7128,
             'long' => -74.0060,
-            'type' => 'waypoint',
+            'type' => 'movement',
             'name' => 'Checkpoint'
         ];
 
@@ -408,7 +417,7 @@ class LocationControllerTest extends TestCase
         $this->assertDatabaseHas('locations', [
             'lat' => 40.7128,
             'long' => -74.0060,
-            'type' => 'waypoint',
+            'type' => 'movement',
             'name' => 'Checkpoint',
             'user_id' => $this->user->id,
             'trip_id' => null
@@ -425,16 +434,19 @@ class LocationControllerTest extends TestCase
         // Create locations with different timestamps
         $location1 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'start',
             'created_at' => Carbon::today()->addHours(1)
         ]);
 
         $location2 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'end',
             'created_at' => Carbon::today()->addHours(3)
         ]);
 
         $location3 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'movement',
             'created_at' => Carbon::today()->addHours(2)
         ]);
 
@@ -460,16 +472,19 @@ class LocationControllerTest extends TestCase
         // Create locations with different timestamps
         $location1 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'start',
             'created_at' => Carbon::parse($targetDate)->addHours(1)
         ]);
 
         $location2 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'end',
             'created_at' => Carbon::parse($targetDate)->addHours(3)
         ]);
 
         $location3 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'movement',
             'created_at' => Carbon::parse($targetDate)->addHours(2)
         ]);
 
@@ -493,11 +508,13 @@ class LocationControllerTest extends TestCase
         // Create locations with different IDs but same timestamp
         $location1 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'start',
             'created_at' => Carbon::now()
         ]);
 
         $location2 = Location::factory()->create([
             'user_id' => $this->user->id,
+            'type' => 'end',
             'created_at' => Carbon::now()
         ]);
 
@@ -568,21 +585,51 @@ class LocationControllerTest extends TestCase
     }
 
     /**
-     * Test validation for type field length
+     * Test validation for type field - only enum values allowed
      */
-    public function test_add_location_type_length_validation()
+    public function test_add_location_type_enum_validation()
     {
         Sanctum::actingAs($this->user);
 
-        // Test type too long
-        $longType = str_repeat('a', 256);
+        // Test invalid type value
         $response = $this->postJson('/api/addlocation', [
             'lat' => 40.7128,
             'long' => -74.0060,
-            'type' => $longType
+            'type' => 'invalid_type'
         ]);
 
         $response->assertStatus(422)
                 ->assertJsonValidationErrors(['type']);
+    }
+
+    /**
+     * Test all valid type enum values
+     */
+    public function test_add_location_with_all_valid_type_values()
+    {
+        Sanctum::actingAs($this->user);
+
+        $validTypes = ['start', 'movement', 'stopover', 'end'];
+
+        foreach ($validTypes as $type) {
+            $locationData = [
+                'lat' => 40.7128,
+                'long' => -74.0060,
+                'type' => $type,
+                'name' => "Location {$type}"
+            ];
+
+            $response = $this->postJson('/api/addlocation', $locationData);
+
+            $response->assertStatus(200);
+
+            $this->assertDatabaseHas('locations', [
+                'lat' => 40.7128,
+                'long' => -74.0060,
+                'type' => $type,
+                'name' => "Location {$type}",
+                'user_id' => $this->user->id
+            ]);
+        }
     }
 } 
